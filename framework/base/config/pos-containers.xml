@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<ofbiz-containers xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/ofbiz-containers.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <container name="component-container" class="org.ofbiz.base.container.ComponentContainer">
+    </container>
+    <container name="classloader-container" class="org.ofbiz.base.container.ClassLoaderContainer">
+    </container>
+    <container name="jpos.device-container" class="org.ofbiz.pos.container.JposDeviceContainer">
+        <property name="CashDrawer.1" value="NullCashDrawer"></property>
+        <!--property name="Receipt" value="NullReceipt"></property-->
+        <!--property name="CashDrawer.1" value="Star TSP100 Cutter (TSP143)_CashDrawer_1"></property>
+        <property name="Receipt" value="Star TSP100 Cutter (TSP143)_1"></property!-->        
+        <property name="Receipt" value="WindowsReceipt"></property>
+        <property name="Keyboard" value="GenericKeyboard"></property>
+        <property name="Scanner" value="GenericScanner"></property>
+        <property name="Msr" value="TestMsr"></property>
+        <property name="PinPad" value="[NOT IMPLEMENTED]"></property>
+        <property name="Journal" value="[NOT IMPLEMENTED]"></property>
+        <property name="LineDisplay" value="[NOT IMPLEMENTED]"></property>
+        <property name="CheckScanner" value="[NOT IMPLEMENTED]"></property>
+        <property name="SignatureCapture" value="[NOT IMPLEMENTED]"></property>
+    </container>
+    <container name="pos-container" class="org.ofbiz.pos.container.PosContainer">
+        <property name="startup-directory" value="specialpurpose\pos\config\"></property>
+        <property name="startup-file" value="xpos.properties"></property>
+        <property name="class-package-name" value="net.xoetrope.swing"></property>
+        <property name="dispatcher-name" value="POSDispatcher"></property>
+        <property name="delegator-name" value="default"></property>
+        <property name="xui-session-id" value="pos-1"></property>
+        <property name="facility-id" value="MAX_FAC"></property>
+        <property name="product-store-id" value="VISHAL_STORE_ID"></property>
+        <property name="locale" value="en_AU"></property>
+        <property name="look-and-feel" value="javax.swing.plaf.nimbus.NimbusLookAndFeel"></property>
+        <property name="def-catalog-id" value="MAXS_CATALOG"></property>
+        <property name="def-category-id" value="VISHAL_CAT_ROOT_ID"></property>
+        <property name="ORGANIZATION_PARTY" value="VISHAL_COMPANY"></property>
+    </container>
+</ofbiz-containers>

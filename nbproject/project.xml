@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.ant.freeform</type>
+    <configuration>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
+            <name>OFBiz Main Build Aug 03</name>
+        </general-data>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/2">
+            <!-- Do not use Project Properties customizer when editing this file manually. 
+ To prevent the customizer from showing, create nbproject/project.properties file and enter 
+auxiliary.show.customizer=false 
+property there. Adding 
+auxiliary.show.customizer.message=<message>
+ will show your customized message when someone attempts to open the customizer.  -->
+            <name>OFBiz Main Build Aug 03</name>
+            <properties/>
+            <folders>
+                <source-folder>
+                    <label>OFBiz Main Build</label>
+                    <location>.</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\accounting\src</label>
+                    <type>java</type>
+                    <location>applications/accounting/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\humanres\src</label>
+                    <type>java</type>
+                    <location>applications/humanres/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\manufacturing\src</label>
+                    <type>java</type>
+                    <location>applications/manufacturing/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\marketing\src</label>
+                    <type>java</type>
+                    <location>applications/marketing/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\order\src</label>
+                    <type>java</type>
+                    <location>applications/order/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\party\src</label>
+                    <type>java</type>
+                    <location>applications/party/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\product\src</label>
+                    <type>java</type>
+                    <location>applications/product/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\securityext\src</label>
+                    <type>java</type>
+                    <location>applications/securityext/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>applications\workeffort\src</label>
+                    <type>java</type>
+                    <location>applications/workeffort/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\appserver\src</label>
+                    <type>java</type>
+                    <location>framework/appserver/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\base\build\gen-src\javacc</label>
+                    <type>java</type>
+                    <location>framework/base/build/gen-src/javacc</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\base\src</label>
+                    <type>java</type>
+                    <location>framework/base/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\bi\src</label>
+                    <type>java</type>
+                    <location>framework/bi/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\birt\src</label>
+                    <type>java</type>
+                    <location>framework/birt/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\catalina\src</label>
+                    <type>java</type>
+                    <location>framework/catalina/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\common\src</label>
+                    <type>java</type>
+                    <location>framework/common/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\datafile\src</label>
+                    <type>java</type>
+                    <location>framework/datafile/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\entity\src</label>
+                    <type>java</type>
+                    <location>framework/entity/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\entityext\src</label>
+                    <type>java</type>
+                    <location>framework/entityext/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\geronimo\src</label>
+                    <type>java</type>
+                    <location>framework/geronimo/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\jetty\src</label>
+                    <type>java</type>
+                    <location>framework/jetty/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\minilang\src</label>
+                    <type>java</type>
+                    <location>framework/minilang/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\security\src</label>
+                    <type>java</type>
+                    <location>framework/security/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\service\src</label>
+                    <type>java</type>
+                    <location>framework/service/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\sql\build\gen-src\javacc</label>
+                    <type>java</type>
+                    <location>framework/sql/build/gen-src/javacc</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\sql\src</label>
+                    <type>java</type>
+                    <location>framework/sql/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\start\src</label>
+                    <type>java</type>
+                    <location>framework/start/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\webapp\src</label>
+                    <type>java</type>
+                    <location>framework/webapp/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\webtools\src</label>
+                    <type>java</type>
+                    <location>framework/webtools/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\widget\src</label>
+                    <type>java</type>
+                    <location>framework/widget/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>runtime\catalina\work\default-server\0.0.0.0\ecommerce</label>
+                    <type>java</type>
+                    <location>runtime/catalina/work/default-server/0.0.0.0/ecommerce</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>runtime\catalina\work\default-server\0.0.0.0\ofbizsetup</label>
+                    <type>java</type>
+                    <location>runtime/catalina/work/default-server/0.0.0.0/ofbizsetup</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\assetmaint\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/assetmaint/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\crowd\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/crowd/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\ebay\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/ebay/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\ebaystore\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/ebaystore/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\ecommerce\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/ecommerce/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\example\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/example/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\googlebase\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/googlebase/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\googlecheckout\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/googlecheckout/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\hhfacility\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/hhfacility/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\ldap\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/ldap/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\oagis\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/oagis/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\pos\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/pos/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\projectmgr\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/projectmgr/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\scrum\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/scrum/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\shark\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/shark/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\webpos\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/webpos/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\workflow\src</label>
+                    <type>java</type>
+                    <location>specialpurpose/workflow/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>framework\testtools\src</label>
+                    <type>java</type>
+                    <location>framework/testtools/src</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\pos\com\openbravo\images</label>
+                    <type>java</type>
+                    <location>specialpurpose/pos/com/openbravo/images</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>specialpurpose\pos\src\com\openbravo\images</label>
+                    <type>java</type>
+                    <location>specialpurpose/pos/src/com/openbravo/images</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+            </folders>
+            <ide-actions>
+                <action name="build">
+                    <target>build</target>
+                </action>
+                <action name="clean">
+                    <target>clean</target>
+                </action>
+                <action name="javadoc">
+                    <target>docs</target>
+                </action>
+                <action name="run">
+                    <target>start-pos</target>
+                </action>
+                <action name="test">
+                    <target>_check-separated-tests-already-setup</target>
+                </action>
+                <action name="rebuild">
+                    <target>clean</target>
+                    <target>build</target>
+                </action>
+                <action name="compile.single">
+                    <script>nbproject/ide-file-targets.xml</script>
+                    <target>compile-selected-files-in-src</target>
+                    <context>
+                        <property>files</property>
+                        <folder>specialpurpose/pos/src</folder>
+                        <pattern>\.java$</pattern>
+                        <format>relative-path</format>
+                        <arity>
+                            <separated-files>,</separated-files>
+                        </arity>
+                    </context>
+                </action>
+            </ide-actions>
+            <view>
+                <items>
+                    <source-folder style="packages">
+                        <label>applications\accounting\src</label>
+                        <location>applications/accounting/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>applications\humanres\src</label>
+                        <location>applications/humanres/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>applications\manufacturing\src</label>
+                        <location>applications/manufacturing/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>applications\marketing\src</label>
+                        <location>applications/marketing/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>applications\order\src</label>
+                        <location>applications/order/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>applications\party\src</label>
+                        <location>applications/party/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>applications\product\src</label>
+                        <location>applications/product/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>applications\securityext\src</label>
+                        <location>applications/securityext/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>applications\workeffort\src</label>
+                        <location>applications/workeffort/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\appserver\src</label>
+                        <location>framework/appserver/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\base\build\gen-src\javacc</label>
+                        <location>framework/base/build/gen-src/javacc</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\base\src</label>
+                        <location>framework/base/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\bi\src</label>
+                        <location>framework/bi/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\birt\src</label>
+                        <location>framework/birt/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\catalina\src</label>
+                        <location>framework/catalina/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\common\src</label>
+                        <location>framework/common/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\datafile\src</label>
+                        <location>framework/datafile/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\entity\src</label>
+                        <location>framework/entity/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\entityext\src</label>
+                        <location>framework/entityext/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\geronimo\src</label>
+                        <location>framework/geronimo/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\jetty\src</label>
+                        <location>framework/jetty/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\minilang\src</label>
+                        <location>framework/minilang/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\security\src</label>
+                        <location>framework/security/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\service\src</label>
+                        <location>framework/service/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\sql\build\gen-src\javacc</label>
+                        <location>framework/sql/build/gen-src/javacc</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\sql\src</label>
+                        <location>framework/sql/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\start\src</label>
+                        <location>framework/start/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\webapp\src</label>
+                        <location>framework/webapp/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\webtools\src</label>
+                        <location>framework/webtools/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\widget\src</label>
+                        <location>framework/widget/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>runtime\catalina\work\default-server\0.0.0.0\ecommerce</label>
+                        <location>runtime/catalina/work/default-server/0.0.0.0/ecommerce</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>runtime\catalina\work\default-server\0.0.0.0\ofbizsetup</label>
+                        <location>runtime/catalina/work/default-server/0.0.0.0/ofbizsetup</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\assetmaint\src</label>
+                        <location>specialpurpose/assetmaint/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\crowd\src</label>
+                        <location>specialpurpose/crowd/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\ebay\src</label>
+                        <location>specialpurpose/ebay/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\ebaystore\src</label>
+                        <location>specialpurpose/ebaystore/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\ecommerce\src</label>
+                        <location>specialpurpose/ecommerce/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\example\src</label>
+                        <location>specialpurpose/example/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\googlebase\src</label>
+                        <location>specialpurpose/googlebase/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\googlecheckout\src</label>
+                        <location>specialpurpose/googlecheckout/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\hhfacility\src</label>
+                        <location>specialpurpose/hhfacility/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\ldap\src</label>
+                        <location>specialpurpose/ldap/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\oagis\src</label>
+                        <location>specialpurpose/oagis/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\pos\src</label>
+                        <location>specialpurpose/pos/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\projectmgr\src</label>
+                        <location>specialpurpose/projectmgr/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\scrum\src</label>
+                        <location>specialpurpose/scrum/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\shark\src</label>
+                        <location>specialpurpose/shark/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\webpos\src</label>
+                        <location>specialpurpose/webpos/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\workflow\src</label>
+                        <location>specialpurpose/workflow/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>framework\testtools\src</label>
+                        <location>framework/testtools/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\pos\com\openbravo\images</label>
+                        <location>specialpurpose/pos/com/openbravo/images</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>specialpurpose\pos\src\com\openbravo\images</label>
+                        <location>specialpurpose/pos/src/com/openbravo/images</location>
+                    </source-folder>
+                    <source-file>
+                        <location>build.xml</location>
+                    </source-file>
+                </items>
+                <context-menu>
+                    <ide-action name="build"/>
+                    <ide-action name="rebuild"/>
+                    <ide-action name="clean"/>
+                    <ide-action name="javadoc"/>
+                    <ide-action name="run"/>
+                    <ide-action name="test"/>
+                </context-menu>
+            </view>
+            <subprojects/>
+        </general-data>
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/3">
+            <compilation-unit>
+                <package-root>applications/accounting/src</package-root>
+                <classpath mode="compile">framework/appserver/build/lib/ofbiz-appsvrs.jar;C:\tools\jasperreports-5.5.0\lib\ant-1.7.1.jar;C:\tools\jasperreports-5.5.0\lib\antlr-2.7.5.jar;C:\tools\jasperreports-5.5.0\lib\barbecue-1.5-beta1.jar;C:\tools\jasperreports-5.5.0\lib\barcode4j-2.1.jar;C:\tools\jasperreports-5.5.0\lib\batik-anim.jar;C:\tools\jasperreports-5.5.0\lib\batik-awt-util.jar;C:\tools\jasperreports-5.5.0\lib\batik-bridge.jar;C:\tools\jasperreports-5.5.0\lib\batik-css.jar;C:\tools\jasperreports-5.5.0\lib\batik-dom.jar;C:\tools\jasperreports-5.5.0\lib\batik-ext.jar;C:\tools\jasperreports-5.5.0\lib\batik-gvt.jar;C:\tools\jasperreports-5.5.0\lib\batik-parser.jar;C:\tools\jasperreports-5.5.0\lib\batik-script.jar;C:\tools\jasperreports-5.5.0\lib\batik-svg-dom.jar;C:\tools\jasperreports-5.5.0\lib\batik-svggen.jar;C:\tools\jasperreports-5.5.0\lib\batik-util.jar;C:\tools\jasperreports-5.5.0\lib\batik-xml.jar;C:\tools\jasperreports-5.5.0\lib\bcel-5.2.jar;C:\tools\jasperreports-5.5.0\lib\bsh-2.0b4.jar;C:\tools\jasperreports-5.5.0\lib\castor-1.2.jar;C:\tools\jasperreports-5.5.0\lib\commons-beanutils-1.8.0.jar;C:\tools\jasperreports-5.5.0\lib\commons-collections-2.1.1.jar;C:\tools\jasperreports-5.5.0\lib\commons-digester-2.1.jar;C:\tools\jasperreports-5.5.0\lib\commons-javaflow-20060411.jar;C:\tools\jasperreports-5.5.0\lib\commons-logging-1.1.1.jar;C:\tools\jasperreports-5.5.0\lib\dom4j-1.6.1.jar;C:\tools\jasperreports-5.5.0\lib\groovy-all-2.0.1.jar;C:\tools\jasperreports-5.5.0\lib\hibernate3.jar;C:\tools\jasperreports-5.5.0\lib\hsqldb-1.8.0-10.jar;C:\tools\jasperreports-5.5.0\lib\iText-2.1.7.js2.jar;C:\tools\jasperreports-5.5.0\lib\jackson-annotations-2.1.4.jar;C:\tools\jasperreports-5.5.0\lib\jackson-core-2.1.4.jar;C:\tools\jasperreports-5.5.0\lib\jackson-databind-2.1.4.jar;C:\tools\jasperreports-5.5.0\lib\jaxen-1.1.1.jar;C:\tools\jasperreports-5.5.0\lib\jcommon-1.0.15.jar;C:\tools\jasperreports-5.5.0\lib\jdt-compiler-3.1.1.jar;C:\tools\jasperreports-5.5.0\lib\jfreechart-1.0.12.jar;C:\tools\jasperreports-5.5.0\lib\jpa.jar;C:\tools\jasperreports-5.5.0\lib\jxl-2.6.10.jar;C:\tools\jasperreports-5.5.0\lib\log4j-1.2.15.jar;C:\tools\jasperreports-5.5.0\lib\mondrian-3.1.1.12687.jar;C:\tools\jasperreports-5.5.0\lib\png-encoder-1.5.jar;C:\tools\jasperreports-5.5.0\lib\poi-3.7-20101029.jar;C:\tools\jasperreports-5.5.0\lib\poi-ooxml-3.7-20101029.jar;C:\tools\jasperreports-5.5.0\lib\poi-ooxml-schemas-3.7-20101029.jar;C:\tools\jasperreports-5.5.0\lib\rhino-1.7R3.jar;C:\tools\jasperreports-5.5.0\lib\saaj-api-1.3.jar;C:\tools\jasperreports-5.5.0\lib\serializer.jar;C:\tools\jasperreports-5.5.0\lib\servlet-api-2.4.jar;C:\tools\jasperreports-5.5.0\lib\spring-beans-2.5.5.jar;C:\tools\jasperreports-5.5.0\lib\spring-core-2.5.5.jar;C:\tools\jasperreports-5.5.0\lib\velocity-1.7-dep.jar;C:\tools\jasperreports-5.5.0\lib\xalan-2.7.1.jar;C:\tools\jasperreports-5.5.0\lib\xbean.jar;C:\tools\jasperreports-5.5.0\lib\xercesImpl-2.10.0.jar;C:\tools\jasperreports-5.5.0\lib\xml-apis-ext.jar;C:\tools\jasperreports-5.5.0\lib\xml-apis.jar;C:\tools\jasperreports-5.5.0\dist\jasperreports-5.5.0.jar;applications/accounting/build/lib/ofbiz-accounting.jar;framework/base/lib/pdfbox-app-1.8.10.jar;framework/base/lib/icepdf-core.jar;framework/base/lib/icepdf-viewer.jar;OrderMaxLib.jar</classpath>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>applications/humanres/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>applications/manufacturing/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>applications/marketing/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>applications/order/src</package-root>
+                <classpath mode="compile">applications/order/build/lib/ofbiz-order-test.jar;applications/order/build/lib/ofbiz-order.jar</classpath>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>applications/party/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>applications/product/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>applications/securityext/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>applications/workeffort/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/appserver/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/base/build/gen-src/javacc</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/base/src</package-root>
+                <classpath mode="compile">framework/entity/build/lib/ofbiz-entity-test.jar;framework/entity/build/lib/ofbiz-entity.jar</classpath>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/bi/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/birt/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/catalina/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/common/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/datafile/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/entity/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/entityext/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/geronimo/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/jetty/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/minilang/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/security/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/service/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/sql/build/gen-src/javacc</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/sql/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/start/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/webapp/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/webtools/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/widget/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>runtime/catalina/work/default-server/0.0.0.0/ecommerce</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>runtime/catalina/work/default-server/0.0.0.0/ofbizsetup</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/assetmaint/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/crowd/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/ebay/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/ebaystore/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/ecommerce/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/example/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/googlebase/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/googlecheckout/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/hhfacility/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/ldap/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/oagis/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/pos/src</package-root>
+                <classpath mode="compile">C:\tools\jasperreports-5.5.0\dist\jasperreports-5.5.0.jar;framework/base/build/lib/ofbiz-base.jar;framework/entity/build/lib/ofbiz-entity.jar;framework/base/lib/Tidy.jar;framework/base/lib/ant-1.8.3.jar;framework/base/lib/ant-junit-1.8.3.jar;framework/base/lib/ant-launcher-1.8.3.jar;framework/base/lib/ant-trax-1.8.0.jar;framework/base/lib/antisamy-bin.1.2.jar;framework/base/lib/avalon-framework-4.2.0.jar;framework/base/lib/avalon-util-exception-1.0.0.jar;framework/base/lib/barcode4j-fop-ext-complete-2.0.jar;framework/base/lib/batik-all-1.7.jar;framework/base/lib/beansbinding-1.2.1.jar;framework/base/lib/bsh-engine-modified.jar;framework/base/lib/clhm-release-1.0-lru.jar;framework/base/lib/fop-1.0.jar;framework/base/lib/freemarker-2.3.19.jar;framework/base/lib/hamcrest-all-1.2.jar;framework/base/lib/httpclient-4.1.1.jar;framework/base/lib/httpclient-cache-4.1.1.jar;framework/base/lib/httpcore-4.1.jar;framework/base/lib/httpmime-4.1.1.jar;framework/base/lib/httpunit-1.7.jar;framework/base/lib/ical4j-1.0-rc2.jar;framework/base/lib/icu4j-4_4.jar;framework/base/lib/ivy-2.2.0.jar;framework/base/lib/jasperreports-5.5.0.jar;framework/base/lib/jasperreports-applet-5.5.0.jar;framework/base/lib/jasperreports-fonts-5.5.0.jar;framework/base/lib/jasperreports-javaflow-5.5.0.jar;framework/base/lib/javolution-5.4.3.jar;framework/base/lib/jcip-annotations-1.0.jar;framework/base/lib/jcl-over-slf4j-1.6.4.jar;framework/base/lib/jdbm-1.0-SNAPSHOT.jar;framework/base/lib/jdom-1.1.jar;framework/base/lib/jpim-0.1.jar;framework/base/lib/jsoup-1.7.2.jar;framework/base/lib/juel-2.2.1.jar;framework/base/lib/junit-dep-4.10.jar;framework/base/lib/log4j-1.2.16.jar;framework/base/lib/mail-1.4.jar;framework/base/lib/mx4j-3.0.1.jar;framework/base/lib/mx4j-remote-3.0.1.jar;framework/base/lib/nekohtml.jar;framework/base/lib/owasp-esapi-full-java-1.4.jar;framework/base/lib/resolver-2.9.1.jar;framework/base/lib/serializer-2.9.1.jar;framework/widget/build/lib/ofbiz-widget.jar;framework/base/lib/slf4j-api-1.6.4.jar;framework/base/lib/slf4j-log4j12-1.6.4.jar;framework/base/lib/swing-layout-1.0.4.jar;framework/base/lib/ws-commons-java5-1.0.1.jar;framework/base/lib/ws-commons-util-1.0.2.jar;framework/base/lib/xalan-2.7.1.jar;framework/base/lib/xercesImpl-2.9.1.jar;framework/base/lib/xml-apis-2.9.1.jar;framework/base/lib/xml-apis-ext-1.3.04.jar;framework/base/lib/xmlgraphics-commons-1.4.jar;framework/base/lib/xmlrpc-client-3.1.2.jar;framework/base/lib/xmlrpc-common-3.1.2.jar;framework/base/lib/xmlrpc-server-3.1.2.jar;framework/base/lib/xpp3_min-1.1.4c.jar;framework/base/lib/xstream-1.3.1.jar;framework/base/lib/yuicompressor-2.4.6.jar;framework/service/build/lib/ofbiz-service.jar;specialpurpose/pos/lib/XuiCoreSwing-v3.2rc2b.jar;specialpurpose/pos/lib/XuiOptional-v3.2rc2b.jar;specialpurpose/pos/lib/jcl.jar;specialpurpose/pos/lib/looks-2.0.2.jar;framework/webapp/build/lib/ofbiz-webapp.jar;applications/party/build/lib/ofbiz-party.jar;applications/order/build/lib/ofbiz-order.jar;applications/order/build/lib/ofbiz-order.jar;applications/product/build/lib/ofbiz-product.jar;applications/accounting/build/lib/ofbiz-accounting.jar;applications/party/build/lib/ofbiz-party.jar;applications/product/build/lib/ofbiz-product.jar;specialpurpose/pos/lib/jcsv-1.4.0.jar;framework/base/build/lib/ofbiz-base.jar;framework/jetty/lib/javax.servlet.jsp.jstl-1.2.0.v201105211821.jar;specialpurpose/pos/lib/jpos113-controls.jar;specialpurpose/pos/lib/starjavapos.jar;OrderMaxLib.jar</classpath>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/projectmgr/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/scrum/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/shark/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/webpos/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/workflow/src</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>framework/testtools/src</package-root>
+                <unit-tests/>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/pos/com/openbravo/images</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>specialpurpose/pos/src/com/openbravo/images</package-root>
+                <source-level>1.7</source-level>
+            </compilation-unit>
+        </java-data>
+    </configuration>
+</project>

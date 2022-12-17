@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="822edc0d-c1d2-47b4-acdf-203531c4d4b0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<field name="invoiceId" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceId]]></fieldDescription>
+	</field>
+	<field name="productId" class="java.lang.String">
+		<fieldDescription><![CDATA[productId]]></fieldDescription>
+	</field>
+	<field name="quantity" class="java.lang.String"/>
+	<field name="amount" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="itemAmount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[itemAmount]]></fieldDescription>
+	</field>
+	<variable name="totalSales" class="java.math.BigDecimal" resetType="Group" resetGroup="invoice Id" calculation="Sum">
+		<variableExpression><![CDATA[$F{itemAmount}]]></variableExpression>
+	</variable>
+	<group name="invoice Id">
+		<groupExpression><![CDATA[$F{invoiceId}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<staticText>
+					<reportElement x="1" y="0" width="100" height="15" uuid="4998c926-d144-4068-aca8-1f23f0b375b6"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[InvoiceId:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="101" y="0" width="100" height="15" uuid="d4b26621-7538-42e6-80b3-d96215384fe3"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{invoiceId}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="15" width="100" height="15" uuid="6fc1d8fd-5ae6-45ba-b31d-fa993cc290f5"/>
+					<text><![CDATA[Product Id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="272" y="17" width="100" height="13" uuid="e51172b4-9d72-4615-a00e-2a9e35f12929"/>
+					<text><![CDATA[quantity]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="372" y="17" width="100" height="13" uuid="066a2cf1-15dc-4bdb-8140-204a9f2cf1a0"/>
+					<text><![CDATA[amount]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="101" y="17" width="100" height="13" uuid="cd25b6de-2361-4a99-aeeb-eaa7a4cebc19"/>
+					<text><![CDATA[description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="476" y="15" width="100" height="13" uuid="b42b0dab-8838-49cf-929c-d5e6930d7ee4"/>
+					<text><![CDATA[Item Amount]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="477" y="0" width="100" height="20" uuid="ee251993-af75-41ce-9422-a2067a44d394"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSales}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="355" y="0" width="100" height="20" uuid="1eb90415-c57e-486d-8826-daaafb031e63"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Item Amount:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126" uuid="13f762d1-0dad-460d-b216-089bbcfb4eec"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="7062927b-790e-4e55-8b55-8889efde8aea"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Daily Sales Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="219" y="62" width="196" height="22" uuid="9bdb7820-f434-45a1-adc4-db0b050adbc1"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Seven Hills]]></text>
+			</staticText>
+			<image>
+				<reportElement x="433" y="-115" width="267" height="209" uuid="92ea4e9b-f765-4e76-baac-6a8c3d1c50c9"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="SubTitle" x="315" y="62" width="156" height="22" uuid="9118afc4-3620-47db-a72f-c604a835a0d9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="2311e458-05b9-46b9-ab97-7bd3efb9744d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="441b96f7-7010-4e68-b272-38490fd1e438"/>
+				<textField>
+					<reportElement x="1" y="0" width="100" height="15" uuid="1f9943ca-50f1-4945-b147-394dccd09410"/>
+					<textFieldExpression><![CDATA[$F{productId}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="272" y="2" width="100" height="13" uuid="de2501da-51cb-488f-8ec7-4d7e8b58411a"/>
+					<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="372" y="2" width="100" height="13" uuid="63331959-1ac0-4b0c-8df3-1b10772696e9"/>
+					<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="101" y="2" width="171" height="13" uuid="63481cd0-6aba-41e5-a763-801d63cf4d1a"/>
+					<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="476" y="0" width="79" height="13" uuid="75693821-a8f8-4537-83a3-6ffe57e3bc86"/>
+					<textFieldExpression><![CDATA[$F{itemAmount}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="19141de4-21cc-487e-99b9-0e3582a4af8d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="70667ffb-4557-4ee4-8daa-566b274f0d0f"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="1b562d75-e219-4505-9564-24cce9923916"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="c73565f3-6529-4156-9e2c-652c47040003"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="395afaf5-5179-46ca-bd60-025cc1f70c0d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
+
+    
+
+ private static JasperDesign getJasperDesign() throws JRException {
+        //JasperDesign
+        JasperDesign jasperDesign = new JasperDesign();
+        jasperDesign.setName("MyNoXmlDesignReport");
+        jasperDesign.setPageWidth(595);
+        jasperDesign.setPageHeight(842);
+        jasperDesign.setColumnWidth(515);
+        jasperDesign.setColumnSpacing(0);
+        jasperDesign.setLeftMargin(40);
+        jasperDesign.setRightMargin(40);
+        jasperDesign.setTopMargin(50);
+        jasperDesign.setBottomMargin(50);
+
+        //Fonts
+        JRDesignStyle normalStyle = new JRDesignStyle();
+        normalStyle.setName("Sans_Normal");
+        normalStyle.setDefault(true);
+        normalStyle.setFontName("DejaVu Sans");
+        normalStyle.setFontSize(10);
+        normalStyle.setPdfFontName("Helvetica");
+        normalStyle.setPdfEncoding("Cp1252");
+        normalStyle.setPdfEmbedded(false);
+        jasperDesign.addStyle(normalStyle);
+
+        JRDesignStyle boldStyle = new JRDesignStyle();
+        boldStyle.setName("Sans_Bold");
+        boldStyle.setFontName("DejaVu Sans");
+        boldStyle.setFontSize(10);
+        boldStyle.setBold(true);
+        boldStyle.setPdfFontName("Helvetica-Bold");
+        boldStyle.setPdfEncoding("Cp1252");
+        boldStyle.setPdfEmbedded(false);
+        jasperDesign.addStyle(boldStyle);
+
+        JRDesignStyle italicStyle = new JRDesignStyle();
+        italicStyle.setName("Sans_Italic");
+        italicStyle.setFontName("DejaVu Sans");
+        italicStyle.setFontSize(10);
+        italicStyle.setItalic(true);
+        italicStyle.setPdfFontName("Helvetica-Oblique");
+        italicStyle.setPdfEncoding("Cp1252");
+        italicStyle.setPdfEmbedded(false);
+        jasperDesign.addStyle(italicStyle);
+
+        //Parameters
+        JRDesignParameter parameter = new JRDesignParameter();
+        parameter.setName("ReportTitle");
+        parameter.setValueClass(java.lang.String.class);
+        jasperDesign.addParameter(parameter);
+
+        parameter = new JRDesignParameter();
+        parameter.setName("OrderByClause");
+        parameter.setValueClass(java.lang.String.class);
+        jasperDesign.addParameter(parameter);
+
+        //Query
+        JRDesignQuery query = new JRDesignQuery();
+//		query.setText("SELECT * FROM Address $P!{OrderByClause}");
+        jasperDesign.setQuery(query);
+
+        //Fields
+        JRDesignField field = new JRDesignField();
+        field.setName("id");
+        field.setValueClass(java.lang.Integer.class);
+        jasperDesign.addField(field);
+
+        field = new JRDesignField();
+        field.setName("name");
+        field.setValueClass(java.lang.String.class);
+        jasperDesign.addField(field);
+
+        field = new JRDesignField();
+        field.setName("orderName");
+        field.setValueClass(java.lang.String.class);
+        jasperDesign.addField(field);
+
+        field = new JRDesignField();
+        field.setName("street");
+        field.setValueClass(java.lang.String.class);
+        jasperDesign.addField(field);
+
+        field = new JRDesignField();
+        field.setName("city");
+        field.setValueClass(java.lang.String.class);
+        jasperDesign.addField(field);
+
+        field = new JRDesignField();
+        field.setName("author");
+        field.setValueClass(java.lang.String.class);
+        jasperDesign.addField(field);
+
+        //Variables
+        JRDesignVariable variable = new JRDesignVariable();
+        variable.setName("CityNumber");
+        variable.setValueClass(java.lang.Integer.class);
+        variable.setResetType(ResetTypeEnum.GROUP);
+
+        JRDesignGroup group = new JRDesignGroup();
+        group.setName("CityGroup");
+        variable.setResetGroup(group);
+        variable.setCalculation(CalculationEnum.SYSTEM);
+        variable.setInitialValueExpression(new JRDesignExpression("($V{CityNumber} != null)?(new Integer($V{CityNumber}.intValue() + 1)):(new Integer(1))"));
+        jasperDesign.addVariable(variable);
+
+        variable = new JRDesignVariable();
+        variable.setName("AllCities");
+        variable.setValueClass(java.lang.String.class);
+        variable.setResetType(ResetTypeEnum.REPORT);
+        variable.setCalculation(CalculationEnum.SYSTEM);
+        jasperDesign.addVariable(variable);
+
+        //Groups
+        group.setMinHeightToStartNewPage(60);
+        group.setExpression(new JRDesignExpression("$F{city}"));
+
+        JRDesignBand band = new JRDesignBand();
+        band.setHeight(20);
+        JRDesignTextField textField = new JRDesignTextField();
+        textField.setX(0);
+        textField.setY(4);
+        textField.setWidth(515);
+        textField.setHeight(15);
+        textField.setBackcolor(new Color(0xC0, 0xC0, 0xC0));
+        textField.setMode(ModeEnum.OPAQUE);
+        textField.setHorizontalAlignment(HorizontalAlignEnum.LEFT);
+        textField.setStyle(boldStyle);
+        textField.setExpression(new JRDesignExpression("\"  \" + String.valueOf($V{CityNumber}) + \". \" + String.valueOf($F{city})"));
+        band.addElement(textField);
+        JRDesignLine line = new JRDesignLine();
+        line.setX(0);
+        line.setY(19);
+        line.setWidth(515);
+        line.setHeight(0);
+        band.addElement(line);
+        ((JRDesignSection) group.getGroupHeaderSection()).addBand(band);
+
+        band = new JRDesignBand();
+        band.setHeight(20);
+        line = new JRDesignLine();
+        line.setX(0);
+        line.setY(-1);
+        line.setWidth(515);
+        line.setHeight(0);
+        band.addElement(line);
+
+        JRDesignStaticText staticText = new JRDesignStaticText();
+        staticText.setX(400);
+        staticText.setY(0);
+        staticText.setWidth(60);
+        staticText.setHeight(15);
+        staticText.setHorizontalAlignment(HorizontalAlignEnum.RIGHT);
+        staticText.setStyle(boldStyle);
+        staticText.setText("Count : ");
+        band.addElement(staticText);
+
+        textField = new JRDesignTextField();
+        textField.setX(460);
+        textField.setY(0);
+        textField.setWidth(30);
+        textField.setHeight(15);
+        textField.setHorizontalAlignment(HorizontalAlignEnum.RIGHT);
+        textField.setStyle(boldStyle);
+        textField.setExpression(new JRDesignExpression("$V{CityGroup_COUNT}"));
+        band.addElement(textField);
+        ((JRDesignSection) group.getGroupFooterSection()).addBand(band);
+
+        jasperDesign.addGroup(group);
+
+        //Title
+        band = new JRDesignBand();
+        band.setHeight(50);
+        line = new JRDesignLine();
+        line.setX(0);
+        line.setY(0);
+        line.setWidth(515);
+        line.setHeight(0);
+        band.addElement(line);
+        textField = new JRDesignTextField();
+        textField.setBlankWhenNull(true);
+        textField.setX(0);
+        textField.setY(10);
+        textField.setWidth(515);
+        textField.setHeight(30);
+        textField.setHorizontalAlignment(HorizontalAlignEnum.CENTER);
+        textField.setStyle(normalStyle);
+        textField.setFontSize(22);
+        textField.setExpression(new JRDesignExpression("$P{ReportTitle}"));
+        band.addElement(textField);
+        jasperDesign.setTitle(band);
+
+        //Page header
+        band = new JRDesignBand();
+        band.setHeight(20);
+        JRDesignFrame frame = new JRDesignFrame();
+        frame.setX(0);
+        frame.setY(5);
+        frame.setWidth(540);
+        frame.setHeight(15);
+        frame.setForecolor(new Color(0x33, 0x33, 0x33));
+        frame.setBackcolor(new Color(0x33, 0x33, 0x33));
+        frame.setMode(ModeEnum.OPAQUE);
+        band.addElement(frame);
+        staticText = new JRDesignStaticText();
+        staticText.setX(0);
+        staticText.setY(0);
+        staticText.setWidth(55);
+        staticText.setHeight(15);
+        staticText.setForecolor(Color.white);
+        staticText.setBackcolor(new Color(0x33, 0x33, 0x33));
+        staticText.setMode(ModeEnum.OPAQUE);
+        staticText.setHorizontalAlignment(HorizontalAlignEnum.CENTER);
+        staticText.setStyle(boldStyle);
+        staticText.setText("Id");
+        frame.addElement(staticText);
+        staticText = new JRDesignStaticText();
+        staticText.setX(55);
+        staticText.setY(0);
+        staticText.setWidth(205);
+        staticText.setHeight(15);
+        staticText.setForecolor(Color.white);
+        staticText.setBackcolor(new Color(0x33, 0x33, 0x33));
+        staticText.setMode(ModeEnum.OPAQUE);
+        staticText.setStyle(boldStyle);
+        staticText.setText("Name");
+        frame.addElement(staticText);
+        staticText = new JRDesignStaticText();
+        staticText.setX(260);
+        staticText.setY(0);
+        staticText.setWidth(155);
+        staticText.setHeight(15);
+        staticText.setForecolor(Color.white);
+        staticText.setBackcolor(new Color(0x33, 0x33, 0x33));
+        staticText.setMode(ModeEnum.OPAQUE);
+        staticText.setStyle(boldStyle);
+        staticText.setText("Street");
+
+        staticText = new JRDesignStaticText();
+        staticText.setX(370);
+        staticText.setY(0);
+        staticText.setWidth(155);
+        staticText.setHeight(15);
+        staticText.setForecolor(Color.white);
+        staticText.setBackcolor(new Color(0x33, 0x33, 0x33));
+        staticText.setMode(ModeEnum.OPAQUE);
+        staticText.setStyle(boldStyle);
+        staticText.setText("Author");
+
+        frame.addElement(staticText);
+        jasperDesign.setPageHeader(band);
+
+        //Column header
+        band = new JRDesignBand();
+        jasperDesign.setColumnHeader(band);
+
+        //Detail
+        band = new JRDesignBand();
+        band.setHeight(20);
+        textField = new JRDesignTextField();
+        textField.setX(0);
+        textField.setY(4);
+        textField.setWidth(50);
+        textField.setHeight(15);
+        textField.setHorizontalAlignment(HorizontalAlignEnum.RIGHT);
+        textField.setStyle(normalStyle);
+        textField.setExpression(new JRDesignExpression("$F{id}"));
+        band.addElement(textField);
+        textField = new JRDesignTextField();
+        textField.setStretchWithOverflow(true);
+        textField.setX(55);
+        textField.setY(4);
+        textField.setWidth(200);
+        textField.setHeight(15);
+        textField.setPositionType(PositionTypeEnum.FLOAT);
+        textField.setStyle(normalStyle);
+        textField.setExpression(new JRDesignExpression("$F{name} + \" \" + $F{orderName}"));
+        band.addElement(textField);
+        textField = new JRDesignTextField();
+        textField.setStretchWithOverflow(true);
+        textField.setX(260);
+        textField.setY(4);
+        textField.setWidth(155);
+        textField.setHeight(15);
+        textField.setPositionType(PositionTypeEnum.FLOAT);
+        textField.setStyle(normalStyle);
+        textField.setExpression(new JRDesignExpression("$F{street}"));
+        band.addElement(textField);
+
+        textField = new JRDesignTextField();
+        textField.setStretchWithOverflow(true);
+        textField.setX(370);
+        textField.setY(4);
+        textField.setWidth(100);
+        textField.setHeight(15);
+        textField.setPositionType(PositionTypeEnum.FLOAT);
+        textField.setStyle(normalStyle);
+        textField.setExpression(new JRDesignExpression("$F{author}"));
+        band.addElement(textField);
+
+        line = new JRDesignLine();
+        line.setX(0);
+        line.setY(19);
+        line.setWidth(515);
+        line.setHeight(0);
+        line.setForecolor(new Color(0x80, 0x80, 0x80));
+        line.setPositionType(PositionTypeEnum.FLOAT);
+        band.addElement(line);
+        ((JRDesignSection) jasperDesign.getDetailSection()).addBand(band);
+
+        //Column footer
+        band = new JRDesignBand();
+        jasperDesign.setColumnFooter(band);
+
+        //Page footer
+        band = new JRDesignBand();
+        jasperDesign.setPageFooter(band);
+
+        //Summary
+        band = new JRDesignBand();
+        jasperDesign.setSummary(band);
+
+        return jasperDesign;
+    }
+
+    private JasperDesign getJasperDesignFromEntity(String groupName) throws JRException {
+        //JasperDesign
+        int pageWidth = 842;
+        JasperDesign jasperDesign = new JasperDesign();
+        jasperDesign.setName("MyNoXmlDesignReport");
+        jasperDesign.setPageWidth(pageWidth);
+        jasperDesign.setPageHeight(545);
+        jasperDesign.setColumnWidth(515);
+        jasperDesign.setColumnSpacing(0);
+        jasperDesign.setLeftMargin(40);
+        jasperDesign.setRightMargin(40);
+        jasperDesign.setTopMargin(50);
+        jasperDesign.setBottomMargin(50);
+        jasperDesign.setOrientation(OrientationEnum.LANDSCAPE);
+
+        //Fonts
+        JRDesignStyle normalStyle = new JRDesignStyle();
+        normalStyle.setName("Sans_Normal");
+        normalStyle.setDefault(true);
+        normalStyle.setFontName("DejaVu Sans");
+        normalStyle.setFontSize(10);
+        normalStyle.setPdfFontName("Helvetica");
+        normalStyle.setPdfEncoding("Cp1252");
+        normalStyle.setPdfEmbedded(false);
+        jasperDesign.addStyle(normalStyle);
+
+        JRDesignStyle boldStyle = new JRDesignStyle();
+        boldStyle.setName("Sans_Bold");
+        boldStyle.setFontName("DejaVu Sans");
+        boldStyle.setFontSize(10);
+        boldStyle.setBold(true);
+        boldStyle.setPdfFontName("Helvetica-Bold");
+        boldStyle.setPdfEncoding("Cp1252");
+        boldStyle.setPdfEmbedded(false);
+        jasperDesign.addStyle(boldStyle);
+
+        JRDesignStyle italicStyle = new JRDesignStyle();
+        italicStyle.setName("Sans_Italic");
+        italicStyle.setFontName("DejaVu Sans");
+        italicStyle.setFontSize(10);
+        italicStyle.setItalic(true);
+        italicStyle.setPdfFontName("Helvetica-Oblique");
+        italicStyle.setPdfEncoding("Cp1252");
+        italicStyle.setPdfEmbedded(false);
+        jasperDesign.addStyle(italicStyle);
+
+        //Parameters
+        JRDesignParameter parameter = new JRDesignParameter();
+        parameter.setName("ReportTitle",java.lang.String.class);
+        jasperDesign.addParameter(parameter);
+
+        parameter = new JRDesignParameter();
+        parameter.setName("OrderByClause");
+        parameter.setValueClass(java.lang.String.class);
+        jasperDesign.addParameter(parameter);
+
+        //Query
+        JRDesignQuery query = new JRDesignQuery();
+//		query.setText("SELECT * FROM Address $P!{OrderByClause}");
+        jasperDesign.setQuery(query);
+
+        //Fields
+        for (OfbizEntityField ofbizfield : currOfbizEntity.getSelectField().getFields()) {
+            jasperDesign.addField(ofbizfield.getDesignField());
+        }
+        /*
+         JRDesignField field = new JRDesignField();
+         field.setName("id",java.lang.Integer.class);
+         jasperDesign.addField(field);
+
+         field = new JRDesignField();
+         field.setName("name",java.lang.String.class);
+         jasperDesign.addField(field);
+
+         field = new JRDesignField();
+         field.setName("orderName",java.lang.String.class);
+         jasperDesign.addField(field);
+
+         field = new JRDesignField();
+         field.setName("street",java.lang.String.class);
+         jasperDesign.addField(field);
+
+         field = new JRDesignField();
+         field.setName("city",java.lang.String.class);
+         jasperDesign.addField(field);
+
+         field = new JRDesignField();
+         field.setName("author",java.lang.String.class);
+         jasperDesign.addField(field);
+         */
+        //Variables
+        JRDesignVariable variable = new JRDesignVariable();
+        variable.setName("CityNumber");
+        variable.setValueClass(java.lang.Integer.class);
+        variable.setResetType(ResetTypeEnum.GROUP);
+
+        JRDesignGroup group = new JRDesignGroup();
+        group.setName("CityGroup");
+        variable.setResetGroup(group);
+        variable.setCalculation(CalculationEnum.SYSTEM);
+        variable.setInitialValueExpression(new JRDesignExpression("($V{CityNumber} != null)?(new Integer($V{CityNumber}.intValue() + 1)):(new Integer(1))"));
+        jasperDesign.addVariable(variable);
+
+        variable = new JRDesignVariable();
+        variable.setName("AllCities");
+        variable.setValueClass(java.lang.String.class);
+        variable.setResetType(ResetTypeEnum.REPORT);
+        variable.setCalculation(CalculationEnum.SYSTEM);
+        jasperDesign.addVariable(variable);
+
+        //Groups
+        group.setMinHeightToStartNewPage(60);
+        group.setExpression(new JRDesignExpression("$F{" + groupName + "}"));
+
+        JRDesignBand band = new JRDesignBand();
+        band.setHeight(20);
+        JRDesignTextField textField = new JRDesignTextField();
+        textField.setX(0);
+        textField.setY(4);
+        textField.setWidth(pageWidth);
+        textField.setHeight(15);
+        textField.setBackcolor(new Color(0xC0, 0xC0, 0xC0));
+        textField.setMode(ModeEnum.OPAQUE);
+        textField.setHorizontalAlignment(HorizontalAlignEnum.LEFT);
+        textField.setStyle(boldStyle);
+        textField.setExpression(new JRDesignExpression("\"  \" + String.valueOf($V{CityNumber}) + \". \" + String.valueOf($F{" + groupName + "})"));
+        band.addElement(textField);
+        JRDesignLine line = new JRDesignLine();
+        line.setX(0);
+        line.setY(19);
+        line.setWidth(pageWidth);
+        line.setHeight(0);
+        band.addElement(line);
+        ((JRDesignSection) group.getGroupHeaderSection()).addBand(band);
+
+        band = new JRDesignBand();
+        band.setHeight(20);
+        line = new JRDesignLine();
+        line.setX(0);
+        line.setY(-1);
+        line.setWidth(515);
+        line.setHeight(0);
+        band.addElement(line);
+
+        JRDesignStaticText staticText = new JRDesignStaticText();
+        staticText.setX(400);
+        staticText.setY(0);
+        staticText.setWidth(60);
+        staticText.setHeight(15);
+        staticText.setHorizontalAlignment(HorizontalAlignEnum.RIGHT);
+        staticText.setStyle(boldStyle);
+        staticText.setText("Count : ");
+        band.addElement(staticText);
+
+        textField = new JRDesignTextField();
+        textField.setX(460);
+        textField.setY(0);
+        textField.setWidth(30);
+        textField.setHeight(15);
+        textField.setHorizontalAlignment(HorizontalAlignEnum.RIGHT);
+        textField.setStyle(boldStyle);
+        textField.setExpression(new JRDesignExpression("$V{CityGroup_COUNT}"));
+        band.addElement(textField);
+        ((JRDesignSection) group.getGroupFooterSection()).addBand(band);
+
+        jasperDesign.addGroup(group);
+
+        //Title
+        band = new JRDesignBand();
+        band.setHeight(50);
+        line = new JRDesignLine();
+        line.setX(0);
+        line.setY(0);
+        line.setWidth(pageWidth);
+        line.setHeight(0);
+        band.addElement(line);
+        textField = new JRDesignTextField();
+        textField.setBlankWhenNull(true);
+        textField.setX(0);
+        textField.setY(10);
+        textField.setWidth(pageWidth);
+        textField.setHeight(30);
+        textField.setHorizontalAlignment(HorizontalAlignEnum.CENTER);
+        textField.setStyle(normalStyle);
+        textField.setFontSize(22);
+        textField.setExpression(new JRDesignExpression("$P{ReportTitle}"));
+        band.addElement(textField);
+        jasperDesign.setTitle(band);
+
+        //Page header
+        band = new JRDesignBand();
+        band.setHeight(20);
+        JRDesignFrame frame = new JRDesignFrame();
+        frame.setX(0);
+        frame.setY(5);
+        frame.setWidth(pageWidth);
+        frame.setHeight(15);
+        frame.setForecolor(new Color(0x33, 0x33, 0x33));
+        frame.setBackcolor(new Color(0x33, 0x33, 0x33));
+        frame.setMode(ModeEnum.OPAQUE);
+        band.addElement(frame);
+        int x = 0;
+        for (OfbizEntityField ofbizfield : currOfbizEntity.getSelectField().getFields()) {
+            JRDesignStaticText obj = ofbizfield.getDesignStaticField();
+            obj.setX(x);
+            obj.setHeight(15);
+            obj.setWidth(50);
+            x += 50;
+            frame.addElement(obj);
+        }
+        /*      
+         staticText = new JRDesignStaticText();
+         staticText.setX(0);
+         staticText.setY(0);
+         staticText.setWidth(55);
+         staticText.setHeight(15);
+         staticText.setForecolor(Color.white);
+         staticText.setBackcolor(new Color(0x33, 0x33, 0x33));
+         staticText.setMode(ModeEnum.OPAQUE);
+         staticText.setHorizontalAlignment(HorizontalAlignEnum.CENTER);
+         staticText.setStyle(boldStyle);
+         staticText.setText("Id");
+         frame.addElement(staticText);
+         staticText = new JRDesignStaticText();
+         staticText.setX(55);
+         staticText.setY(0);
+         staticText.setWidth(205);
+         staticText.setHeight(15);
+         staticText.setForecolor(Color.white);
+         staticText.setBackcolor(new Color(0x33, 0x33, 0x33));
+         staticText.setMode(ModeEnum.OPAQUE);
+         staticText.setStyle(boldStyle);
+         staticText.setText("Name");
+         frame.addElement(staticText);
+         staticText = new JRDesignStaticText();
+         staticText.setX(260);
+         staticText.setY(0);
+         staticText.setWidth(155);
+         staticText.setHeight(15);
+         staticText.setForecolor(Color.white);
+         staticText.setBackcolor(new Color(0x33, 0x33, 0x33));
+         staticText.setMode(ModeEnum.OPAQUE);
+         staticText.setStyle(boldStyle);
+         staticText.setText("Street");
+
+         staticText = new JRDesignStaticText();
+         staticText.setX(370);
+         staticText.setY(0);
+         staticText.setWidth(155);
+         staticText.setHeight(15);
+         staticText.setForecolor(Color.white);
+         staticText.setBackcolor(new Color(0x33, 0x33, 0x33));
+         staticText.setMode(ModeEnum.OPAQUE);
+         staticText.setStyle(boldStyle);
+         staticText.setText("Author");
+
+         frame.addElement(staticText);
+         */
+        jasperDesign.setPageHeader(band);
+
+        //Column header
+        band = new JRDesignBand();
+        jasperDesign.setColumnHeader(band);
+
+        //Detail
+        band = new JRDesignBand();
+        band.setHeight(20);
+        x = 0;
+        for (OfbizEntityField ofbizfield : currOfbizEntity.getSelectField().getFields()) {
+            JRDesignTextField obj = ofbizfield.getDesignTextField();
+            obj.setX(x);
+            obj.setHeight(15);
+            obj.setWidth(50);
+            x += 50;
+
+            band.addElement(obj);
+        }
+
+        /*        textField = new JRDesignTextField();
+         textField.setX(0);
+         textField.setY(4);
+         textField.setWidth(50);
+         textField.setHeight(15);
+         textField.setHorizontalAlignment(HorizontalAlignEnum.RIGHT);
+         textField.setStyle(normalStyle);
+         textField.setExpression(new JRDesignExpression("$F{id}"));
+         band.addElement(textField);
+         textField = new JRDesignTextField();
+         textField.setStretchWithOverflow(true);
+         textField.setX(55);
+         textField.setY(4);
+         textField.setWidth(200);
+         textField.setHeight(15);
+         textField.setPositionType(PositionTypeEnum.FLOAT);
+         textField.setStyle(normalStyle);
+         textField.setExpression(new JRDesignExpression("$F{name} + \" \" + $F{orderName}"));
+         band.addElement(textField);
+         textField = new JRDesignTextField();
+         textField.setStretchWithOverflow(true);
+         textField.setX(260);
+         textField.setY(4);
+         textField.setWidth(155);
+         textField.setHeight(15);
+         textField.setPositionType(PositionTypeEnum.FLOAT);
+         textField.setStyle(normalStyle);
+         textField.setExpression(new JRDesignExpression("$F{street}"));
+         band.addElement(textField);
+
+         textField = new JRDesignTextField();
+         textField.setStretchWithOverflow(true);
+         textField.setX(370);
+         textField.setY(4);
+         textField.setWidth(100);
+         textField.setHeight(15);
+         textField.setPositionType(PositionTypeEnum.FLOAT);
+         textField.setStyle(normalStyle);
+         textField.setExpression(new JRDesignExpression("$F{author}"));
+         band.addElement(textField);
+         */
+        line = new JRDesignLine();
+        line.setX(0);
+        line.setY(19);
+        line.setWidth(pageWidth);
+        line.setHeight(0);
+        line.setForecolor(new Color(0x80, 0x80, 0x80));
+        line.setPositionType(PositionTypeEnum.FLOAT);
+        band.addElement(line);
+        ((JRDesignSection) jasperDesign.getDetailSection()).addBand(band);
+
+        //Column footer
+        band = new JRDesignBand();
+        jasperDesign.setColumnFooter(band);
+
+        //Page footer
+        band = new JRDesignBand();
+        jasperDesign.setPageFooter(band);
+
+        //Summary
+        band = new JRDesignBand();
+        jasperDesign.setSummary(band);
+
+        return jasperDesign;
+    }

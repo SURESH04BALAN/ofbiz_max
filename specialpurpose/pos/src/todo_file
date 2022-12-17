@@ -1,0 +1,424 @@
+*****************************************************
+bf to ofbiz
+******************************************************
+
+setup
+https://localhost:8443/accounting/control/createPartyAcctgPreference
+add cost of goods
+general.properties change default currency
+
+https://localhost:8443/catalog/control/EditProductStore?productStoreId=VISHAL_STORE_ID
+
+
+C:\backup\ofbiz-12.04.02\applications\accounting\data\DemoGlSetupData.xml
+C:\backup\ofbiz-12.04.02\applications\accounting\data\DemoGeneralChartOfAccounts.xml
+
+
+create login id
+
+    <!-- Catalog Manager security -->
+    <SecurityPermission description="View operations in the Catalog Manager." permissionId="CATALOG_VIEW"/>
+    <SecurityPermission description="Create operations in the Catalog Manager." permissionId="CATALOG_CREATE"/>
+    <SecurityPermission description="Update operations in the Catalog Manager." permissionId="CATALOG_UPDATE"/>
+    <SecurityPermission description="Delete operations in the Catalog Manager." permissionId="CATALOG_DELETE"/>
+    <SecurityPermission description="ALL operations in the Catalog Manager." permissionId="CATALOG_ADMIN"/>
+    <SecurityPermission description="Limited Create operations in the Catalog Manager." permissionId="CATALOG_ROLE_CREATE"/>
+    <SecurityPermission description="Limited Update operations in the Catalog Manager." permissionId="CATALOG_ROLE_UPDATE"/>
+    <SecurityPermission description="Limited Delete operations in the Catalog Manager." permissionId="CATALOG_ROLE_DELETE"/>
+    <SecurityPermission description="To be able to maintain product prices, promotions, and price rules." permissionId="CATALOG_PRICE_MAINT"/>
+    <SecurityPermission description="Allow create/update of 'View Allow' in the Catalog Manager." permissionId="CATALOG_VIEW_ALLOW"/>
+    <SecurityPermission description="Allow create/update of 'Purchase Allow' in the Catalog Manager." permissionId="CATALOG_PURCHASE_ALLOW"/>
+
+    <SecurityGroup description="Limited Catalog Admin group, has limited catalog permissions." groupId="CATALOGADMIN_LTD"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="CATALOG_VIEW"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="CATALOG_ROLE_CREATE"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="CATALOG_ROLE_UPDATE"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="CATALOG_ROLE_DELETE"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="OFBTOOLS_VIEW"/>
+
+    <SecurityGroup description="Catalog Admin group, has all catalog permissions." groupId="CATALOGADMIN"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN" permissionId="CATALOG_ADMIN"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN" permissionId="CATALOG_PRICE_MAINT"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN" permissionId="OFBTOOLS_VIEW"/>
+    <!-- NOTE DEJ20070810 where did this come from? has duplicate ID of that above: <SecurityGroup description="Catalog Admin View and Purchase Allow Products" groupId="CATALOGADMIN"/> -->
+
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_VIEW_ALLOW"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_PURCHASE_ALLOW"/>
+
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_PRICE_MAINT"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_VIEW_ALLOW"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_PURCHASE_ALLOW"/>
+
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_VIEW"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_PRICE_MAINT"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_VIEW_ALLOW"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_PURCHASE_ALLOW"/>
+
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="CATALOG_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="CATALOG_ADMIN"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="CATALOG_PRICE_MAINT"/>
+
+    <!-- Shipping Rate security -->
+    <SecurityPermission description="View operations in the Shipping Rate Editor." permissionId="SHIPRATE_VIEW"/>
+    <SecurityPermission description="Create operations in the Shipping Rate Editor." permissionId="SHIPRATE_CREATE"/>
+    <SecurityPermission description="Delete operations in the Shipping Rate Editor." permissionId="SHIPRATE_DELETE"/>
+    <SecurityPermission description="ALL operations in the Shipping Rate Editor." permissionId="SHIPRATE_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="SHIPRATE_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHIPRATE_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHIPRATE_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHIPRATE_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="SHIPRATE_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="SHIPRATE_ADMIN"/>
+
+    <!-- Facility Manager security -->
+    <SecurityPermission description="View operations in the Facility Manager." permissionId="FACILITY_VIEW"/>
+    <SecurityPermission description="Create operations in the Facility Manager." permissionId="FACILITY_CREATE"/>
+    <SecurityPermission description="Update operations in the Facility Manager." permissionId="FACILITY_UPDATE"/>
+    <SecurityPermission description="Delete operations in the Facility Manager." permissionId="FACILITY_DELETE"/>
+    <SecurityPermission description="ALL operations in the Facility Manager." permissionId="FACILITY_ADMIN"/>
+    <SecurityPermission description="Limited view operations in the Facility Manager." permissionId="FACILITY_ROLE_VIEW"/>
+    <SecurityPermission description="Limited update operations in the Facility Manager." permissionId="FACILITY_ROLE_UPDATE"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="FACILITY_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="FACILITY_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="FACILITY_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="FACILITY_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="FACILITY_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="FACILITY_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="FACILITY_ADMIN"/>
+    
+    <!-- Image Management security -->
+    <SecurityGroup description="Image Management Admin." groupId="IMAGEADMIN"/>
+    <SecurityPermission description="All operations in the Image Management." permissionId="IMAGE_MANAGEMENT_ADMIN"/>
+    <SecurityGroupPermission groupId="IMAGEADMIN" permissionId="IMAGE_MANAGEMENT_ADMIN"/>
+    <SecurityGroupPermission groupId="IMAGEADMIN" permissionId="IMAGE_MANAGEMENT_APPROVE"/>
+    <SecurityGroupPermission groupId="IMAGEADMIN" permissionId="IMAGE_MANAGEMENT_UPLOAD"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="IMAGE_MANAGEMENT_ADMIN"/>
+    
+    <SecurityGroup description="Image Management Approve" groupId="IMAGEAPPROVE"/>
+    <SecurityPermission description="Approve photos in the Image Management." permissionId="IMAGE_MANAGEMENT_APPROVE"/>
+    <SecurityGroupPermission groupId="IMAGEAPPROVE" permissionId="IMAGE_MANAGEMENT_APPROVE"/>
+    
+    <SecurityGroup description="Image Management Upload." groupId="IMAGEUPLOAD"/>
+    <SecurityPermission description="Upload photos in the Image Management." permissionId="IMAGE_MANAGEMENT_UPLOAD"/>
+    <SecurityGroupPermission groupId="IMAGEUPLOAD" permissionId="IMAGE_MANAGEMENT_UPLOAD"/>
+    
+
+
+//Add secuirity group
+user login secuirty
+
+
+
+    <DataSourceType dataSourceTypeId="PURCHASED_DATA" description="Purchased Data"/>
+    <DataSourceType dataSourceTypeId="WEBSITE_ENTRY" description="Website Data Entry"/>
+    <DataSourceType dataSourceTypeId="MAILING_LIST_SIGNUP" description="Mailing List Signup"/>
+    <DataSourceType dataSourceTypeId="CONTEST_SIGNUP" description="Contest Signup"/>
+    <DataSourceType dataSourceTypeId="ADMIN_ENTRY" description="Administrative Data Entry"/>
+    <DataSourceType dataSourceTypeId="ADVERTISEMENT" description="Advertisement"/>
+    <DataSourceType dataSourceTypeId="WEB" description="Web"/>
+    <DataSourceType dataSourceTypeId="PARTNER" description="Partner"/>
+    <DataSourceType dataSourceTypeId="MY_PORTAL" description="My Portal"/>
+
+    <DataSource dataSourceId="ECOMMERCE_SITE" dataSourceTypeId="WEBSITE_ENTRY" description="eCommerce Site Profile Maintenance"/>
+    <DataSource dataSourceId="MY_PORTAL" dataSourceTypeId="MY_PORTAL" description="My Portal Registration"/>
+    <DataSource dataSourceId="GENERAL_MAILING" dataSourceTypeId="MAILING_LIST_SIGNUP" description="General Interest Mailing List Signup"/>
+    <DataSource dataSourceId="CSR_ENTRY" dataSourceTypeId="ADMIN_ENTRY" description="Customer Service Rep Data Entry"/>
+    <DataSource dataSourceId="GEN_ADMIN" dataSourceTypeId="ADMIN_ENTRY" description="General Administrative Data Entry"/>
+
+    <DataSourceType dataSourceTypeId="CONTENT_CREATION" description="Content and Data Resource Creation"/>
+    <DataSource dataSourceId="USER_ENTRY" dataSourceTypeId="CONTENT_CREATION" description="User Entry"/>
+    <DataSource dataSourceId="CONTEXT_INDUCTION" dataSourceTypeId="CONTENT_CREATION" description="Context Induction"/>
+
+    <DataSourceType dataSourceTypeId="GEOPOINT_SUPPLIER" description="Name of GeoPoints publisher"/>
+    <DataSource dataSourceId="GEOPT_GOOGLE" dataSourceTypeId="GEOPOINT_SUPPLIER" description="Google as GeoPoint supplier"/>
+    <DataSource dataSourceId="GEOPT_YAHOO" dataSourceTypeId="GEOPOINT_SUPPLIER" description="Yahoo as GeoPoint supplier"/>
+    <DataSource dataSourceId="GEOPT_MICROSOFT" dataSourceTypeId="GEOPOINT_SUPPLIER" description="Microsoft as GeoPoint supplier"/>
+    <DataSource dataSourceId="GEOPT_MAPTP" dataSourceTypeId="GEOPOINT_SUPPLIER" description="MapTP a GeoPoint supplier"/>
+
+    <StatusType statusTypeId="_NA_" description="Not Applicable"/>
+    <StatusItem statusId="_NA_" statusTypeId="_NA_" statusCode="_NA_" sequenceId="0" description="Not Applicable"/>
+
+    <EnumerationType enumTypeId="_NA_" description="Not Applicable"/>
+    <Enumeration enumId="_NA_" enumTypeId="_NA_" enumCode="_NA_" sequenceId="0" description="Not Applicable"/>
+    <Enumeration enumId="_00_" enumTypeId="_NA_" enumCode="_00_" sequenceId="0" description="Not Applicable"/>
+
+    <EnumerationType description="Thesaurus Relationship Type" enumTypeId="KW_THES_REL" hasTable="N" parentTypeId=""/>
+    <Enumeration description="Used For" enumCode="UF" enumId="KWTR_UF" sequenceId="01" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Use Instead" enumCode="USE" enumId="KWTR_USE" sequenceId="02" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Correct Spelling" enumCode="CS" enumId="KWTR_CS" sequenceId="03" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Narrower Term" enumCode="NT" enumId="KWTR_NT" sequenceId="04" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Broader Term" enumCode="BT" enumId="KWTR_BT" sequenceId="05" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Micro-thesaurus Term" enumCode="MT" enumId="KWTR_MT" sequenceId="06" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Related Term" enumCode="RT" enumId="KWTR_RT" sequenceId="07" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Scope Notes" enumCode="SN" enumId="KWTR_SN" sequenceId="08" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Lang: Spanish" enumCode="LANG_SP" enumId="KWTR_LANG_SP" sequenceId="21" enumTypeId="KW_THES_REL"/>
+    <Enumeration description="Lang: French" enumCode="LANG_FR" enumId="KWTR_LANG_FR" sequenceId="22" enumTypeId="KW_THES_REL"/>
+
+    <GeoType description="City" geoTypeId="CITY" hasTable="N" parentTypeId=""/>
+    <GeoType description="Group" geoTypeId="GROUP" hasTable="N" parentTypeId=""/>
+    <GeoType description="State" geoTypeId="STATE" hasTable="N" parentTypeId=""/>
+    <GeoType description="Postal Code" geoTypeId="POSTAL_CODE" hasTable="N" parentTypeId=""/>
+    <GeoType description="Country" geoTypeId="COUNTRY" hasTable="N" parentTypeId=""/>
+    <GeoType description="County" geoTypeId="COUNTY" hasTable="N" parentTypeId=""/>
+    <GeoType description="County-City" geoTypeId="COUNTY_CITY" hasTable="N" parentTypeId=""/>
+    <GeoType description="Municipality" geoTypeId="MUNICIPALITY" hasTable="N" parentTypeId=""/>
+    <GeoType description="Province" geoTypeId="PROVINCE" hasTable="N" parentTypeId=""/>
+    <GeoType description="Region" geoTypeId="REGION" hasTable="N" parentTypeId=""/>
+    <GeoType description="Territory" geoTypeId="TERRITORY" hasTable="N" parentTypeId=""/>
+    <GeoType description="Sales Territory" geoTypeId="SALES_TERRITORY" hasTable="N" parentTypeId="TERRITORY"/>
+    <GeoType description="Service Territory" geoTypeId="SERVICE_TERRITORY" hasTable="N" parentTypeId="TERRITORY"/>
+
+    <GeoAssocType geoAssocTypeId="GROUP_MEMBER" description="Geo Group Member"/>
+    <GeoAssocType geoAssocTypeId="REGIONS" description="For a region of a larger Geo, i.e. states, counties, provinces..."/>
+    <GeoAssocType geoAssocTypeId="COUNTY_CITY" description="City in a county"/>
+    <GeoAssocType geoAssocTypeId="COUNTY_SEAT" description="Administrative Main City of a County"/>
+    <GeoAssocType geoAssocTypeId="POSTAL_CODE" description="Postal code associated to a GeoType"/>
+
+    <!-- sync status -->
+    <StatusType description="Synchronize" hasTable="N" parentTypeId="" statusTypeId="SYNCHRONIZE_STATUS"/>
+    <StatusItem description="Not-Synchronized" sequenceId="01" statusCode="NOT_SYNCHRONIZED" statusId="NOT_SYNCHRONIZED" statusTypeId="SYNCHRONIZE_STATUS"/>
+    <StatusItem description="Synchronized" sequenceId="02" statusCode="SYNCHRONIZED" statusId="SYNCHRONIZED" statusTypeId="SYNCHRONIZE_STATUS"/>
+
+    <UomType description="Currency" hasTable="N" parentTypeId="" uomTypeId="CURRENCY_MEASURE"/>
+    <UomType description="Data Size" hasTable="N" parentTypeId="" uomTypeId="DATA_MEASURE"/>
+    <UomType description="Data Speed" hasTable="N" parentTypeId="" uomTypeId="DATASPD_MEASURE"/>
+    <UomType description="Time/Frequency" hasTable="N" parentTypeId="" uomTypeId="TIME_FREQ_MEASURE"/>
+    <UomType description="Length" hasTable="N" parentTypeId="" uomTypeId="LENGTH_MEASURE"/>
+    <UomType description="Area" hasTable="N" parentTypeId="" uomTypeId="AREA_MEASURE"/>
+    <UomType description="Liquid Volume" hasTable="N" parentTypeId="" uomTypeId="VOLUME_LIQ_MEASURE"/>
+    <UomType description="Dry Volume" hasTable="N" parentTypeId="" uomTypeId="VOLUME_DRY_MEASURE"/>
+    <UomType description="Weight" hasTable="N" parentTypeId="" uomTypeId="WEIGHT_MEASURE"/>
+    <UomType description="Energy" hasTable="N" parentTypeId="" uomTypeId="ENERGY_MEASURE"/>
+    <UomType description="Temperature" hasTable="N" parentTypeId="" uomTypeId="TEMP_MEASURE"/>
+    <UomType description="Other" hasTable="N" parentTypeId="" uomTypeId="OTHER_MEASURE"/>
+
+    <!-- User preferences seed data -->
+    <UserPrefGroupType userPrefGroupTypeId="GLOBAL_PREFERENCES" description="Global preferences"/>
+    <UserPreference userLoginId="_NA_" userPrefTypeId="VISUAL_THEME" userPrefGroupTypeId="GLOBAL_PREFERENCES" userPrefValue="DEFAULT"/><!-- will be overruled by the setting in general.properties (if present) -->
+
+    <!-- Visual Themes seed data -->
+    <EnumerationType description="Visual Theme Resource Type (stylesheet, javascript file, etc)" enumTypeId="VT_RES_TYPE" hasTable="N"/>
+    <Enumeration enumId="VT_NAME" description="Visual Theme name" enumTypeId="VT_RES_TYPE" sequenceId="00"/>
+    <Enumeration enumId="VT_STYLESHEET" description="Style Sheet URL" enumTypeId="VT_RES_TYPE" sequenceId="01"/>
+    <Enumeration enumId="VT_HELPSTYLESHEET" description="Help Style Sheet URL" enumTypeId="VT_RES_TYPE" sequenceId="02"/>
+    <Enumeration enumId="VT_DOCBOOKSTYLESHEET" description="Docbook Style Sheet URL" enumTypeId="VT_RES_TYPE" sequenceId="03"/>
+    <Enumeration enumId="VT_RTL_STYLESHEET" description="Right-to-Left (RTL) Style Sheet URL" enumTypeId="VT_RES_TYPE" sequenceId="04"/>
+    <Enumeration enumId="VT_SHORTCUT_ICON" description="Shortcut Icon URL" enumTypeId="VT_RES_TYPE" sequenceId="05"/>
+    <Enumeration enumId="VT_EXTRA_HEAD" description="Additional &lt;tt&gt;&lt;head&gt;&lt;/tt&gt; Element Markup" enumTypeId="VT_RES_TYPE" sequenceId="06"/>
+    <Enumeration enumId="VT_HDR_IMAGE_URL" description="Masthead/Branding Logo Image URL" enumTypeId="VT_RES_TYPE" sequenceId="07"/>
+    <Enumeration enumId="VT_HDR_TMPLT_LOC" description="Header Template Location" enumTypeId="VT_RES_TYPE" sequenceId="08"/>
+    <Enumeration enumId="VT_HDR_JAVASCRIPT" description="Header JavaScript File URL" enumTypeId="VT_RES_TYPE" sequenceId="09"/>
+    <Enumeration enumId="VT_FTR_TMPLT_LOC" description="Footer Template Location" enumTypeId="VT_RES_TYPE" sequenceId="10"/>
+    <Enumeration enumId="VT_FTR_JAVASCRIPT" description="Footer JavaScript File URL" enumTypeId="VT_RES_TYPE" sequenceId="11"/>
+    <Enumeration enumId="VT_NAV_TMPLT_LOC" description="Main Navigation Template Location" enumTypeId="VT_RES_TYPE" sequenceId="12"/>
+    <Enumeration enumId="VT_NAV_OPEN_TMPLT" description="Opening Navigation Template Location" enumTypeId="VT_RES_TYPE" sequenceId="13"/>
+    <Enumeration enumId="VT_NAV_CLOSE_TMPLT" description="Closing Navigation Template Location" enumTypeId="VT_RES_TYPE" sequenceId="14"/>
+    <Enumeration enumId="VT_MSG_TMPLT_LOC" description="Main Messages Template Location" enumTypeId="VT_RES_TYPE" sequenceId="15"/>
+    <Enumeration enumId="VT_SCREENSHOT" description="Theme Preview Screenshot" enumTypeId="VT_RES_TYPE" sequenceId="16"/>
+
+    <VisualThemeSet visualThemeSetId="BACKOFFICE" description="Themes to be used for backoffice applications"/>
+    <VisualThemeSet visualThemeSetId="ECOMMERCE"  description="Themes to be used for ECommerce applications"/>
+
+    <!-- Uom Conversion Purposes -->
+    <EnumerationType enumTypeId="CONVERSION_PURPOSE" description="Conversion Purpose"/>
+    <Enumeration enumId="INTERNAL_CONVERSION" enumTypeId="CONVERSION_PURPOSE" enumCode="INTERNAL" sequenceId="10" description="Internal Conversion"/>
+    <Enumeration enumId="EXTERNAL_CONVERSION" enumTypeId="CONVERSION_PURPOSE" enumCode="EXTERNAL" sequenceId="20" description="External Conversion"/>
+
+    <!-- Server Hit seed data -->
+    <ServerHitType description="Request" hitTypeId="REQUEST"/>
+    <ServerHitType description="Event" hitTypeId="EVENT"/>
+    <ServerHitType description="View" hitTypeId="VIEW"/>
+    <ServerHitType description="Entity" hitTypeId="ENTITY"/>
+    <ServerHitType description="Service" hitTypeId="SERVICE"/>
+
+    <!-- Keyword Type -->
+    <EnumerationType enumTypeId="KEYWORD_TYPE" hasTable="N" description="Keyword Type"/>
+    <Enumeration enumId="KWT_KEYWORD" enumTypeId="KEYWORD_TYPE" enumCode="KEYWORD" sequenceId="01" description="Keyword"/>
+    <Enumeration enumId="KWT_TAG" enumTypeId="KEYWORD_TYPE" enumCode="TAG" sequenceId="02" description="Tag"/>
+
+    <!-- Keyword Status -->
+    <StatusType statusTypeId="KEYWORD_STATUS" hasTable="N" description="Keyword"/>
+    <StatusItem statusId="KW_APPROVED" statusTypeId="KEYWORD_STATUS" statusCode="APPROVED" sequenceId="01" description="Approved"/>
+    <StatusItem statusId="KW_PENDING" statusTypeId="KEYWORD_STATUS" statusCode="PENDING" sequenceId="02" description="Pending"/>
+    <StatusItem statusId="KW_DISAPPROVED" statusTypeId="KEYWORD_STATUS" statusCode="DISAPPROVED" sequenceId="03" description="Disapproved"/>
+
+
+//setup currency in CommontypeData.prop
+
+*******************************************************************************************************
+pos setup
+*******************************************************************************************************
+create pos terminal pos-1
+//create person
+<Person partyId="_NA_"/>
+accounting invoice preference - no for per shipment invoice
+add date dimensions
+    <CurrencyDimension dimensionId="_NF_" description="Currency Not Found."/>
+    <CurrencyDimension dimensionId="_NA_" description="Currency Not Set."/>
+
+    <DateDimension dimensionId="_NF_" description="Date Not Found."/>
+    <DateDimension dimensionId="_NA_" description="Date Not Set."/>
+
+    <ProductDimension dimensionId="_NF_"/>
+    <ProductDimension dimensionId="_NA_"/>
+
+
+//pos status
+   <StatusType description="Pos Transaction" hasTable="N" parentTypeId="" statusTypeId="POSTX_STATUS"/>
+    <StatusItem description="Active" sequenceId="01" statusCode="ACTIVE" statusId="POSTX_ACTIVE" statusTypeId="POSTX_STATUS"/>
+    <StatusItem description="Sold" sequenceId="10" statusCode="SOLD" statusId="POSTX_SOLD" statusTypeId="POSTX_STATUS"/>
+    <StatusItem description="Returned" sequenceId="15" statusCode="RETURNED" statusId="POSTX_RETURNED" statusTypeId="POSTX_STATUS"/>
+    <StatusItem description="Voided" sequenceId="20" statusCode="VOIDED" statusId="POSTX_VOIDED" statusTypeId="POSTX_STATUS"/>
+    <StatusItem description="PaidIn" sequenceId="30" statusCode="PAID_IN" statusId="POSTX_PAID_IN" statusTypeId="POSTX_STATUS"/>
+    <StatusItem description="PaidOut" sequenceId="40" statusCode="PAID_OUT" statusId="POSTX_PAID_OUT" statusTypeId="POSTX_STATUS"/>
+    <StatusItem description="Closed" sequenceId="50" statusCode="CLOSED" statusId="POSTX_CLOSED" statusTypeId="POSTX_STATUS"/>
+
+
+//payment info
+    <!-- Payment Processors security -->
+    <SecurityPermission description="View operations in the Payment Processors Setup." permissionId="PAYPROC_VIEW"/>
+    <SecurityPermission description="Create operations in the Payment Processors Setup." permissionId="PAYPROC_CREATE"/>
+    <SecurityPermission description="Delete operations in the Payment Processors Setup." permissionId="PAYPROC_DELETE"/>
+    <SecurityPermission description="ALL operations in the Payment Processors Setup." permissionId="PAYPROC_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="PAYPROC_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PAYPROC_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PAYPROC_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PAYPROC_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="PAYPROC_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="PAYPROC_ADMIN"/>
+
+    <!-- Payment Information security -->
+    <SecurityPermission description="View Payment Information." permissionId="PAY_INFO_VIEW"/>
+    <SecurityPermission description="Create Payment Information." permissionId="PAY_INFO_CREATE"/>
+    <SecurityPermission description="Update Payment Information." permissionId="PAY_INFO_UPDATE"/>
+    <SecurityPermission description="Delete Payment Information." permissionId="PAY_INFO_DELETE"/>
+    <SecurityPermission description="ALL Payment Information Operations." permissionId="PAY_INFO_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="PAY_INFO_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PAY_INFO_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PAY_INFO_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PAY_INFO_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PAY_INFO_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="PAY_INFO_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="PAY_INFO_ADMIN"/>
+
+    <!-- Accounting Manager security -->
+    <SecurityPermission description="View operations in the Accounting Manager." permissionId="ACCOUNTING_VIEW"/>
+    <SecurityPermission description="Create operations in the Accounting Manager." permissionId="ACCOUNTING_CREATE"/>
+    <SecurityPermission description="Update operations in the Accounting Manager." permissionId="ACCOUNTING_UPDATE"/>
+    <SecurityPermission description="Delete operations in the Accounting Manager." permissionId="ACCOUNTING_DELETE"/>
+    <SecurityPermission description="ALL operations in the Accounting Manager." permissionId="ACCOUNTING_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="ACCOUNTING_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCOUNTING_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCOUNTING_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCOUNTING_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCOUNTING_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="ACCOUNTING_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCOUNTING_ADMIN"/>
+
+    <!-- Manual Payment security -->
+    <SecurityPermission description="Manual Payment Transaction." permissionId="MANUAL_PAYMENT"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="MANUAL_PAYMENT"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="MANUAL_PAYMENT"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="MANUAL_PAYMENT"/>
+
+    <!-- ACCOUNTING_COMMs security -->
+    <SecurityPermission description="View commission rates" permissionId="ACCOUNTING_COMM_VIEW"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="ACCOUNTING_COMM_VIEW"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCOUNTING_COMM_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCOUNTING_COMM_VIEW"/>
+
+    <!-- Ability to print checks -->
+    <SecurityPermission description="Print checks." permissionId="ACCOUNTING_PRINT_CHECKS"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="ACCOUNTING_PRINT_CHECKS"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCOUNTING_PRINT_CHECKS"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCOUNTING_PRINT_CHECKS"/>
+
+    <!-- Set up accounting organization preferences security -->
+    <SecurityPermission description="View organization accounting preferences" permissionId="ACCTG_PREF_VIEW"/>
+    <SecurityPermission description="Set organization accounting preferences" permissionId="ACCTG_PREF_CREATE"/>
+    <SecurityPermission description="Update organization accounting preferences" permissionId="ACCTG_PREF_UPDATE"/>
+    <SecurityPermission description="Delete organization accounting preferences" permissionId="ACCTG_PREF_DELETE"/>
+    <SecurityPermission description="ALL organization accounting preferences operations" permissionId="ACCTG_PREF_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="ACCTG_PREF_ADMIN"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_PREF_CREATE"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_PREF_UPDATE"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_PREF_DELETE"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_PREF_VIEW"/>
+
+    <SecurityPermission description="Set foreign exchange rates" permissionId="ACCTG_FX_UPDATE"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="ACCTG_FX_UPDATE"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_FX_UPDATE"/>
+
+    <!-- For general ledger accounting transactions. Note that any component that needs to post
+        accounting transactions should create a permission service SECA to grant
+        task-specific permissions to post transactions. The following permissions
+        should be given to accountants only, as that involves changing the books. -->
+    <SecurityPermission description="ALL operations involving general ledger accounting transactions and entries." permissionId="ACCTG_ATX_ADMIN"/>
+    <SecurityPermission description="Create general ledger accounting transaction and entries." permissionId="ACCTG_ATX_CREATE"/>
+    <SecurityPermission description="Update general ledger accounting transaction and entries." permissionId="ACCTG_ATX_UPDATE"/>
+    <SecurityPermission description="Delete general ledger accounting transaction and entries." permissionId="ACCTG_ATX_DELETE"/>
+    <SecurityPermission description="View general ledger accounting transaction and entries." permissionId="ACCTG_ATX_VIEW"/>
+
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="ACCTG_ATX_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCTG_ATX_VIEW"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCTG_ATX_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCTG_ATX_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ACCTG_ATX_DELETE"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_ATX_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_ATX_CREATE"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_ATX_UPDATE"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="ACCTG_ATX_DELETE"/>
+    
+    <!-- Security Group to manage all Accounting operations -->
+    <SecurityGroup description="Accounting permission for all accounting functions." groupId="ACCTG_FUNCTNL_ADMIN"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCOUNTING_ADMIN"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="OFBTOOLS_VIEW"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCTG_ATX_ADMIN"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCTG_FX_UPDATE"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCTG_PREF_ADMIN"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCOUNTING_PRINT_CHECKS"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCOUNTING_COMM_VIEW"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="MANUAL_PAYMENT"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="PAY_INFO_ADMIN"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="PAYPROC_ADMIN"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ASSETMAINT_VIEW"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCOUNTING_CREATE"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCOUNTING_DELETE"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCOUNTING_UPDATE"/>
+    <SecurityGroupPermission groupId="ACCTG_FUNCTNL_ADMIN" permissionId="ACCOUNTING_VIEW"/>
+
+
+
+
+
+<entity-engine-xml>
+    <SecurityGroup description="POS Clerk" groupId="POSCLERK"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ORDERMGR_VIEW"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ORDERMGR_NOTE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ORDERMGR_UPDATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ORDERMGR_CREATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="PARTYMGR_PCM_CREATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="PARTYMGR_VIEW"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="PARTYMGR_CREATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="PARTYMGR_UPDATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="PARTYMGR_NOTE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="PAY_INFO_VIEW"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="PAY_INFO_UPDATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="PAY_INFO_CREATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="CATALOG_VIEW"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ACCOUNTING_CREATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ACCOUNTING_UPDATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ACCOUNTING_COMM_VIEW"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ACCTG_ATX_CREATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ACCTG_ATX_UPDATE"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="ACCTG_PREF_ADMIN"/>
+    <SecurityGroupPermission groupId="POSCLERK" permissionId="FACILITY_ADMIN"/>
+</entity-engine-xml>
+
+C:/ofbiz_web/MAX SPICE/Max_Spice/themes/grocery_theme/webapp/grocery_theme/images/catalog/grocery/PDP
+
+//copy product/currency/date demension data

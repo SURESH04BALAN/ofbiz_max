@@ -1,0 +1,791 @@
+
+<html lang="en">
+    <head>
+    </head>
+    <body> 
+        <div class="page-container">       
+            <div class="contentarea">          
+                <div id="column-container">              
+                    <!-- Begin Section Widget  -->               <div id="content-main-section">                   <div id="split50">                       <table width=100%>                           <tr>                                <td style=border-width:1px; border-color:Black ; border-style :groove ; width=50% vertical-align:top>                                   <div class="lefthalf";  width=100%>                                       <!-- Left -->
+                                            <div class="screenlet order-info">
+                                                <div class="screenlet-title-bar">
+                                                    <ul>
+                                                        <li class="h3">&nbsp;Purchase Order&nbsp;Nbr&nbsp;<a href="">VGCO7</a>  [&nbsp;<a href="" target="_blank">PDF</a>&nbsp;]</li>
+                                                    </ul>
+                                                    <br class="clear"/>
+                                                </div>
+                                                <div class="screenlet-body">
+                                                    <table class="basic-table" cellspacing='0'>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%" class="label">&nbsp;Status History</td>
+                                                            <td width="5%">&nbsp;</td>
+                                                            <td valign="top" width="80%" class="COMPLETED">
+                                                                <span class="current-status">Current Status: Completed</span>
+                                                                <hr />
+                                                                <div>
+                                                                    Completed - 13/03/15 10:50:40 PM
+                                                                    &nbsp;
+                                                                    By -  [system]
+                                                                </div>
+                                                                <div>
+                                                                    Approved - 13/03/15 10:50:02 PM
+                                                                    &nbsp;
+                                                                    By -  [admin]
+                                                                </div>
+                                                                <div>
+                                                                    Created - 13/03/15 10:49:49 PM
+                                                                    &nbsp;
+                                                                    By -  [admin]
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%" class="label">&nbsp;Date Ordered</td>
+                                                            <td width="5%">&nbsp;</td>
+                                                            <td valign="top" width="80%">13/03/15 12:00:00 AM</td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%" class="label">&nbsp;Currency</td>
+                                                            <td width="5%">&nbsp;</td>
+                                                            <td valign="top" width="80%">AUD</td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%" class="label">&nbsp;Sales Channel</td>
+                                                            <td width="5%">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                Unknown Channel
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%" class="label">&nbsp;Product Store</td>
+                                                            <td width="5%">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                Vishal Online Grocery Store&nbsp;<a href="/catalog/control/EditProductStore?productStoreId=VISHAL_STORE_IDexternalKeyParam" target="catalogmgr" class="buttontext">(VISHAL_STORE_ID)</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%" class="label">&nbsp;Origin Facility</td>
+                                                            <td width="5%">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <a href="/facility/control/EditFacility?facilityId=VISHAL_FACexternalKeyParam" target="facilitymgr" class="buttontext">VISHAL_FAC</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%" class="label">&nbsp;Created By</td>
+                                                            <td width="5%">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <a href="/partymgr/control/viewprofile?userlogin_id=adminexternalKeyParam" target="partymgr" class="buttontext">admin</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%" class="label">&nbsp;Invoice Per Shipment</td>
+                                                            <td width="5%">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <form name="setInvoicePerShipment" method="post" action="">
+                                                                    <input type = "hidden" name="orderId" value="VGCO7"/>
+                                                                    <select name="invoicePerShipment">
+                                                                        <option value="Y" selected="selected" >Yes</option>
+                                                                        <option value="N" >No</option>
+                                                                    </select>
+                                                                    <input type="submit" class="smallSubmit" value="Update"/>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr id="isViewed">
+                                                            <td class="label">Mark Viewed</td>
+                                                            <td width="5%"></td>
+                                                            <td valign="top" width="80%">
+                                                                <form id="orderViewed" action="">
+                                                                    <input type="checkbox" name="checkViewed" onclick="javascript:markOrderViewed();"/>
+                                                                    <input type="hidden" name="orderId" value="VGCO7"/>
+                                                                    <input type="hidden" name="isViewed" value="Y"/>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="viewed" style="display: none;">
+                                                            <td class="label">Viewed</td>
+                                                            <td width="5%"></td>
+                                                            <td valign="top" width="80%">
+                                                                Yes
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="screenlet">
+                                                <div class="screenlet-title-bar">
+                                                    <ul><li class="h3">&nbsp;Payment Information</li></ul>
+                                                    <br class="clear"/>
+                                                </div>
+                                                <div class="screenlet-body">
+                                                    <table class="basic-table" cellspacing='0'>
+                                                        <tr>
+                                                            <th>PaymentID</th>
+                                                            <th>To</th>
+                                                            <th>Amount</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                        <tr><td colspan="4"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="29%">&nbsp;<span class="label">Invoices</span></td>
+                                                            <td width="1%">&nbsp;</td>
+                                                            <td valign="top" width="60%">
+                                                                <div>Nbr<a href="/accounting/control/invoiceOverview?invoiceId=CI7&amp;externalLoginKey=test_externalLoginKey" class="buttontext">CI7</a>
+                                                                    (<a target="_BLANK" href="/accounting/control/invoice.pdf?invoiceId=CI7&amp;externalLoginKey=test_externalLoginKey" class="buttontext">PDF</a>)</div>
+                                                            </td>
+                                                            <td width="10%">&nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>                               </td>                               <td style=border-width:1px; border-color:Black ; border-style :groove ; width=50% ; vertical-align:top>                                   <div class="righthalf" width=80%>                                       <!-- Right -->
+                                            <div class="screenlet">
+                                                <div class="screenlet-title-bar">
+                                                    <ul><li class="h3">&nbsp;Contact Information</li></ul>
+                                                    <br class="clear"/>
+                                                </div>
+                                                <div class="screenlet-body">
+                                                    <table class="basic-table" cellspacing='0'>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="19%"><span class="label">&nbsp;Name</span></td>
+                                                            <td width="1%">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <div>
+                                                                    Airplaza Retail Holdings Pvt. Ltd
+                                                                    &nbsp;(<a href="/partymgr/control/viewprofile?partyId=VISHAL_COMPANYexternalKeyParam" target="partymgr" class="buttontext">VISHAL_COMPANY</a>)
+                                                                    <br/>
+                                                                    <div>
+                                                                        <a href="" class="buttontext">New order</a>
+                                                                        <a href="javascript:document.searchOtherOrders.submit()" class="buttontext">Other Orders</a>
+                                                                    </div>
+                                                                    <form name="searchOtherOrders" method="post" action="">
+                                                                        <input type="hidden" name="lookupFlag" value="Y"/>
+                                                                        <input type="hidden" name="hideFields" value="Y"/>
+                                                                        <input type="hidden" name="partyId" value="VISHAL_COMPANY" />
+                                                                        <input type="hidden" name="viewIndex" value="1"/>
+                                                                        <input type="hidden" name="viewSize" value="20"/>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="19%">
+                                                                <span class="label">&nbsp;Order Notification Email Address</span>
+                                                            </td>
+                                                            <td width="1%">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <div>
+                                                                    contactus@myvishal.com
+                                                                    (<a href="" class="buttontext">Send a confirmation email</a>)
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="19%">
+                                                                <span class="label">&nbsp;Shipping Destination Address</span>
+                                                            </td>
+                                                            <td width="1%">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <div>
+
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <script language="JavaScript" type="text/javascript">
+                                                function editInstruction(shipGroupSeqId) {
+                                                    jQuery('#shippingInstructions_' + shipGroupSeqId).css({display: 'block'});
+                                                    jQuery('#saveInstruction_' + shipGroupSeqId).css({display: 'inline'});
+                                                    jQuery('#editInstruction_' + shipGroupSeqId).css({display: 'none'});
+                                                    jQuery('#instruction_' + shipGroupSeqId).css({display: 'none'});
+                                                }
+                                                function addInstruction(shipGroupSeqId) {
+                                                    jQuery('#shippingInstructions_' + shipGroupSeqId).css({display: 'block'});
+                                                    jQuery('#saveInstruction_' + shipGroupSeqId).css({display: 'inline'});
+                                                    jQuery('#addInstruction_' + shipGroupSeqId).css({display: 'none'});
+                                                }
+                                                function saveInstruction(shipGroupSeqId) {
+                                                    jQuery("#updateShippingInstructionsForm_" + shipGroupSeqId).submit();
+                                                }
+                                                function editGiftMessage(shipGroupSeqId) {
+                                                    jQuery('#giftMessage_' + shipGroupSeqId).css({display: 'block'});
+                                                    jQuery('#saveGiftMessage_' + shipGroupSeqId).css({display: 'inline'});
+                                                    jQuery('#editGiftMessage_' + shipGroupSeqId).css({display: 'none'});
+                                                    jQuery('#message_' + shipGroupSeqId).css({display: 'none'});
+                                                }
+                                                function addGiftMessage(shipGroupSeqId) {
+                                                    jQuery('#giftMessage_' + shipGroupSeqId).css({display: 'block'});
+                                                    jQuery('#saveGiftMessage_' + shipGroupSeqId).css({display: 'inline'});
+                                                    jQuery('#addGiftMessage_' + shipGroupSeqId).css({display: 'none'});
+                                                }
+                                                function saveGiftMessage(shipGroupSeqId) {
+                                                    jQuery("#setGiftMessageForm_" + shipGroupSeqId).submit();
+                                                }
+                                            </script>
+
+                                            <div class="screenlet">
+                                                <div class="screenlet-title-bar">
+                                                    <ul><li class="h3">&nbsp;Actions</li></ul>
+                                                    <br class="clear"/>
+                                                </div>
+                                                <div class="screenlet-body">
+                                                    <ul>
+                                                        <li>
+                                                            <form name="quickRefundOrder" method="post" action="">
+                                                                <input type="hidden" name="orderId" value="VGCO7"/>
+                                                                <input type="hidden" name="receiveReturn" value="true"/>
+                                                                <input type="hidden" name="returnHeaderTypeId" value="VENDOR_RETURN"/>
+                                                            </form>
+                                                            <a href="javascript:document.quickRefundOrder.submit()" class="buttontext">Quick Refund Entire Order</a>
+                                                        </li>
+                                                        <li>
+                                                            <form name="quickreturn" method="post" action="">
+                                                                <input type="hidden" name="orderId" value="VGCO7"/>
+                                                                <input type="hidden" name="party_id" value="VISHAL_COMPANY"/>
+                                                                <input type="hidden" name="returnHeaderTypeId" value="VENDOR_RETURN"/>
+                                                                <input type="hidden" name="needsInventoryReceive" value="N"/>
+                                                            </form>
+                                                            <a href="javascript:document.quickreturn.submit()" class="buttontext">Create Return</a>
+                                                        </li>
+
+                                                        <li><a href="" class="buttontext">Create As New Order</a></li>
+                                                        <li><a href="" class="buttontext">Create Replacement Order</a></li>
+                                                        <li><a href="" class="buttontext">View Order History</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="screenlet">
+                                                <div class="screenlet-title-bar">
+                                                    <ul>
+                                                        <li class="h3">&nbsp;Shipment Information - 00001</li>
+                                                        <li class="expanded"><a onclick="javascript:toggleScreenlet(this, 'ShipGroupScreenletBody_00001', 'true', 'Expand', 'Collapse');" title="Collapse">&nbsp;</a></li>
+                                                        <li><a target="_BLANK" href="">Ship Group PDF</a></li>
+                                                    </ul>
+                                                    <br class="clear"/>
+                                                </div>
+                                                <div class="screenlet-body" id="ShipGroupScreenletBody_00001">
+                                                    <form name="updateOrderItemShipGroup" method="post" action="">
+                                                        <input type="hidden" name="orderId" value="VGCO7"/>
+                                                        <input type="hidden" name="shipGroupSeqId" value="00001"/>
+                                                        <input type="hidden" name="contactMechPurposeTypeId" value="SHIPPING_LOCATION"/>
+                                                        <input type="hidden" name="oldContactMechId" value="VISHAL_1003"/>
+                                                        <table class="basic-table" cellspacing='0'>
+                                                            <tr>
+                                                                <td align="right" valign="top" width="15%">
+                                                                    <span class="label">&nbsp;Address</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top" width="80%">
+                                                                    <div>
+                                                                        2003 Warehouse Blvd
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                        </table>
+                                                    </form>
+                                                    <div id="newShippingAddressForm" class="popup" style="display: none;">
+                                                        <form id="addShippingAddress" name="addShippingAddress" method="post" action="addShippingAddress">
+                                                            <input type="hidden" name="orderId" value="VGCO7"/>
+                                                            <input type="hidden" name="partyId" value="VISHAL_COMPANY"/>
+                                                            <input type="hidden" name="oldContactMechId" value="VISHAL_1003"/>
+                                                            <input type="hidden" name="shipGroupSeqId" value="00001"/>
+                                                            <input type="hidden" name="contactMechPurposeTypeId" value="SHIPPING_LOCATION"/>
+                                                            <div class="form-row">
+                                                                <label for="address1">PartyAddressLine1* <span id="advice-required-address1" style="display: none" class="custom-advice">(required)</span></label>
+                                                                <div class="form-field"><input type="text" class="required" name="shipToAddress1" id="address1" value="" size="30" maxlength="30" /></div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <label for="address2">PartyAddressLine2</label>
+                                                                <div class="form-field"><input type="text" name="shipToAddress2" id="address2" value="" size="30" maxlength="30" /></div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <label for="city">PartyCity* <span id="advice-required-city" style="display: none" class="custom-advice">(required)</span></label>
+                                                                <div class="form-field"><input type="text" class="required" name="shipToCity" id="city" value="" size="30" maxlength="30" /></div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <label for="postalCode">PartyZipCode* <span id="advice-required-postalCode" style="display: none" class="custom-advice">(required)</span></label>
+                                                                <div class="form-field"><input type="text" class="required number" name="shipToPostalCode" id="postalCode" value="" size="30" maxlength="10" /></div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <label for="countryGeoId">Country* <span id="advice-required-countryGeoId" style="display: none" class="custom-advice">(required)</span></label>
+                                                                <div class="form-field">
+                                                                    <select name="shipToCountryGeoId" id="countryGeoId" class="required" style="width: 70%">
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <label for="stateProvinceGeoId">PartyState* <span id="advice-required-stateProvinceGeoId" style="display: none" class="custom-advice">(required)</span></label>
+                                                                <div class="form-field">
+                                                                    <select name="shipToStateProvinceGeoId" id="stateProvinceGeoId" style="width: 70%">
+                                                                        <option value="_NA_">PartyNoState</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <input id="submitAddShippingAddress" type="button" value="Submit" style="display:none"/>
+                                                                <form action="">
+                                                                    <input class="popup_closebox buttontext" type="button" value="Close" style="display:none"/>
+                                                                </form>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <script language="JavaScript" type="text/javascript">
+                                                        jQuery(document).ready(function() {
+                                                            jQuery("#newShippingAddressForm").dialog({autoOpen: false, modal: true,
+                                                                buttons: {
+                                                                    'Submit': function() {
+                                                                        var addShippingAddress = jQuery("#addShippingAddress");
+                                                                        jQuery("<p>Updating data</p>").insertBefore(addShippingAddress);
+                                                                        addShippingAddress.submit();
+                                                                    },
+                                                                    'Close': function() {
+                                                                        jQuery(this).dialog('close');
+                                                                    }
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                    <table width="100%" border="0" cellpadding="1" cellspacing="0">
+
+
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%">
+                                                                <span class="label">&nbsp;Splitting Preference</span>
+                                                            </td>
+                                                            <td width="5">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <div>
+                                                                    Please ship items I ordered as they become available (you may incur additional shipping charges).
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr><td colspan="7"><hr class="sepbar"/></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%">
+                                                                <span class="label">&nbsp;Instructions</span>
+                                                            </td>
+                                                            <td width="5">&nbsp;</td>
+                                                            <td align="left" valign="top" width="80%">
+                                                                <span>This order does not have shipping instructions</span>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%">
+                                                                <span class="label">&nbsp;Gift Message</span>
+                                                            </td>
+                                                            <td width="5">&nbsp;</td>
+                                                            <td>
+                                                                <form id="setGiftMessageForm_00001" name="setGiftMessageForm" method="post" action="">
+                                                                    <input type="hidden" name="orderId" value="VGCO7"/>
+                                                                    <input type="hidden" name="shipGroupSeqId" value="00001"/>
+                                                                    <a href="javascript:addGiftMessage('00001');" class="buttontext" id="addGiftMessage_00001">Add</a>
+                                                                    <textarea name="giftMessage" id="giftMessage_00001" style="display:none" rows="0" cols="0"></textarea>
+                                                                    <a href="javascript:saveGiftMessage('00001');" class="buttontext" id="saveGiftMessage_00001" style="display:none">Save</a>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%">
+                                                                <span class="label">&nbsp;Ship After Date</span><br/>
+                                                                <span class="label">&nbsp;Ship Before Date</span>
+                                                            </td>
+                                                            <td width="5">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <form name="setShipGroupDates_00001" method="post" action="">
+                                                                    <input type="hidden" name="orderId" value="VGCO7"/>
+                                                                    <input type="hidden" name="shipGroupSeqId" value="00001"/>
+                                                                    <span class="view-calendar">
+                                                                        <input type="text" name="shipAfterDate_i18n" 
+                                                                               title="Format: yyyy-MM-dd HH:mm:ss.SSS"
+
+                                                                               size="25"          maxlength="30"
+                                                                               id="shipAfterDate_i18n"/>        <input type="text" name="shipAfterDate" style="height:1px;width:1px;border:none;background-color:transparent"  
+                                                                               title="Format: yyyy-MM-dd HH:mm:ss.SSS"
+
+                                                                               size="25"          maxlength="30"
+                                                                        id="shipAfterDate"/>          <script type="text/javascript">
+                                                                            if (Date.CultureInfo != undefined) {
+                                                                                var initDate = "";
+                                                                                if (initDate != "") {
+                                                                                    var dateFormat = Date.CultureInfo.formatPatterns.shortDate + " " + Date.CultureInfo.formatPatterns.longTime;
+                                                                                    if (initDate.indexOf('.') != -1) {
+                                                                                        initDate = initDate.substring(0, initDate.indexOf('.'));
+                                                                                    }
+                                                                                    var ofbizTime = "yyyy-MM-dd HH:mm:ss";
+                                                                                    var dateObj = Date.parseExact(initDate, ofbizTime);
+                                                                                    var formatedObj = dateObj.toString(dateFormat);
+                                                                                    jQuery("#shipAfterDate_i18n").val(formatedObj);
+                                                                                }
+
+                                                                                jQuery("#shipAfterDate").change(function() {
+                                                                                    var ofbizTime = "yyyy-MM-dd HH:mm:ss";
+                                                                                    var newValue = ""
+                                                                                    if (this.value != "") {
+                                                                                        var dateObj = Date.parseExact(this.value, ofbizTime);
+                                                                                        var dateFormat = Date.CultureInfo.formatPatterns.shortDate + " " + Date.CultureInfo.formatPatterns.longTime;
+                                                                                        newValue = dateObj.toString(dateFormat);
+                                                                                    }
+                                                                                    jQuery("#shipAfterDate_i18n").val(newValue);
+                                                                                });
+                                                                                jQuery("#shipAfterDate_i18n").change(function() {
+                                                                                    var dateFormat = Date.CultureInfo.formatPatterns.shortDate + " " + Date.CultureInfo.formatPatterns.longTime;
+                                                                                    var newValue = ""
+                                                                                    if (this.value != "") {
+                                                                                        var dateObj = Date.parseExact(this.value, dateFormat);
+                                                                                        var ofbizTime = "yyyy-MM-dd HH:mm:ss";
+                                                                                        newValue = dateObj.toString(ofbizTime);
+                                                                                    }
+                                                                                    jQuery("#shipAfterDate").val(newValue);
+                                                                                });
+                                                                            } else {
+                                                                                jQuery("#shipAfterDate").change(function() {
+                                                                                    jQuery("#shipAfterDate_i18n").val(this.value);
+                                                                                });
+                                                                                jQuery("#shipAfterDate_i18n").change(function() {
+                                                                                    jQuery("#shipAfterDate").val(this.value);
+                                                                                });
+                                                                            }
+
+                                                                            jQuery("#shipAfterDate").datetimepicker({
+                                                                                showSecond: true,
+                                                                                timeFormat: 'hh:mm:ss',
+                                                                                stepHour: 1,
+                                                                                stepMinute: 1,
+                                                                                stepSecond: 1,
+                                                                                showOn: 'button',
+                                                                                buttonImage: '',
+                                                                                buttonText: '',
+                                                                                buttonImageOnly: false,
+                                                                                dateFormat: 'yy-mm-dd'
+                                                                            })
+
+                                                                                    ;
+                                                                        </script>
+                                                                        <input type="hidden" name="" value="Timestamp"/>
+                                                                    </span>
+                                                                    <br/>
+                                                                    <span class="view-calendar">
+                                                                        <input type="text" name="shipByDate_i18n" 
+                                                                               title="Format: yyyy-MM-dd HH:mm:ss.SSS"
+
+                                                                               size="25"          maxlength="30"
+                                                                               id="shipByDate_i18n"/>        <input type="text" name="shipByDate" style="height:1px;width:1px;border:none;background-color:transparent"  
+                                                                               title="Format: yyyy-MM-dd HH:mm:ss.SSS"
+
+                                                                               size="25"          maxlength="30"
+                                                                        id="shipByDate"/>          <script type="text/javascript">
+                                                                            if (Date.CultureInfo != undefined) {
+                                                                                var initDate = "";
+                                                                                if (initDate != "") {
+                                                                                    var dateFormat = Date.CultureInfo.formatPatterns.shortDate + " " + Date.CultureInfo.formatPatterns.longTime;
+                                                                                    if (initDate.indexOf('.') != -1) {
+                                                                                        initDate = initDate.substring(0, initDate.indexOf('.'));
+                                                                                    }
+                                                                                    var ofbizTime = "yyyy-MM-dd HH:mm:ss";
+                                                                                    var dateObj = Date.parseExact(initDate, ofbizTime);
+                                                                                    var formatedObj = dateObj.toString(dateFormat);
+                                                                                    jQuery("#shipByDate_i18n").val(formatedObj);
+                                                                                }
+
+                                                                                jQuery("#shipByDate").change(function() {
+                                                                                    var ofbizTime = "yyyy-MM-dd HH:mm:ss";
+                                                                                    var newValue = ""
+                                                                                    if (this.value != "") {
+                                                                                        var dateObj = Date.parseExact(this.value, ofbizTime);
+                                                                                        var dateFormat = Date.CultureInfo.formatPatterns.shortDate + " " + Date.CultureInfo.formatPatterns.longTime;
+                                                                                        newValue = dateObj.toString(dateFormat);
+                                                                                    }
+                                                                                    jQuery("#shipByDate_i18n").val(newValue);
+                                                                                });
+                                                                                jQuery("#shipByDate_i18n").change(function() {
+                                                                                    var dateFormat = Date.CultureInfo.formatPatterns.shortDate + " " + Date.CultureInfo.formatPatterns.longTime;
+                                                                                    var newValue = ""
+                                                                                    if (this.value != "") {
+                                                                                        var dateObj = Date.parseExact(this.value, dateFormat);
+                                                                                        var ofbizTime = "yyyy-MM-dd HH:mm:ss";
+                                                                                        newValue = dateObj.toString(ofbizTime);
+                                                                                    }
+                                                                                    jQuery("#shipByDate").val(newValue);
+                                                                                });
+                                                                            } else {
+                                                                                jQuery("#shipByDate").change(function() {
+                                                                                    jQuery("#shipByDate_i18n").val(this.value);
+                                                                                });
+                                                                                jQuery("#shipByDate_i18n").change(function() {
+                                                                                    jQuery("#shipByDate").val(this.value);
+                                                                                });
+                                                                            }
+
+                                                                            jQuery("#shipByDate").datetimepicker({
+                                                                                showSecond: true,
+                                                                                timeFormat: 'hh:mm:ss',
+                                                                                stepHour: 1,
+                                                                                stepMinute: 1,
+                                                                                stepSecond: 1,
+                                                                                showOn: 'button',
+                                                                                buttonImage: '',
+                                                                                buttonText: '',
+                                                                                buttonImageOnly: false,
+                                                                                dateFormat: 'yy-mm-dd'
+                                                                            })
+
+                                                                                    ;
+                                                                        </script>
+                                                                        <input type="hidden" name="" value="Timestamp"/>
+                                                                    </span>
+                                                                    <input type="submit" value="Update"/>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td colspan="3"><hr /></td></tr>
+                                                        <tr>
+                                                            <td align="right" valign="top" width="15%">
+                                                                <span class="label">&nbsp;Shipments</span>
+                                                            </td>
+                                                            <td width="5">&nbsp;</td>
+                                                            <td valign="top" width="80%">
+                                                                <div>
+                                                                    Nbr<a href="/facility/control/ViewShipment?shipmentId=10810&amp;externalLoginKey=test_externalLoginKey" class="buttontext">10810</a>&nbsp;&nbsp;
+                                                                    <a target="_BLANK" href="/facility/control/PackingSlip.pdf?shipmentId=10810&amp;externalLoginKey=test_externalLoginKey" class="buttontext">Packing Slip</a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>                               </td>                           </tr>                       </table>                    </div>                   <div class="clear"> </div>                       <table width=100%>                           <tr>                                <td style=border-width:1px; border-color:Black ; border-style :groove ; width=100% vertical-align:top>                                   <div class="lefthalf";  width=100%>                                       <div width=100%>
+                                            <div class="screenlet">
+                                                <div class="screenlet-title-bar">
+                                                    <ul>
+                                                        <li class="h3">&nbsp;Order Items</li>
+                                                    </ul>
+                                                    <br class="clear" />
+                                                </div>
+                                                <div class="screenlet-body">
+                                                    <table class="order-items basic-table" cellspacing='0' width="100%">
+                                                        <tr valign="bottom" class="header-row">
+                                                            <td width="30%">Product</td>
+                                                            <td width="33%">Status</td>
+                                                            <td width="5%">Quantity</td>
+                                                            <td width="10%" align="right">Unit / List</td>
+                                                            <td width="10%" align="right">Adjustments</td>
+                                                            <td width="10%" align="right">Sub Total</td>
+                                                            <td width="2%">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="7">
+                                                                <div class="order-item-description">
+                                                                    AR1605 - Rajdhani Sooji 500 g
+                                                                </div>
+                                                                <div style="float:right;">
+                                                                    <a href="/catalog/control/EditProduct?productId=AR1605externalKeyParam" class="buttontext" target="_blank">Catalog</a>
+                                                                    <a href="/ecommerce/control/product?product_id=AR1605" class="buttontext" target="_blank">Ecommerce</a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top">
+                                                            </td>
+                                                            <td colspan="1" valign="top">
+                                                                <div class="screenlet order-item-status-list COMPLETED">
+                                                                    <div class="screenlet-body">
+                                                                        <div class="current-status">
+                                                                            <span class="label">Current</span>&nbsp;Completed
+                                                                        </div>
+                                                                        13/03/15 10:50:40 PM&nbsp;&nbsp;Completed
+                                                                        13/03/15 10:50:03 PM&nbsp;&nbsp;Approved
+                                                                        13/03/15 10:49:49 PM&nbsp;&nbsp;Created
+                                                                    </div>
+                                                                </div>
+                                                                <font color="red">Returned</font>
+                                                                Nbr<a href="" class="buttontext">10680</a>
+                                                                <font color="red">Returned</font>
+                                                                Nbr<a href="" class="buttontext">10730</a>
+                                                            </td>
+                                                            <td align="right" valign="top" nowrap="nowrap">
+                                                                <div class="screenlet order-item-quantity">
+                                                                    <div class="screenlet-body">
+                                                                        <table>
+                                                                            <tr valign="top">
+                                                                                <td><b>Ordered</b></td>
+                                                                                <td>1,000</td>
+                                                                                <td><b>Ship Request</b></td>
+                                                                                <td>0</td>
+                                                                            </tr>
+                                                                            <tr valign="top">
+                                                                                <td><b>Cancelled</b></td>
+                                                                                <td>0</td>
+                                                                                <td>&nbsp;</td>
+                                                                                <td>&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr valign="top">
+                                                                                <td><b>Remaining</b></td>
+                                                                                <td>0</td>
+                                                                                <td><b>Qty Shipped</b></td>
+                                                                                <td>0</td>
+                                                                            </tr>
+                                                                            <tr valign="top">
+                                                                                <td><b>Shortfalled</b></td>
+                                                                                <td>0</td>
+                                                                                <td><b>Outstanding</b></td>
+                                                                                <td>
+                                                                                    0
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr valign="top">
+                                                                                <td><b>Invoiced</b></td>
+                                                                                <td>1000</td>
+                                                                                <td><b>Returned</b></td>
+                                                                                <td>21</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td align="right" valign="top" nowrap="nowrap">
+                                                                AU$13.00                                    / AU$0.00
+                                                            </td>
+                                                            <td align="right" valign="top" nowrap="nowrap">
+                                                                AU$0.00                                </td>
+                                                            <td align="right" valign="top" nowrap="nowrap">
+                                                                AU$13,000.00                                </td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" colspan="2">
+                                                                <span class="label">Ship Group</span>&nbsp;[00001]
+                                                                2003 Warehouse Blvd
+                                                            </td>
+                                                            <td align="center">
+                                                                1,000&nbsp;
+                                                            </td>
+                                                            <td colspan="4">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" colspan="2">
+                                                                <span class="label">Planned in Shipment</span>&nbsp;<a
+                                                                    target="facility"
+                                                                    href="/facility/control/ViewShipment?shipmentId=10810&amp;externalLoginKey=test_externalLoginKey"
+                                                                    class="buttontext">10810</a>: 00001
+                                                            </td>
+                                                            <td align="center">
+                                                                1,000&nbsp;
+                                                            </td>
+                                                            <td colspan="4">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" colspan="2">
+                                                                <span class="label">Shipment Received</span>&nbsp;
+                                                                <a target="facility"
+                                                                   href="/facility/control/ViewShipment?shipmentId=10810&amp;externalLoginKey=test_externalLoginKey"
+                                                                   class="buttontext">10810</a>:
+                                                                &nbsp;13/03/15 10:50:26 PM&nbsp;
+                                                                <span class="label">Inventory</span>&nbsp;
+                                                                <a href="/facility/control/EditInventoryItem?inventoryItemId=48010&amp;externalLoginKey=test_externalLoginKey"
+                                                                   class="buttontext">48010</a>
+                                                            </td>
+                                                            <td align="center">
+                                                                1,000&nbsp;/&nbsp;0
+                                                            </td>
+                                                            <td colspan="4">&nbsp;</td>
+                                                        </tr>
+                                                        <tr><td colspan="7"><hr /></td></tr>
+                                                        <tr>
+                                                            <td colspan="1"></td>
+                                                            <td colspan="6"><hr /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" colspan="5">
+                                                                <span class="label">Items SubTotal</span>
+                                                            </td>
+                                                            <td align="right" nowrap="nowrap">
+                                                                AU$13,000.00                    </td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" colspan="5">
+                                                                <span class="label">Total Other Order Adjustments</span>
+                                                            </td>
+                                                            <td align="right" nowrap="nowrap">
+                                                                AU$0.00                    </td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" colspan="5">
+                                                                <span class="label">Total Shipping and Handling</span>
+                                                            </td>
+                                                            <td align="right" nowrap="nowrap">
+                                                                AU$0.00                    </td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" colspan="5">
+                                                                <span class="label">Total Sales Tax</span>
+                                                            </td>
+                                                            <td align="right" nowrap="nowrap">
+                                                                AU$0.00                    </td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" colspan="5">
+                                                                <span class="label">Total Due</span>
+                                                            </td>
+                                                            <td align="right" nowrap="nowrap">
+                                                                AU$13,000.00                    </td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="screenlet">
+                                                <div class="screenlet-title-bar">
+                                                    <ul>
+                                                        <li class="h3">&nbsp;Notes</li>
+                                                        <li><a href="">Create New</a></li>
+                                                    </ul>
+                                                    <br class="clear"/>
+                                                </div>
+                                                <div class="screenlet-body">
+                                                    <table class="basic-table" cellspacing='0'>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="label">&nbsp;No notes for this order.</span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>                               </td>                           </tr>                       </table>                    <div class="clear"> </div>               </div>           </div><!-- End Section Widget  -->      
+            </div>  
+        </div>
+    </body>
+</html>

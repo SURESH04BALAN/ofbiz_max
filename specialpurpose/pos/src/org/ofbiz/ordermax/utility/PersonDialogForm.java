@@ -1,0 +1,385 @@
+/*
+ * Copyright (c) 2010, Oracle.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *  * Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *  * Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the distribution.
+ *  * Neither the name of Oracle nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED 
+ * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package org.ofbiz.ordermax.utility;
+
+import java.beans.PropertyChangeListener;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPanel;
+import org.ofbiz.base.util.Debug;
+import org.ofbiz.entity.Delegator;
+import org.ofbiz.entity.GenericEntityException;
+import org.ofbiz.entity.GenericValue;
+import org.ofbiz.ordermax.base.PosProductHelper;
+import org.ofbiz.guiapp.xui.XuiSession;
+import org.ofbiz.ordermax.generic.GenericValueObjectInterface;
+import org.ofbiz.ordermax.generic.GenericValuePanelInterfaceOrderMax;
+import org.ofbiz.ordermax.generic.GenericValueTablePanel;
+import org.ofbiz.ordermax.screens.ClientEditor;
+import org.ofbiz.ordermax.screens.ContactMechPanelMain;
+import org.ofbiz.ordermax.screens.mainscreen.OrderMaxMainForm;
+import org.ofbiz.ordermax.entity.PartyRelationship;
+import org.ofbiz.ordermax.entity.PartyRole;
+import org.ofbiz.ordermax.entity.Person;
+import org.ofbiz.party.contact.ContactMechWorker;
+
+/**
+ * Form that allows editing of information about one client.
+ *
+ * @author Jiri Vagner, Jan Stola
+ */
+public class PersonDialogForm extends javax.swing.JPanel implements GenericValuePanelInterfaceOrderMax, org.ofbiz.ordermax.base.BaseMainPanelInterface {
+
+    public static final String module = PersonDialogForm.class.getName();
+    protected XuiSession session = null;
+    protected GenericValue genericValue;
+    protected PartyRolePanel partyRolePanel = null;
+    protected PartyRelationshipPanel partyRelationshipPanel = null;    
+    
+    protected GenericValueTablePanel partyRolesTablePanel = null;
+    protected GenericValueTablePanel partyRelationShipTablePanel = null;    
+    protected PersonPanel personPanel = null;
+    GenericValue genricValue = null;
+    //java.awt.Frame parentFrame = null;
+    protected ContactMechPanelMain contactMechPanelMain = null;
+    List<Map<String, Object>> machList = null;
+
+    public void setParentItem(Object val) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public PersonDialogForm( XuiSession session) {
+
+        this.session = session;
+        initComponents();
+
+        partyRolesTablePanel = new GenericValueTablePanel(session, PartyRole.ColumnNameId);
+        partyRelationShipTablePanel = new GenericValueTablePanel(session, PartyRelationship.ColumnNameId);        
+
+        personPanel = new PersonPanel();
+        OrderMaxUtility.addAPanelToPanel(personPanel, mainPanel);
+
+        partyRolePanel = new PartyRolePanel();
+        OrderMaxUtility.addTwoPanelToPanel(partyRolePanel, partyRolesTablePanel, panelPartyRoles);
+
+        contactMechPanelMain = new ContactMechPanelMain(session);
+        OrderMaxUtility.addAPanelToPanel(contactMechPanelMain, contactMainContainer);
+
+        partyRelationshipPanel = new PartyRelationshipPanel();
+        OrderMaxUtility.addTwoPanelToPanel(partyRelationshipPanel, partyRelationShipTablePanel, panelRelationShip);
+
+    }
+
+    public XuiSession getSession() {
+        return this.session;
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        sexButtonGroup = new javax.swing.ButtonGroup();
+        jPanel5 = new javax.swing.JPanel();
+        clientInfoPane = new javax.swing.JTabbedPane();
+        mainPanel = new javax.swing.JPanel();
+        contactMainContainer = new javax.swing.JPanel();
+        panelPartyRoles = new javax.swing.JPanel();
+        panelRelationShip = new javax.swing.JPanel();
+
+        org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 100, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 100, Short.MAX_VALUE)
+        );
+
+        setMaximumSize(new java.awt.Dimension(900, 600));
+
+        org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 515, Short.MAX_VALUE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 581, Short.MAX_VALUE)
+        );
+
+        clientInfoPane.addTab("Personal", mainPanel);
+
+        org.jdesktop.layout.GroupLayout contactMainContainerLayout = new org.jdesktop.layout.GroupLayout(contactMainContainer);
+        contactMainContainer.setLayout(contactMainContainerLayout);
+        contactMainContainerLayout.setHorizontalGroup(
+            contactMainContainerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 515, Short.MAX_VALUE)
+        );
+        contactMainContainerLayout.setVerticalGroup(
+            contactMainContainerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 581, Short.MAX_VALUE)
+        );
+
+        clientInfoPane.addTab("Contact Detail", contactMainContainer);
+
+        org.jdesktop.layout.GroupLayout panelPartyRolesLayout = new org.jdesktop.layout.GroupLayout(panelPartyRoles);
+        panelPartyRoles.setLayout(panelPartyRolesLayout);
+        panelPartyRolesLayout.setHorizontalGroup(
+            panelPartyRolesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 515, Short.MAX_VALUE)
+        );
+        panelPartyRolesLayout.setVerticalGroup(
+            panelPartyRolesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 581, Short.MAX_VALUE)
+        );
+
+        clientInfoPane.addTab("Roles", panelPartyRoles);
+
+        org.jdesktop.layout.GroupLayout panelRelationShipLayout = new org.jdesktop.layout.GroupLayout(panelRelationShip);
+        panelRelationShip.setLayout(panelRelationShipLayout);
+        panelRelationShipLayout.setHorizontalGroup(
+            panelRelationShipLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 515, Short.MAX_VALUE)
+        );
+        panelRelationShipLayout.setVerticalGroup(
+            panelRelationShipLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 581, Short.MAX_VALUE)
+        );
+
+        clientInfoPane.addTab("Relationship", panelRelationShip);
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(clientInfoPane)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(clientInfoPane))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+
+    public void changeUIObject(GenericValueObjectInterface uiObject) {
+        personPanel.changeUIObject(uiObject);
+    }
+
+    public GenericValueObjectInterface createUIObject(GenericValue baseVal) {
+        genricValue = baseVal;
+        return personPanel.createUIObject(baseVal);
+    }
+
+    public void getUIFields() throws java.text.ParseException {
+        personPanel.getUIFields();
+    }
+
+    public void setUIFields() throws  java.text.ParseException {
+
+        Delegator delegator = session.getDelegator();
+
+        //        List<GenericValue> list =  genricValue.getRelated(module);
+        Person person = (Person) personPanel.getUIObject();
+        final String partyId = person.getpartyId();//"CUST";
+        if (partyId != null && partyId.isEmpty() == false) {
+            try {
+                machList = ContactMechWorker.getPartyContactMechValueMaps(session.getDelegator(), partyId, false);
+
+                contactMechPanelMain.setContactMechs(machList);
+
+                GenericValue genValue = PosProductHelper.getParty(person.getpartyId(), delegator);
+
+                List<GenericValue> genValList = genValue.getRelated("PartyRole");
+                if (genValList != null && genValList.size() > 0) {
+                    //            List<GenericValue> genValList = PosProductHelper.getGenericValueLists("PartyRole", delegator);
+                    GenericValue partyRole = genValList.get(0);
+                    partyRolesTablePanel.setupOrderTableList(genValList);
+                    //        genericValue = PartyWorker.findPartyLatestTelecomNumber(person.getpartyId(), session.getDelegator());
+
+                    if (partyRole != null) {
+                        GenericValueObjectInterface uiObj = partyRolePanel.createUIObject(partyRole);
+                        partyRolePanel.changeUIObject(uiObj);
+                        partyRolePanel.setUIFields();
+                    }
+                }
+                
+                Map<String, Object> partyRelationshipValues = new HashMap<String, Object>();
+
+//                partyRelationshipValues.put("partyIdFrom", "CUST");
+                partyRelationshipValues.put("partyIdTo", "CUST");
+                
+                
+                List<GenericValue> relList = OrderMaxUtility.getRelationShips(delegator, "CUST") ;
+//                 genValList = genricValue.getRelated("PartyRelationship");
+                if (relList != null && relList.size() > 0) {
+                    //            List<GenericValue> genValList = PosProductHelper.getGenericValueLists("PartyRole", delegator);
+                    GenericValue partyRel = relList.get(0);
+                    partyRelationShipTablePanel.setupOrderTableList(relList);
+                    //        genericValue = PartyWorker.findPartyLatestTelecomNumber(person.getpartyId(), session.getDelegator());
+
+                    if (partyRel != null) {
+                        GenericValueObjectInterface uiObj = partyRelationshipPanel.createUIObject(partyRel);
+                        partyRelationshipPanel.changeUIObject(uiObj);
+                        partyRelationshipPanel.setUIFields();
+                    }
+                }
+                
+                
+                //        delegator.getRelated(module, jPanel5, null, genricValue)
+                personPanel.setUIFields();
+            } catch (GenericEntityException ex) {
+                Logger.getLogger(PersonDialogForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            machList = new ArrayList<Map<String, Object>>();
+            Map<String, Object> maps = new HashMap<String, Object>();
+            machList.add(maps);
+            contactMechPanelMain.setContactMechs(machList);
+
+            List<GenericValue> genValList = new ArrayList<GenericValue>();
+            //            List<GenericValue> genValList = PosProductHelper.getGenericValueLists("PartyRole", delegator);
+
+            partyRolesTablePanel.setupOrderTableList(genValList);
+            genValList = new ArrayList<GenericValue>();
+            partyRelationShipTablePanel.setupOrderTableList(genValList);
+            //        genericValue = PartyWorker.findPartyLatestTelecomNumber(person.getpartyId(), session.getDelegator());
+
+            GenericValue partyRole = null;
+            GenericValueObjectInterface uiObj = partyRolePanel.createUIObject(partyRole);
+            partyRolePanel.changeUIObject(uiObj);
+            partyRolePanel.setUIFields();
+
+            personPanel.setUIFields();
+        }
+    }
+
+    public JPanel getContainerPanel() {
+        return this;
+    }
+
+    public void newItem() {
+
+        try {
+            //TelecomNumber telNumber = new TelecomNumber();
+            GenericValueObjectInterface uiObject = this.createUIObject(null);
+            changeUIObject(uiObject);
+            setUIFields();
+            contactMechPanelMain.createNewContactMech();
+        } catch (java.text.ParseException ex) {
+            Logger.getLogger(ContactMechPanelMain.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void saveItem() throws Exception {
+
+        GenericValueObjectInterface telNumber = getUIObject();
+        GenericValue detailValue = telNumber.getGenericValueObj();
+        if (telNumber.isGenericValueSet() == false) {
+            detailValue = telNumber.createNewGenericValueObj(session.getDelegator());
+        }
+        getUIFields();
+        telNumber.getGenericValue();
+        Debug.logInfo("Save 1", module);
+        if (OrderMaxUtility.createOrStorePerson(detailValue, session.getDelegator())) {
+//                detailValue.create();
+                    Debug.logInfo("Save 2", module);
+            Person person = (Person) personPanel.getUIObject();                    
+            contactMechPanelMain.saveContactMech(person.getpartyId());
+        }
+        Debug.logInfo("Save 3", module);
+    }
+
+    public GenericValueObjectInterface getUIObject() {
+        return personPanel.getUIObject();
+    }
+
+    public boolean isModified() {
+        return isModified;
+
+    }
+
+    public void setIsModified(boolean isModified) {
+        this.isModified = isModified;
+    }
+    private boolean isModified = false;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane clientInfoPane;
+    private javax.swing.JPanel contactMainContainer;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel panelPartyRoles;
+    private javax.swing.JPanel panelRelationShip;
+    private javax.swing.ButtonGroup sexButtonGroup;
+    // End of variables declaration//GEN-END:variables
+
+    public void refreshScreen() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void addItem(String id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void loadItem() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setItem(Object val) {
+        GenericValue partyGroup = (GenericValue) val;
+        GenericValueObjectInterface uiObj = this.createUIObject(partyGroup);
+        this.changeUIObject(uiObj);
+        try {
+            this.setUIFields();
+        }  catch (java.text.ParseException ex) {
+            Debug.logError(ex, module);
+        }
+    }
+
+    public void addChangeListener(PropertyChangeListener newListener) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}

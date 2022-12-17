@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<XPage>
+	<Components>
+		<Button w="100" name="menuSku" x="0" h="58" y="0" style="menuSystem" alignment="Center" content="SKU"></Button>
+		<Button w="100" name="menuMgr" x="101" h="58" y="0" style="menuSystem" alignment="Center" content="MGR"></Button>
+		<Button w="100" name="menuPay" x="202" h="58" y="0" style="menuSystem" alignment="Center" content="PAY"></Button>
+		<Button w="100" name="mgrProductKeyFilter" x="303" h="58" y="0" style="skuButtonGiftCard" alignment="Center" content="SEARCH PRODUCT"></Button>
+		<Button w="100" name="mgrProductLookUp" x="404" h="58" y="0" style="skuButtonGiftCard" alignment="Center" content="PRODUCT LOOKUP"></Button>
+		<Button w="100" name="menuMain" x="505" h="58" y="0" style="skuButtonConfigurableItem" alignment="Center" content="HOME"></Button>
+		<Button w="100" name="ACTION.panelattamain" x="505" h="58" y="59" style="menuNavagation" alignment="Center" content="ATTA"></Button>
+		<Button w="100" name="ACTION.panelricemain" x="505" h="58" y="118" style="menuNavagation" alignment="Center" content="RICE"></Button>
+		<Button w="100" name="ACTION.panelfrozenmain" x="505" h="58" y="177" style="menuNavagation" alignment="Center" content="FROZEN"></Button>
+		<Button w="100" name="ACTION.panelvegetablemain" x="505" h="58" y="236" style="menuNavagation" alignment="Center" content="FRESH VEG"></Button>
+		<Button w="100" name="ACTION.panelsnackmain" x="505" h="58" y="295" style="menuNavagation" alignment="Center" content="SNACK "></Button>
+		<Button w="100" name="ACTION.panelspicemain" x="505" h="58" y="354" style="menuNavagation" alignment="Center" content="SPICE"></Button>
+		<Button w="100" name="ACTION.panelsnackmain" x="505" h="70" y="426" style="menuNavagation" alignment="Center" content="SNACK"></Button>
+	</Components>
+</XPage>

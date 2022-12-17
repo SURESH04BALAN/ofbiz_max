@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<XPage>
+	<Components>
+		<Button content="SKU" w="100" alignment="Center" style="menuSystem" name="menuSku" h="58" y="0" x="0"></Button>
+		<Button content="MGR" w="100" alignment="Center" style="menuSystem" name="menuMgr" h="58" y="0" x="101"></Button>
+		<Button content="PAY" w="100" alignment="Center" style="menuSystem" name="menuPay" h="58" y="0" x="202"></Button>
+		<Button content="SEARCH PRODUCT" w="100" alignment="Center" style="skuButtonGiftCard" name="mgrProductKeyFilter" h="58" y="0" x="303"></Button>
+		<Button content="PRODUCT LOOKUP" w="100" alignment="Center" style="skuButtonGiftCard" name="mgrProductLookUp" h="58" y="0" x="404"></Button>
+		<Button content="HOME" w="100" alignment="Center" style="skuButtonConfigurableItem" name="menuMain" h="58" y="0" x="505"></Button>
+		<Button content="CHANGE PRICE" w="100" alignment="Center" style="skuButtonGiftCard" name="mgrPriceChg" h="58" y="59" x="0"></Button>
+		<Button content="GROCERY" w="100" alignment="Center" style="skuButtonWidget" name="SKU.GROCERY" h="58" y="118" x="0"></Button>
+		<Button content="SCALE" w="100" alignment="Center" style="posButtonGreen" name="SKU.SCALE" h="58" y="177" x="0"></Button>
+	</Components>
+</XPage>

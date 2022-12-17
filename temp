@@ -1,0 +1,470 @@
+THE FORM-WIDGET COOKBOOK
+========================
+
+This document is a series of HOWTOs on using the OFBIZ form-widget to create forms.
+
+* Important warning about submit button names: Don't name your submit field "submit", because this will cause a bug "button.form.submit is not a function"
+
+  <field name="submit" ...>  <!- Don't do this! call it "submitButton" instead. -->
+  For reference on this: http://www.chovy.com/2005/06/21/1/javascript-error-submit-is-not-a-function/
+
+* How to make each line of a list form a submit form of its own
+    <form ... type="list" target=""...> where target is the target of each line item of the form
+
+    For each <field> which has input values, use a <text> or <date-time> instead of <display> tag
+
+    Then make a submit button (see below):
+
+* How to make one form and submit button per list entry
+  
+      First, create your form as normal.  Then add a submit button of type "text-link":
+
+      <field name="submitButton" title="ButtonTextLabel" widget-style="buttontext" use-when="hasUpdatePermission==true">
+          <submit button-type="text-link"/>
+      </field>
+
+      Next, create a service and invoke it as a regular (not multi) service. Only the row which was submitted will be processed.
+
+
+* How to display a field as a currency
+    
+      <field name="${amount}"><display type="currency" currency="${currencyUomId}"/></field>
+      The currencyUomId must be part of the entity, or you can hardcode it (e.g., currency="USD")
+
+
+* How to display a date/time input field
+
+      <field name="dateField"><date-time/></field>   
+
+   This will display it as a timestamp.  For input fields, it will also put a javascript calendar next to it.
+   To display it as a date only, use
+      <date-time type="date"/>
+   To display only a time, use
+      <date-time type="time"/>
+
+   A much better way to input date + time,
+
+      <field name="something"><date-time type="timestamp" input-method="time-dropdown" clock="12"/>
+
+   This generates a standard date input with dropdowns to select the hour, minutes, and AM/PM.
+
+* How to display a date/time as text
+
+     <field name="dateField"><display/></field>
+
+   Sometimes it will appear red, in which case do the following to stop that:
+     <field name="dateField" red-when="false"><display/></field>
+   Sometimes you want to truncate the hours, minutes and so on to show only the date (watch out for bsh errors)
+     <field name="dateField"><display description="${bsh: dateField.substring(0,10)}"/></field>
+
+* How to default date time fields to now
+  
+    In general, you can use the ${bsh: } directive to invoke bsh in the form widget to display values.  This is one
+    good example of it:
+
+         <field name="productsSoldThruTimestamp" title="${uiLabelMap.ProductShowProductsSoldThruTimestamp}" widget-style="inputBox">
+             <date-time default-value="${bsh: org.ofbiz.base.util.UtilDateTime.nowTimestamp()}"/>
+         </field>   
+
+* How to change the style of a form widget
+    
+      Form widget styles are CSS styles listed in /images/maincss.css and /images/tabstyles.css
+      Two ways: block level and inline style
+      block: equivalent to the styles you'd give to a <p>, <div> or <table>
+      <field widget-area-style="css_block_style"> 
+      inline: equivalent to the styles you'd give to a <span> or <em>
+      <field widget-style="css_inline_style">
+
+
+* How to tell the form what map or list to use
+
+  <form type="single" default-map-name="map">
+  <form type="list" list-name="list">
+  <form type="multi" list-name="list">
+
+
+* How to pass a parameter on to the "success" view when a form is successfully processed
+
+  For example, suppose you have a "createNoteForm" form to create notes and when it finishes, you want
+  to continue to "viewParty?partyId=${partyId}". How do you pass the partyId to the next view-map (viewParty)
+  when the form is submitted? There's a trick to do this:
+
+  <form name="createNoteForm" target="createNote?partyId=${partyId}" ...>
+
+  And in controller.xml:
+
+  <request-map uri="createNote">
+    <event type="service" invoke="createNote"/>
+    <response name="success" type="view" value="viewParty"/>
+  </request>
+
+  The "viewParty" view-map will then be invoked with the partyId in the parameters.
+    
+
+* How to call Java from within a display tag
+    <display description="${bsh: code_here }"/>
+   ex:
+    <field position="1" name="invoiceAmount"><display description="${bsh:org.ofbiz.accounting.invoice.InvoiceWorker.getInvoiceTotalBd(delegator,invoiceId)}" type="currency" currency="${invoice.currencyUomId}" also-hidden="false"/></field>
+   For double quotes ("), use the xml directive &quot;
+
+
+* How to set the length and maxsize of a text field
+
+  <text size="10" maxlength="20"/>
+
+
+* How to make a tooltip box appear above a field when hoving over it
+
+  <field tooltip="tooltip-text">
+
+
+* How to mark a field as required
+
+Change the widget style to something that stands out and maybe add an asterix after the description.
+
+
+* How to create a drop down
+
+<drop-down allow-empty="true">
+  <option key="parameterValue1" description="selectText1"/>
+  <option key="parameterValue2" description="selectText2"/>
+  <option key="parameterValue3" description="selectText3"/>
+</drop-down>
+
+* How to specify default values for a drop down
+<drop-down current="selected" no-current-selected-key="default value">
+
+   current="selected" tells it to make the current key selected, so if you're refilling out a form, a selected field will be selected again
+   no-current-key-selected= is used to specify a default value.  It can be a literal value ("USD") or a variable ("${currencyUomId"})
+
+
+* How to make multi column forms
+
+  <field name="firstColumn" position="1"/>
+  <field name="secondColumn" position="2"/>
+  <field name="thirdColumn" position="3"/>
+  ...
+  <field name="firstColumnNextRow" position="1"/>
+  <field name="secondColumnNextRow" position="2"/>
+  ...
+
+* How to make a "multi" form to list and operate on many entities at once
+
+<pre>
+<form type="multi" use-row-submit="true" target="controllerTarget">
+  <field name="submitButton" title="ButtonName"><submit/></field>
+</form>
+</pre>
+    
+use-row-submit
+    "false" will invoke a multi service for every row. This is the default
+    "true" will invoke a multi service only when the row is checked
+submitButton
+    a single submit button at the bottom of the list
+    target
+specify <event type="service-multi" invoke="serviceName"> in controller.xml request-map controllerTarget 
+    to invoke serviceName once for each row according to use-row-submit
+  
+* How to then pass just one field back to the multi-form
+
+What if you need to pass just one field to a multi-form, such as a facilityId?  One way (maybe not the best way!) is to put into the form target URL, like this:
+target="BatchScheduleShipmentRouteSegments?facilityId=${facilityId}"
+
+* How to have each row of a multi-form be selected by default
+
+This is very tricky, but I saw Jacopo do it in commit r 448936, tried it, and it worked!  You have to set it in the
+screen-widget in the <actions> section like this:
+     <set field="_rowSubmit" value="Y"/>
+
+* How to reference the description field from a related entity, such as displaying
+ StatusItem.description when the field is statusId (and similar)
+me="statusId" title="Return Status" widget-style="selectBox">
+
+<display-entity entity-name="Foo"/>
+<display-entity entity-name="Foo" key-field-name="fooId"/>
+<display-entity entity-name="Foo" description="${something} - ${complex}"/>
+
+  by default this retrieves the description from the field named "description"
+  -  use description="" to format the output: the context will contain the
+     entities fields and their values
+  use key-field-name="primaryKeyId" if the field name is different from the
+  entity's field name (e.g., the field is paymentStatusId but we're looking up
+  StatusItem.statusId, so use key-field-name="statusId")
+
+* Using the sub-hyperlink to put a link next to display entity
+
+  Here is an example where you can use display-entity to cross-reference data from a related entity,
+then put a link as well:
+        <field name="glAccountId" title="Account" widget-style="tabletext">
+            <display-entity entity-name="GlAccount" description="${accountName}">
+                <sub-hyperlink target="ListGlAccountEntries?glAccountId=${glAccountId}" description="[${glAccountId}]" link-style="tabletext"/>
+            </display-entity>
+        </field>
+ 
+
+* How to get a set of options from StatusItem table
+
+  <field name="fooStatusId" title="Foo Status" widget-style="selectBox">
+    <drop-down>
+      <entity-options entity-name="StatusItem" description="${description}">
+        <entity-constraint name="statusTypeId" value="ORDER_RETURN_STTS"/>
+        <entity-order-by field-name="sequenceId"/>
+      </entity-options>
+    </drop-down>
+  </field>
+
+  NOTE: This will filter by date if a fromDate and thruDate are present. Make sure that these fields are of type="date-time" and not "date",
+  otherwise you'll get a mysterious class cast exception with Date in the error log. If you want to avoid the filter, you can specify:
+
+      <entity-options filter-by-date="false">
+
+  A good example of this is CustomTimePeriod which has fromDate and thruDate of type "date", but will crash unless you stop the filter by date.
+  It's good practice to specify filter-by-date if the entity has a fromDate and thruDate just to make it explicit.
+
+
+* How to turn a field into a link
+
+   Use the <hyerlink ../> tag inside of <field> ... </field> with description= for the
+anchor text on the form and target= for the link to use.  Use the target-type="inter-app"
+when the hyperlink goes to a different webapp (ie, from marketing to party manager).  
+   Ex:
+<hyperlink description="${visitId}" target="/partymgr/control/visitdetail?visitId=${visitId}&amp;DONE_PAGE=${donePage}" target-type="inter-app"/>
+
+   IMPORTANT: use XML notation such as &amp; when entering HTML tag with special characters such as "&"
+
+
+* How to disable display/execution of a field with a condition
+
+  <field name="fooId" use-when="${bsh:fooId!=null}">
+  <field name="fooId" use-when="fooId!=null">   <!-- values are from context -->
+
+  use-when="true" will cause a field always to display.
+  use-when="false" will cause a field never to display.
+
+  use-when is interpreted as beanshell using the current beanshell interpreter context. You can test for variables
+  from the screen widget that were defined with <set field="field" value="value"/>.  You can also invoke Java methods that
+  return a boolean true/false with something like
+  use-when="com.mysite.MyClass.myStaticBooleanMethod(myParameter);"
+
+  IMPORTANT: Due to the way beanshell works, testing "foo==null" will return true if foo has not been defined yet!  This is
+  because beanshell considers undefined parameters as "void", and void is not consiered to be null. You can see this behavior
+  for yourself by executing this bsh: print("Is foo null? " + (foo==null) + ". Is foo void? " + (foo==void));
+
+  What if you have a list form and need to access a field from each member of the list?  After some (rather blind) trial and
+  error, we found that the magic word is "context", as in:
+  <form name="MyForm" ... list-name="myList">
+      <field name="myField" use-when="context.getString(&quot;myField&quot;).equals(&quot;someValue&quot;)">....
+  this will test "myField" in each element of myList in your use-when
+
+  IMPORTANT: Also note that most other form-widget fields that accept ${} notation uses FTL markup language, not beanshell.
+  This leads to situations where you have use-when="parameters.get(&quot;fieldName&quot;)" and later on, description="${parameters.fieldName}"
+
+*  How to set the default styles of a form
+
+   -  headers/titles: <form default-title-style="tableheadtext">
+   -  text: <form default-widget-style="tabletext">
+   -  tooltip: <form default-tooltip-style="tableheadtext"> (tooltip is the text next to the input or display fields)
+
+* How to show a list of valid status changes
+
+  OFBIZ uses the StatusValidChange entity to control valid status transitions.  You can use the StatusValidChangeToDetail and your current
+statusId to control the list of status in a drop down, so the user doesn't try to make an illegal status change:
+
+        <field name="statusId" use-when="communicationEvent!=null" title="${uiLabelMap.CommonStatus}" widget-style="selectBox">
+            <drop-down allow-empty="false" current-description="${uiLabelMap.CommonSelectOne}">
+                <entity-options entity-name="StatusValidChangeToDetail" key-field-name="statusIdTo" description="${transitionName}">
+                    <entity-constraint name="statusId" value="${communicationEvent.statusId}"/>
+                    <entity-order-by field-name="sequenceId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+
+This is from applications/marketing/webapp/marketing/contact/ContactListForms.xml 
+
+Note that current-description tag here needs to be something like ${uiLabelMap.CommonSelectOne} - trying to lookup 
+${currentStatus.description} would just return the current statusId.
+
+
+* How to fill-in default values on a form
+
+  <form name="myForm" default-map-name="displayValue" ..>
+
+  will pre-fill an input form with the values from displayValue.  Note that displayValue can either be a Java Map or
+an OFBIZ GenericValue.  This allows you to add new fields to your display form from an OFBIZ GenericValue.  Here is a neat
+trick you can do in beanshell (.bsh):
+
+  value = delegator.findByPrimaryKey("SomeGenericValue", UtilMisc.toMap("keyField", keyFieldId));
+  displayValue = new HashMap();
+  displayValue.putAll(value.getAllFields());
+  displayValue.put("another Field", anotherValue);
+  // etc. etc.
+
+  context.put("displayValue", displayValue);
+
+* How to add some descriptive text in the middle of a form
+
+  This is a hack, pure and simple.  Let's say you want some text in the middle of the same form so there are
+separate sections to your form.  You can create a "dummy" field with a description of your text and use CSS
+to make it look like a section divider:
+
+        <field name="" widget-style="tableheadtext"><display description="Arbitrary Text"/> </field>
+
+What if you need several lines of this spread throughout your form?  Each field name is only displayed by the
+form widget once, so you'll need several slightly different field names, like this:
+
+        <field name=" " widget-style="tableheadtext"><display description="More Arbitrary Text"/> </field>
+        <field name="  " widget-style="tableheadtext"><display description="Still More Arbitrary Text"/> </field>
+
+* How to use the same field or value more than once on the form
+
+  Let's say you need to display productId twice on your form, once as productId and once as the product description.
+The form widget will only display each field name="" once.  You can explicitly set the 'entry-name' attribute (by default the 
+'entry-name' attribute is equals to the 'name' attribute) to make it display the same field twice.
+
+<field name="productId"><display/></field>
+<field name="productDescription" entry-name="productId">
+   <display-entity entity-name="Product"/>  <!-- defaults to display description -->
+</field>
+
+(Thanks to Jacopo for this tip.)
+
+* How to put in a lookup form with a widget button
+
+  In the form widget, use the <lookup-target > for the field:
+       <field name="productId"><lookup target-form-name="LookupProduct" size="20"/></field>
+     This will put a link to <javascript:call_fieldlookup2(name_of_form_field, "LookupProduct")
+     around the /content/images/fieldlookup.gif image to call request LookupProduct.  
+
+  In your controller, put a request-map and a view-map for this target 
+    <request-map uri="LookupProduct"><security auth="true" https="true"/><response name="success" type="view" value="LookupProduct"/></request-map>
+    <view-map name="LookupProduct" page="component://product/widget/catalog/LookupScreens.xml#LookupProduct" type="screen"/>
+
+  The screen appears to be just a regular OFBIZ screen widget definition.  The typical lookup screen has two sections: a lookup fields form
+  and a list-of-results form.
+
+  The lookup field form is just a regular form, except the entry fields may use <text-find/> instead of <text/> to generate the
+  Begins With/Contains/Ignore Case etc. etc. options next to the text entry box
+      <field name="productId" title="${uiLabelMap.ProductProductId}"><text-find/></field>
+  The target of this form should be the same as before, ie "LookupProduct"  
+
+  The list-of-results form is also just a regular list form with the display fields, except for the field which should cause a value
+  to be set back on the original form, you need a <hyperlink > tag with target="" attribute to call javascript:set_values() 
+  with the values to set, as in:
+        <field name="productId" title=" " widget-style="buttontext" use-when="isVirtual==null||&quot;${isVirtual}&quot;.equals(&quot;N&quot;)">
+            <hyperlink also-hidden="false" target-type="plain" description="${productId}" target="javascript:set_values('${productId}', '${internalName}')"/>
+        </field>
+  or:
+        <field name="partyId" title="${uiLabelMap.PartyPartyId}"  widget-style="buttontext">
+            <hyperlink also-hidden="false" target-type="plain" description="${partyId}" target="javascript:set_value('${partyId}')"/>
+        </field>
+
+  Note that target-type is very important.  It tells OFBIZ not to put the <@ofbizUrl> tag in front of it.
+  
+* How to control how the lookups work
+
+  <text-find> has a default-option attribute and an ignore-case attribute.  default-option is set by default to "like" but can be set to "contains", "equals", and "empty"
+  ignore-case is by default set to "true" but can be turned off and set to "false".  
+
+* How to reuse list form for both lookup and list
+
+  1.  use the use-when directive to check if a field has been set (not just check for null, but actually for its value)
+  2.  do a <set field="isLookup" value="true|false" global="true"> in the top-level decorator of both your LookupScreens.xml and your CommonScreens.xml
+
+* What if you have a list-name and list-iterator-name for list form?
+
+  The list-iterator-name takes precedence over the list-name.  (see ModelForm.java renderItemRows method.)
+
+* How to use FTL with form-widget
+
+  Right now the best way is to tell the form not to generate the form header or trailer, and then use the screen widget
+  to piece it together with some FTL.  This can be done with a skip-start="true" and skip-end="true" attributes of <form ..>
+
+* A word about error messages
+
+  Sometimes you'll get a message like: 
+org.xml.sax.SAXParseException: Attribute "widget-style" was already specified for element "field". (Error rendering included form named [MyForm] at location [component://.../MyForms.xml]
+
+  BE CAREFUL!  It may or may not be that particular form in that Forms.xml file.
+
+* How to select only the fields required for our target service from the input map
+
+  <auto-fields-service service-name="serviceToInvoke" default-field-type="display|edit|find|hidden"/>
+
+  If we get our data from a map other than the default, specify it with map-name="otherMap"
+
+* How to select only the fields in a given entity from the input map
+
+  <auto-fields-entity entity-name="Entity" default-field-type="display|edit|find|hidden"/>
+
+* Fancy formatting of list forms: see http://jira.undersunconsulting.com/browse/OFBIZ-655 for some examples of fancy formatting for list forms. Here's a quic example,
+
+  <form name="BigListForm" type="list"
+      default-table-style="cssStyleForTable" 
+      header-row-style="cssStyleForHeader" 
+      even-row-style="rowWhite" 
+      odd-row-style="rowLightGray">
+
+* Paginated forms - for when your list is too large and you need [Previous] and [Next] to page through results.
+Note that pagination is automatic if you set viewSize and viewIndex in your screen and set the paginate-target in the form.  The rest of these settings are for
+"customizing" your pagination:
+
+  <form name="BigListForm" type="list"
+      paginate-target="${ URL where Prev and Next buttons should link to }" 
+      paginate-target-anchor="${ attaches text as an anchor to the target after URL parameters }" 
+      paginate-size-field="bigListSize" 
+      paginate-index-field="bigListIndex"
+      paginate-previous-label="${ text for [Previous] link }" 
+      paginate-next-label="${ text for [Next] link}" 
+      paginate-previous-style="cssStyleForPrevious"
+      paginate-next-style="cssStyleForNext"
+      ......
+
+This group of form attributes provides you with complete control over pagination. The  minimal configuration
+for one list form on a page is simply,
+
+     paginate-target=" where you want [Previous] and [Next] to go "
+
+For multiple lists on a single page, it is necessary to provide different -size-field and -index-field
+parameter names for each. If you don't, then all lists will use the VIEW_SIZE and VIEW_INDEX parameters
+to paginate. This will have the undesired effect of advancing all lists by one page if you click on
+[Next] for any list! 
+
+And while you're at it, give each list a different -target-anchor. This will append
+the anchor, say "bigListForm" to the UR.  The result will be,
+
+    URL?parameters=foobar#bigLisForm
+
+Then you can use  <a name="anchorName"> in your ftl to make the [Previous] and [Next] buttons jump to that
+part of the document rather than the top of the page.
+
+If you want a name other than Previous or Next, say for localization, or you'd rather use "<<" and ">>"
+instead, you can specify the text and the CSS style for the buttons with the -label and -style attributes.
+
+* How to select null values
+
+Sometimes you need to do a query like "SELECT ... WHERE value IS NULL".  You can do this with entity-constraint
+in the form (or screen) widget by using a "null" which is already in the environment, like this:
+
+<entity-options entity-name="CostComponentType" description="${description}">
+  <entity-constraint name="parentTypeId" oeprator="equals" env-name="null"/>
+</entity-options>
+
+* List iterator and list
+
+Beginning with OFBiz r 7451 (after opentaps 0.9), the list-iterator-name attribute for <form ..> is deprecated.
+list-name="" will now accept either List or EntityListIterator.  If you are using the performFind name, the
+list-name must equal "listIt".
+
+* How to set the alignment for the content of a column in a list form*
+
+Use the field's attribute widget-area-style.
+For example, to right align a field:
+
+<field name="postedBalance" widget-area-style="tabletextright" widget-style="tabletext">
+<display type="currency" currency="${defaultCurrencyUomId}"/>
+</field>	
+
+* You can add a special html characters pretty easily, like this:
+          <!-- a cool way to show a check mark for reconciled transactions -->
+          <field name="reconciled" title="" widget-area-style="tabletext" use-when="reconcileStatusId.equals(&quot;AES_NOT_RECONCILED&quot;)"><display description="-"/></field>
+          <field name="reconciled" title="" widget-area-style="tabletext" use-when="reconcileStatusId.equals(&quot;AES_RECONCILED&quot;)"><display description="&#10003;"/></field>d

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<XPage>
+	<Components>
+		<Button w="100" name="menuSku" x="0" h="58" y="0" style="menuSystem" alignment="Center" content="SKU"></Button>
+		<Button w="100" name="menuMgr" x="101" h="58" y="0" style="menuSystem" alignment="Center" content="MGR"></Button>
+		<Button w="100" name="menuPay" x="202" h="58" y="0" style="menuSystem" alignment="Center" content="PAY"></Button>
+		<Button w="100" name="mgrProductKeyFilter" x="303" h="58" y="0" style="skuButtonGiftCard" alignment="Center" content="SEARCH PRODUCT"></Button>
+		<Button w="100" name="mgrProductLookUp" x="404" h="58" y="0" style="skuButtonGiftCard" alignment="Center" content="PRODUCT LOOKUP"></Button>
+		<Button w="100" name="menuMain" x="505" h="58" y="0" style="skuButtonConfigurableItem" alignment="Center" content="HOME"></Button>
+		<Button w="100" name="mgrPriceChg" x="0" h="58" y="59" style="skuButtonGiftCard" alignment="Center" content="CHANGE PRICE"></Button>
+		<Button w="100" name="mgrVoidSale" x="101" h="58" y="59" style="skuButtonGiftCard" alignment="Center" content="VOID_A_SALE"></Button>
+		<Button w="100" name="mgrPaidOut" x="202" h="58" y="59" style="skuButtonGiftCard" alignment="Center" content="PAID_OUT"></Button>
+		<Button w="100" name="mgrPaidIn" x="303" h="58" y="59" style="skuButtonGiftCard" alignment="Center" content="PAID_IN"></Button>
+		<Button w="100" name="mgrSwapKeyboard" x="404" h="58" y="59" style="skuButtonGiftCard" alignment="Center" content="SWAP KEYBOARD"></Button>
+		<Button w="100" name="mgrOpenTerm" x="505" h="58" y="59" style="menuSystem" alignment="Center" content="OPEN"></Button>
+		<Button w="100" name="mgrCloseTerm" x="505" h="58" y="118" style="menuSystem" alignment="Center" content="CLOSE"></Button>
+		<Button w="100" name="mgrProduct" x="0" h="58" y="177" style="skuButtonGiftCard" alignment="Center" content="PRODUCTS"></Button>
+		<Button w="100" name="mgrPriceList" x="101" h="58" y="177" style="skuButtonGiftCard" alignment="Center" content="PRICE LIST"></Button>
+		<Button w="100" name="mgrAccount" x="202" h="58" y="177" style="skuButtonGiftCard" alignment="Center" content="CUSTOMERS"></Button>
+		<Button w="100" name="mgrReport" x="505" h="58" y="177" style="menuSystem" alignment="Center" content="REPORTS"></Button>
+		<Button w="100" name="mgrPurchaseOrder" x="0" h="58" y="236" style="skuButtonGiftCard" alignment="Center" content="PURCHASE ORDER"></Button>
+		<Button w="100" name="mgrSalesOrder" x="101" h="58" y="236" style="skuButtonGiftCard" alignment="Center" content="SALES ORDER"></Button>
+		<Button w="100" name="mgrPayment" x="202" h="58" y="236" style="skuButtonGiftCard" alignment="Center" content="PAYMENT"></Button>
+		<Button w="100" name="mgrFindPur" x="303" h="58" y="236" style="skuButtonGiftCard" alignment="Center" content="FIND PURCHASE"></Button>
+		<Button w="100" name="mgrFindSales" x="404" h="58" y="236" style="skuButtonGiftCard" alignment="Center" content="FIND SALES"></Button>
+		<Button w="100" name="mgrPopDrwr" x="505" h="58" y="236" style="menuSystem" alignment="Center" content="OPEN_DRAWER"></Button>
+		<Button w="100" name="mgrShowPosDesigner" x="0" h="58" y="295" style="skuButtonGiftCard" alignment="Center" content="SCREEN DESIGN"></Button>
+		<Button w="100" name="mgrTotals" x="101" h="58" y="295" style="skuButtonGiftCard" alignment="Center" content="TOTALS"></Button>
+		<Button w="100" name="mgrReprintTx" x="202" h="58" y="295" style="skuButtonGiftCard" alignment="Center" content="REPRINT"></Button>
+		<Button w="100" name="mgrResetXui" x="303" h="58" y="295" style="skuButtonGiftCard" alignment="Center" content="RESET_XUI"></Button>
+		<Button w="100" name="mgrCacheClear" x="404" h="58" y="295" style="skuButtonGiftCard" alignment="Center" content="CLEAR_CACHE"></Button>
+		<Button w="100" name="mgrShutDown" x="505" h="58" y="295" style="menuSystem" alignment="Center" content="EXIT"></Button>
+		<Button w="100" name="mgrProductCategory" x="303" h="58" y="177" style="skuButtonGiftCard" alignment="Center" content="Product Category"></Button>
+	</Components>
+</XPage>

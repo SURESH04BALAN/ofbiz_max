@@ -1,0 +1,313 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package org.ofbiz.ordermax.pospaneldesigner;
+
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import org.xml.sax.SAXException;
+
+/**
+ *
+ * @author administrator
+ */
+public class SystemButtonDesignPanel extends javax.swing.JPanel implements ButtonDesignPanelInterface {
+
+    public String[][] systemAction = {
+        {"menuSku", "Sku"},
+        {"mgrPriceChg", "Change Price"},
+        {"menuMgr", "Mgr"},
+        {"menuPromo", "Promo"},
+        {"menuConfigItem", "ConfigItem"},
+        {"menuPay", "Pay"},
+        {"mgrProductLookUp", "Product LookUp"},
+        {"mgrProductKeyFilter", "SEARCH PRODUCT"},};
+
+    public SystemButtonDesignPanel() {
+        initComponents();
+        for (int row = 0; row < systemAction.length; ++row) {
+            for (int column = 0; column < systemAction[row].length; ++column) {
+                System.out.print(systemAction[row][column]);
+            }
+            comboSystemAction.addItem(systemAction[row][0]);
+        }
+
+    }
+
+    public void loadEventFile(String filePath) {
+        try {
+            XmlPosButtonEventReader eventReader = new XmlPosButtonEventReader();
+            SAXParserFactory spfac1 = SAXParserFactory.newInstance();
+            SAXParser sp1 = spfac1.newSAXParser();
+            try {
+                sp1.parse(new File(filePath), eventReader);
+                eventReader.readList();
+                comboSystemAction.removeAllItems();
+                systemAction = new String[eventReader.cardList.size()][2];
+                for (int i = 0; i < eventReader.cardList.size(); ++i) {
+                    PosButtonEvent posBtn = eventReader.cardList.get(i);
+                    comboSystemAction.addItem(posBtn.getButtonName());
+                    systemAction[i][0] = posBtn.getButtonName();
+                    systemAction[i][1] = posBtn.getButtonName();
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(SystemButtonDesignPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(SystemButtonDesignPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(SystemButtonDesignPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void setPanelFields(PosButton currSelBtn) {
+        txtContent.setText(currSelBtn.getContent());
+        txtHeight.setText(String.valueOf(currSelBtn.getH()));
+        String val = currSelBtn.getName();
+        //txtName.setText(val);
+        comboSystemAction.setSelectedItem(val);
+        txtWidth.setText(String.valueOf(currSelBtn.getW()));
+        txtX.setText(String.valueOf(currSelBtn.getX()));
+        txtY.setText(String.valueOf(currSelBtn.getY()));
+        comboStyle.setSelectedItem(currSelBtn.getStyle());
+        PosButtonStyles selStyle = getSelectedStyle();
+        if (selStyle != null) {
+            comboStyle.setBackground(Color.decode("#" + selStyle.getColorBack()));
+        }
+        
+    }
+
+    @Override
+    public void getPanelFields(PosButton currSelBtn) {
+        currSelBtn.setContent(txtContent.getText());
+        currSelBtn.setH(Integer.valueOf(txtHeight.getText()));
+        currSelBtn.setName(comboSystemAction.getSelectedItem().toString());
+        currSelBtn.setW(Integer.valueOf(txtWidth.getText()));
+        currSelBtn.setX(Integer.valueOf(txtX.getText()));
+        currSelBtn.setY(Integer.valueOf(txtY.getText()));
+        PosButtonStyles selStyle = getSelectedStyle();
+        if (selStyle != null) {
+            currSelBtn.setStyle(selStyle.getStyleName());
+        }
+    }
+    private ArrayList<PosButtonStyles> listStyle;
+
+    public PosButtonStyles getSelectedStyle() {
+        PosButtonStyles sel = null;
+        for (PosButtonStyles style : listStyle) {
+            if (comboStyle.getSelectedItem().equals(style.getStyleName())) {
+                return style;
+            }
+        }
+        return sel;
+    }
+
+    @Override
+    public void setStyles(ArrayList<PosButtonStyles> list) {
+        comboStyle.removeAllItems();
+        listStyle = list;
+        for (PosButtonStyles style : list) {
+            comboStyle.addItem(style.getStyleName());
+        }
+        comboStyle.setRenderer(new StyleComboCellRenderer(comboStyle.getRenderer(), list));
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel6 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtContent = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        comboStyle = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        comboDesign = new javax.swing.JComboBox();
+        txtWidth = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtHeight = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtX = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtY = new javax.swing.JTextField();
+        comboSystemAction = new javax.swing.JComboBox();
+
+        setLayout(new java.awt.GridLayout(1, 0));
+
+        jLabel3.setText("System Action:");
+
+        jLabel4.setText("Display Name:");
+
+        jLabel6.setText("Design:");
+
+        comboStyle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboStyleActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Alignment:");
+
+        jLabel10.setText("Width:");
+
+        jLabel9.setText("Height:");
+
+        jLabel8.setText("Y:");
+
+        jLabel5.setText("X:");
+
+        txtY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtYActionPerformed(evt);
+            }
+        });
+
+        comboSystemAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSystemActionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboStyle, 0, 146, Short.MAX_VALUE)
+                    .addComponent(txtContent)
+                    .addComponent(comboDesign, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboSystemAction, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(125, 125, 125)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtX, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtY, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(comboSystemAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)
+                                .addComponent(txtY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addComponent(txtX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboStyle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel9)
+                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboDesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
+                        .addComponent(txtWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        add(jPanel6);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void txtYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtYActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtYActionPerformed
+
+    String getSelectedActionName(String action) {
+        String name = "";
+//        for (int row = 0; row < systemAction.length; ++row) {
+
+//            if (systemAction[row][0].equalsIgnoreCase(action)) {
+//                return systemAction[row][1];
+//            }
+//        }
+        return name;
+    }
+
+    private void comboSystemActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSystemActionActionPerformed
+        // TODO add your handling code here:
+        if (comboSystemAction.getSelectedItem() != null) {
+            String selStr = comboSystemAction.getSelectedItem().toString();
+//            txtContent.setText(selStr);
+        }
+    }//GEN-LAST:event_comboSystemActionActionPerformed
+
+    private void comboStyleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboStyleActionPerformed
+        PosButtonStyles selStyle = getSelectedStyle();
+        if (selStyle != null) {
+            comboStyle.setBackground(Color.decode("#" + selStyle.getColorBack()));
+        }
+
+    }//GEN-LAST:event_comboStyleActionPerformed
+    @Override
+    public void setSelectionData(String id, String name) {
+
+    }
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox comboDesign;
+    private javax.swing.JComboBox comboStyle;
+    private javax.swing.JComboBox comboSystemAction;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JTextField txtContent;
+    private javax.swing.JTextField txtHeight;
+    private javax.swing.JTextField txtWidth;
+    private javax.swing.JTextField txtX;
+    private javax.swing.JTextField txtY;
+    // End of variables declaration//GEN-END:variables
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<XPage>
+    <Components>
+        <Button content="SKU" w="100" alignment="Center" style="menuSystem" name="menuSku" h="58" y="0" x="0"></Button>
+        <Button content="MGR" w="100" alignment="Center" style="menuSystem" name="menuMgr" h="58" y="0" x="101"></Button>
+        <Button content="PAY" w="100" alignment="Center" style="menuSystem" name="menuPay" h="58" y="0" x="202"></Button>
+        <Button content="SEARCH PRODUCT" w="100" alignment="Center" style="skuButtonGiftCard" name="mgrProductKeyFilter" h="58" y="0" x="303"></Button>
+        <Button content="PRODUCT LOOKUP" w="100" alignment="Center" style="skuButtonGiftCard" name="mgrProductLookUp" h="58" y="0" x="404"></Button>
+        <Button content="HOME" w="100" alignment="Center" style="skuButtonConfigurableItem" name="menuMain" h="58" y="0" x="505"></Button>
+        
+        <Edit name="pos_output" x="4" y="62" w="600" h="62" style="error" border="0" alignment="Center"/>
+
+        <Button name="pay100Dollar" x="0" y="134" w="100" h="60" style="posButton" content="$100" alignment="Center"/>
+        <Button name="pay50Dollar" x="102" y="134" w="100" h="60" style="posButton" content="$50" alignment="Center"/>
+        <Button name="pay20Dollar" x="204" y="134" w="100" h="60" style="posButton" content="$20" alignment="Center"/>
+        <Button name="pay10Dollar" x="306" y="134" w="100" h="60" style="posButton" content="$10" alignment="Center"/>
+        <Button name="pay5Dollar" x="408" y="134" w="100" h="60" style="posButton" content="$5" alignment="Center"/>
+
+        <Button name="pay2Dollar" x="0" y="196" w="100" h="60" style="posButton" content="$2" alignment="Center"/>
+        <Button name="pay1Dollar" x="102" y="196" w="100" h="60" style="posButton" content="$1" alignment="Center"/>
+        <Button name="pay50Cents" x="204" y="196" w="100" h="60" style="posButton" content="50 Cents" alignment="Center"/>
+        <Button name="pay20Cents" x="306" y="196" w="100" h="60" style="posButton" content="20 Cents" alignment="Center"/>
+        <Button name="pay10Cents" x="408" y="196" w="100" h="60" style="posButton" content="10 cents" alignment="Center"/>
+        <Button name="pay5Cents" x="510" y="196" w="100" h="60" style="posButton" content="5 cents" alignment="Center"/>                                
+
+        <Button name="payCash" x="0" y="258" w="202" h="60" style="posButton" content="CASH" alignment="Center"/>
+        <Button name="payCredit" x="204" y="258" w="202" h="60" style="posButton" content="CREDIT CARD" alignment="Center"/>
+        <!--
+                <Button name="payCheck" x="102" y="248" w="100" h="60" style="posButton" content="CHECK" alignment="Center"/>
+                <Button name="payGiftCard" x="306" y="248" w="100" h="60" style="posButton" content="GIFT_CERT" alignment="Center"/>
+        <Button name="" x="102" y="258" w="100" h="60" style="posButton" content="CHECK" alignment="Center"/>
+        <Button name="" x="306" y="258" w="100" h="60" style="posButton" content="GIFT_CERT" alignment="Center"/>
+        <Button name="" x="408" y="258" w="100" h="60" style="posButton" content="" alignment="Center"/>
+        <Button name="" x="510" y="258" w="100" h="60" style="posButton" content="" alignment="Center"/>
+
+        -->
+
+        <Button name="payClear" x="0" y="320" w="100" h="60" style="posButton" content="CLEAR_ONE" alignment="Center"/>
+        <Button name="payClearAll" x="102" y="320" w="100" h="60" style="posButton" content="CLEAR_ALL" alignment="Center"/>
+        <Button name="paySetRef" x="204" y="320" w="100" h="60" style="posButton" content="SET_REF#" alignment="Center"/>
+        <Button name="" x="306" y="320" w="100" h="60" style="posButton" content="" alignment="Center"/>
+        <Button name="testMsr" x="408" y="320" w="100" h="60" style="posButton" content="TEST_MSR" alignment="Center"/>
+        <Button name="" x="510" y="320" w="100" h="60" style="posButton" content="FINISH" alignment="Center"/>
+        <!--
+        <Button name="ALT.payFinish" x="510" y="320" w="100" h="60" style="posButton" content="FINISH" alignment="Center"/>
+        -->
+    </Components>
+</XPage>

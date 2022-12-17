@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice_czone_preprinted_a5_fanfold" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="fde3575a-9c78-4078-ae58-05e6499796c9">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="20"/>
+	<property name="ireport.y" value="563"/>
+	<import value="java.util.*"/>
+	<style name="Line_Style" backcolor="#CCCCCC">
+		<pen lineWidth="0.5"/>
+	</style>
+	<style name="box" fill="Solid" pattern=""/>
+	<parameter name="INV_NO" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CUST_ACC" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TERMS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="INV_PKID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TOTAL_AMT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="INV_DATE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="INV_TIME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SALESMAN" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="AMOUNT_CASH" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="AMOUNT_CARD" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="AMOUNT_CHEQUE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="AMOUNT_PDCHEQUE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="CASHIER" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LOGO_PATH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ROOT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGE_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{ROOT_DIR} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="STYLE_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{ROOT_DIR} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="COMMON_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{SUBREPORT_DIR} + "common/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUCT_STORE" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT rpt1.*, branch.*, branch.state as branch_state from 
+(
+SELECT rpt.*, itm.uom FROM 
+(
+SELECT *, cust_invoice_item.remarks as item_remarks, array_to_string(
+	ARRAY(
+		SELECT serial AS list 
+		FROM inv_serial_number_delta 
+		WHERE doc_table = 'cust_invoice_item' 
+		  AND doc_key = cust_invoice_item.pkid
+	),
+	', '
+) AS serials 
+FROM cust_invoice_index 
+LEFT JOIN cust_invoice_item 
+	ON cust_invoice_index.pkid = cust_invoice_item.invoice_id 
+WHERE cust_invoice_index.pkid = $P{INV_PKID}
+) AS rpt INNER JOIN inv_item itm ON rpt.item_id = itm.pkid
+) AS rpt1 INNER JOIN acc_branch_index branch ON branch.pkid = rpt1.cust_svcctr_id]]>
+	</queryString>
+	<field name="stmt_no" class="java.lang.Long"/>
+	<field name="sales_txn_id" class="java.lang.Long"/>
+	<field name="time_issued" class="java.sql.Timestamp"/>
+	<field name="currency" class="java.lang.String"/>
+	<field name="ccy_pair" class="java.lang.String"/>
+	<field name="xrate" class="java.math.BigDecimal"/>
+	<field name="payment_terms_id" class="java.lang.Integer"/>
+	<field name="total_amt" class="java.math.BigDecimal"/>
+	<field name="outstanding_amt" class="java.math.BigDecimal"/>
+	<field name="outstanding_bf_pdc" class="java.math.BigDecimal"/>
+	<field name="remarks" class="java.lang.String"/>
+	<field name="state" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="userid_edit" class="java.lang.Integer"/>
+	<field name="lastupdate" class="java.sql.Timestamp"/>
+	<field name="entity_table" class="java.lang.String"/>
+	<field name="entity_key" class="java.lang.Integer"/>
+	<field name="entity_name" class="java.lang.String"/>
+	<field name="entity_type" class="java.lang.String"/>
+	<field name="identity_number" class="java.lang.String"/>
+	<field name="entity_contact_person" class="java.lang.String"/>
+	<field name="foreign_table" class="java.lang.String"/>
+	<field name="foreign_key" class="java.lang.Integer"/>
+	<field name="foreign_text" class="java.lang.String"/>
+	<field name="cust_svcctr_id" class="java.lang.Integer"/>
+	<field name="location_id" class="java.lang.Integer"/>
+	<field name="pc_center" class="java.lang.Integer"/>
+	<field name="txntype" class="java.lang.String"/>
+	<field name="stmt_type" class="java.lang.String"/>
+	<field name="reference_no" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="work_order" class="java.lang.Long"/>
+	<field name="delivery_order" class="java.lang.Long"/>
+	<field name="receipt_id" class="java.lang.Long"/>
+	<field name="display_format" class="java.lang.String"/>
+	<field name="doc_type" class="java.lang.String"/>
+	<field name="billing_handphone" class="java.lang.String"/>
+	<field name="billing_phone1" class="java.lang.String"/>
+	<field name="billing_phone2" class="java.lang.String"/>
+	<field name="billing_fax" class="java.lang.String"/>
+	<field name="billing_email" class="java.lang.String"/>
+	<field name="billing_company_name" class="java.lang.String"/>
+	<field name="billing_add1" class="java.lang.String"/>
+	<field name="billing_add2" class="java.lang.String"/>
+	<field name="billing_add3" class="java.lang.String"/>
+	<field name="billing_city" class="java.lang.String"/>
+	<field name="billing_zip" class="java.lang.String"/>
+	<field name="billing_state" class="java.lang.String"/>
+	<field name="billing_country" class="java.lang.String"/>
+	<field name="receiver_name" class="java.lang.String"/>
+	<field name="receiver_handphone" class="java.lang.String"/>
+	<field name="receiver_phone1" class="java.lang.String"/>
+	<field name="receiver_phone2" class="java.lang.String"/>
+	<field name="receiver_fax" class="java.lang.String"/>
+	<field name="receiver_email" class="java.lang.String"/>
+	<field name="receiver_company_name" class="java.lang.String"/>
+	<field name="receiver_add1" class="java.lang.String"/>
+	<field name="receiver_add2" class="java.lang.String"/>
+	<field name="receiver_add3" class="java.lang.String"/>
+	<field name="receiver_city" class="java.lang.String"/>
+	<field name="receiver_zip" class="java.lang.String"/>
+	<field name="receiver_state" class="java.lang.String"/>
+	<field name="receiver_country" class="java.lang.String"/>
+	<field name="terms1_option" class="java.lang.String"/>
+	<field name="terms1_date" class="java.sql.Timestamp"/>
+	<field name="terms1_disc_pct" class="java.math.BigDecimal"/>
+	<field name="terms1_disc_amt" class="java.math.BigDecimal"/>
+	<field name="terms2_option" class="java.lang.String"/>
+	<field name="terms2_date" class="java.sql.Timestamp"/>
+	<field name="terms2_disc_pct" class="java.math.BigDecimal"/>
+	<field name="terms2_disc_amt" class="java.math.BigDecimal"/>
+	<field name="rebate1_option" class="java.lang.String"/>
+	<field name="rebate1_date" class="java.sql.Timestamp"/>
+	<field name="rebate1_gain" class="java.math.BigDecimal"/>
+	<field name="rebate1_consume" class="java.math.BigDecimal"/>
+	<field name="rebate2_option" class="java.lang.String"/>
+	<field name="rebate2_date" class="java.sql.Timestamp"/>
+	<field name="rebate2_gain" class="java.math.BigDecimal"/>
+	<field name="rebate2_consume" class="java.math.BigDecimal"/>
+	<field name="code_dept" class="java.lang.String"/>
+	<field name="code_project" class="java.lang.String"/>
+	<field name="codeSupplier" class="java.lang.String"/>
+	<field name="sales_id" class="java.lang.Integer"/>
+	<field name="tracking_no" class="java.lang.String"/>
+	<field name="guid" class="java.lang.String"/>
+	<field name="tax_amount" class="java.math.BigDecimal"/>
+	<field name="tax_type" class="java.lang.String"/>
+	<field name="subtype1" class="java.lang.String"/>
+	<field name="subtype2" class="java.lang.String"/>
+	<field name="subtype3" class="java.lang.String"/>
+	<field name="time_accident" class="java.sql.Timestamp"/>
+	<field name="claim_amount" class="java.math.BigDecimal"/>
+	<field name="policy_number" class="java.lang.String"/>
+	<field name="loyalty_card_status" class="java.lang.String"/>
+	<field name="loyalty_card_pkid" class="java.lang.Long"/>
+	<field name="tc_stmt_no" class="java.lang.String"/>
+	<field name="invoice_id" class="java.lang.Long"/>
+	<field name="pos_item_id" class="java.lang.Integer"/>
+	<field name="item_type" class="java.lang.String"/>
+	<field name="total_quantity" class="java.math.BigDecimal"/>
+	<field name="unit_price_quoted" class="java.math.BigDecimal"/>
+	<field name="str_name_1" class="java.lang.String"/>
+	<field name="str_value_1" class="java.lang.String"/>
+	<field name="pic1" class="java.lang.Integer"/>
+	<field name="pic2" class="java.lang.Integer"/>
+	<field name="pic3" class="java.lang.Integer"/>
+	<field name="currency2" class="java.lang.String"/>
+	<field name="unit_price_quoted2" class="java.math.BigDecimal"/>
+	<field name="taxamt" class="java.math.BigDecimal"/>
+	<field name="taxamt2" class="java.math.BigDecimal"/>
+	<field name="str_name_2" class="java.lang.String"/>
+	<field name="str_value_2" class="java.lang.String"/>
+	<field name="str_name_3" class="java.lang.String"/>
+	<field name="str_value_3" class="java.lang.String"/>
+	<field name="int_name_1" class="java.lang.String"/>
+	<field name="int_value_1" class="java.lang.Integer"/>
+	<field name="int_name_2" class="java.lang.String"/>
+	<field name="int_value_2" class="java.lang.Integer"/>
+	<field name="bd_name_1" class="java.lang.String"/>
+	<field name="bd_value_1" class="java.math.BigDecimal"/>
+	<field name="pos_item_type" class="java.lang.String"/>
+	<field name="item_id" class="java.lang.Integer"/>
+	<field name="item_code" class="java.lang.String"/>
+	<field name="bar_code" class="java.lang.String"/>
+	<field name="serialized" class="java.lang.Boolean"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="outstanding_qty" class="java.math.BigDecimal"/>
+	<field name="package_ship" class="java.lang.Boolean"/>
+	<field name="parent_id" class="java.lang.Long"/>
+	<field name="unit_cost_ma" class="java.math.BigDecimal"/>
+	<field name="unit_price_std" class="java.math.BigDecimal"/>
+	<field name="unit_discount" class="java.math.BigDecimal"/>
+	<field name="unit_commission" class="java.math.BigDecimal"/>
+	<field name="code_department" class="java.lang.String"/>
+	<field name="codeCustomer" class="java.lang.String"/>
+	<field name="code_salesman" class="java.lang.String"/>
+	<field name="stk_id" class="java.lang.Integer"/>
+	<field name="stk_location_id" class="java.lang.Integer"/>
+	<field name="stk_location_code" class="java.lang.String"/>
+	<field name="bom_convert_mode" class="java.lang.String"/>
+	<field name="bom_id" class="java.lang.Integer"/>
+	<field name="bom_convert_status" class="java.lang.String"/>
+	<field name="bom_convert_time" class="java.sql.Timestamp"/>
+	<field name="bom_convert_user" class="java.lang.Integer"/>
+	<field name="bom_target_loc" class="java.lang.Integer"/>
+	<field name="bom_source_loc" class="java.lang.Integer"/>
+	<field name="warranty_type" class="java.lang.String"/>
+	<field name="warranty_option" class="java.lang.String"/>
+	<field name="warranty_expiry" class="java.sql.Timestamp"/>
+	<field name="pseudo_logic" class="java.lang.String"/>
+	<field name="pseudo_code" class="java.lang.String"/>
+	<field name="pseudo_name" class="java.lang.String"/>
+	<field name="pseudo_description" class="java.lang.String"/>
+	<field name="pseudo_currency" class="java.lang.String"/>
+	<field name="pseudo_price" class="java.math.BigDecimal"/>
+	<field name="pseudo_qty" class="java.math.BigDecimal"/>
+	<field name="loyalty_logic" class="java.lang.String"/>
+	<field name="loyalty_points_awarded" class="java.math.BigDecimal"/>
+	<field name="loyalty_points_redeemed" class="java.math.BigDecimal"/>
+	<field name="package_group" class="java.lang.String"/>
+	<field name="item_remarks" class="java.lang.String"/>
+	<field name="serials" class="java.lang.String"/>
+	<field name="uom" class="java.lang.String"/>
+	<field name="code" class="java.lang.String"/>
+	<field name="reg_no" class="java.lang.String"/>
+	<field name="addr1" class="java.lang.String"/>
+	<field name="addr2" class="java.lang.String"/>
+	<field name="addr3" class="java.lang.String"/>
+	<field name="zip" class="java.lang.String"/>
+	<field name="countrycode" class="java.lang.String"/>
+	<field name="phoneNo" class="java.lang.String"/>
+	<field name="faxNo" class="java.lang.String"/>
+	<field name="web_url" class="java.lang.String"/>
+	<field name="acc_pccenterid" class="java.lang.Integer"/>
+	<field name="inv_locationid" class="java.lang.Integer"/>
+	<field name="cashbook_cash" class="java.lang.Integer"/>
+	<field name="cashbook_card" class="java.lang.Integer"/>
+	<field name="cashbook_cheque" class="java.lang.Integer"/>
+	<field name="cashbook_pd_cheque" class="java.lang.Integer"/>
+	<field name="cashbook_coupon" class="java.lang.Integer"/>
+	<field name="cashbook_other" class="java.lang.Integer"/>
+	<field name="cashbook_payment" class="java.lang.Integer"/>
+	<field name="logo_url" class="java.lang.String"/>
+	<field name="pricing" class="java.lang.String"/>
+	<field name="hotlines" class="java.lang.String"/>
+	<field name="default_visa_rate" class="java.math.BigDecimal"/>
+	<field name="default_master_rate" class="java.math.BigDecimal"/>
+	<field name="default_amex_rate" class="java.math.BigDecimal"/>
+	<field name="default_diner_rate" class="java.math.BigDecimal"/>
+	<field name="default_card1_rate" class="java.math.BigDecimal"/>
+	<field name="default_card2_rate" class="java.math.BigDecimal"/>
+	<field name="default_card3_rate" class="java.math.BigDecimal"/>
+	<field name="default_other_rate" class="java.math.BigDecimal"/>
+	<field name="format_invoice_header_text" class="java.lang.String"/>
+	<field name="format_invoice_footer_text" class="java.lang.String"/>
+	<field name="format_invoice_entity_address" class="java.lang.String"/>
+	<field name="format_invoice_row" class="java.lang.Integer"/>
+	<field name="format_invoice_type" class="java.lang.String"/>
+	<field name="format_cashsale_header_text" class="java.lang.String"/>
+	<field name="format_cashsale_footer_text" class="java.lang.String"/>
+	<field name="format_cashsale_entity_address" class="java.lang.String"/>
+	<field name="format_cashsale_row" class="java.lang.Integer"/>
+	<field name="format_cashsale_type" class="java.lang.String"/>
+	<field name="format_receipt_header_text" class="java.lang.String"/>
+	<field name="format_receipt_footer_text" class="java.lang.String"/>
+	<field name="format_receipt_entity_address" class="java.lang.String"/>
+	<field name="format_receipt_row" class="java.lang.Integer"/>
+	<field name="format_receipt_type" class="java.lang.String"/>
+	<field name="format_purchase_order_header_text" class="java.lang.String"/>
+	<field name="format_purchase_order_footer_text" class="java.lang.String"/>
+	<field name="format_purchase_order_row" class="java.lang.Integer"/>
+	<field name="format_purchase_order_type" class="java.lang.String"/>
+	<field name="format_salary_slip_header_text" class="java.lang.String"/>
+	<field name="format_salary_slip_footer_text" class="java.lang.String"/>
+	<field name="format_salary_slip_row" class="java.lang.Integer"/>
+	<field name="format_salary_slip_type" class="java.lang.String"/>
+	<field name="format_payment_voucher_header_text" class="java.lang.String"/>
+	<field name="format_payment_voucher_footer_text" class="java.lang.String"/>
+	<field name="format_payment_voucher_row" class="java.lang.Integer"/>
+	<field name="format_payment_voucher_type" class="java.lang.String"/>
+	<field name="format_credit_memo_header_text" class="java.lang.String"/>
+	<field name="format_credit_memo_footer_text" class="java.lang.String"/>
+	<field name="format_credit_memo_row" class="java.lang.Integer"/>
+	<field name="format_credit_memo_type" class="java.lang.String"/>
+	<field name="default_rma_location_cust" class="java.lang.Integer"/>
+	<field name="default_rma_location_supp" class="java.lang.Integer"/>
+	<field name="default_rma_location_hq" class="java.lang.Integer"/>
+	<field name="default_rma_location_branch" class="java.lang.Integer"/>
+	<field name="manager_password01" class="java.lang.String"/>
+	<field name="manager_password02" class="java.lang.String"/>
+	<field name="manager_password03" class="java.lang.String"/>
+	<field name="manager_password04" class="java.lang.String"/>
+	<field name="manager_password05" class="java.lang.String"/>
+	<field name="manager_password06" class="java.lang.String"/>
+	<field name="manager_password07" class="java.lang.String"/>
+	<field name="manager_password08" class="java.lang.String"/>
+	<field name="manager_password09" class="java.lang.String"/>
+	<field name="telephone_developer" class="java.lang.String"/>
+	<field name="telephone_sysadmin" class="java.lang.String"/>
+	<field name="telephone_clerk" class="java.lang.String"/>
+	<field name="telephone_admin" class="java.lang.String"/>
+	<field name="telephone_manager" class="java.lang.String"/>
+	<field name="telephone_sales" class="java.lang.String"/>
+	<field name="telephone_tech_support" class="java.lang.String"/>
+	<field name="telephone_director" class="java.lang.String"/>
+	<field name="mobilephone_developer" class="java.lang.String"/>
+	<field name="mobilephone_sysadmin" class="java.lang.String"/>
+	<field name="mobilephone_clerk" class="java.lang.String"/>
+	<field name="mobilephone_admin" class="java.lang.String"/>
+	<field name="mobilephone_manager" class="java.lang.String"/>
+	<field name="mobilephone_sales" class="java.lang.String"/>
+	<field name="mobilephone_tech_support" class="java.lang.String"/>
+	<field name="mobilephone_director" class="java.lang.String"/>
+	<field name="email_system" class="java.lang.String"/>
+	<field name="email_developer" class="java.lang.String"/>
+	<field name="email_sysadmin" class="java.lang.String"/>
+	<field name="email_clerk" class="java.lang.String"/>
+	<field name="email_admin" class="java.lang.String"/>
+	<field name="email_manager" class="java.lang.String"/>
+	<field name="email_sales" class="java.lang.String"/>
+	<field name="email_tech_support" class="java.lang.String"/>
+	<field name="email_director" class="java.lang.String"/>
+	<field name="customer_id" class="java.lang.Integer"/>
+	<field name="supplier_id" class="java.lang.Integer"/>
+	<field name="loyalty_card_no_prefix" class="java.lang.String"/>
+	<field name="loyalty_card_no_postfix" class="java.lang.String"/>
+	<field name="crv_day_from" class="java.lang.Integer"/>
+	<field name="crv_day_to" class="java.lang.Integer"/>
+	<field name="format_proforma_invoice_type" class="java.lang.String"/>
+	<field name="format_proforma_invoice_footer_text" class="java.lang.String"/>
+	<field name="format_proforma_invoice_header_text" class="java.lang.String"/>
+	<field name="format_proforma_invoice_row" class="java.lang.Integer"/>
+	<field name="format_service_note_type" class="java.lang.String"/>
+	<field name="format_service_note_footer_text" class="java.lang.String"/>
+	<field name="format_service_note_header_text" class="java.lang.String"/>
+	<field name="format_service_note_row" class="java.lang.Integer"/>
+	<field name="tax_reg_number" class="java.lang.String"/>
+	<field name="branch_state" class="java.lang.String"/>
+	<field name="subReportBeanList" class="java.util.List"/>
+	<field name="totalGstAmount" class="java.math.BigDecimal"/>
+	<field name="totalAmountExcludingGst" class="java.math.BigDecimal"/>
+	<field name="invoiceDate" class="java.sql.Timestamp"/>
+	<field name="phone_no" class="java.lang.String"/>
+	<field name="fax_no" class="java.lang.String"/>
+	<field name="attnName" class="java.lang.String"/>
+	<field name="salesPerson" class="java.lang.String"/>
+	<field name="customerReference" class="java.lang.String"/>
+	<field name="supplierABN" class="java.lang.String"/>
+	<field name="supplierPhone" class="java.lang.String"/>
+	<field name="currentOutstanding" class="java.math.BigDecimal"/>
+	<field name="days30Outstanding" class="java.math.BigDecimal"/>
+	<field name="days60Outstanding" class="java.math.BigDecimal"/>
+	<field name="days90OrMoreOutstanding" class="java.math.BigDecimal"/>
+	<field name="totalOutstanding" class="java.math.BigDecimal"/>
+	<field name="accountStatus" class="java.lang.String"/>
+	<field name="invoiceNumber" class="java.lang.String"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<line>
+				<reportElement style="Line_Style" positionType="Float" stretchType="RelativeToBandHeight" x="26" y="254" width="1" height="410" uuid="02cb096e-60ba-41df-83ec-89ded9e5ccc5"/>
+			</line>
+			<line>
+				<reportElement style="Line_Style" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="573" y="254" width="1" height="410" uuid="140d6e40-8ca3-40b8-a8fb-22b8edf78ea2"/>
+			</line>
+			<line>
+				<reportElement style="Line_Style" positionType="Float" stretchType="RelativeToBandHeight" x="27" y="254" width="546" height="1" uuid="ad173989-0eba-4758-b9c2-8d0a6a61b2c0"/>
+			</line>
+			<line>
+				<reportElement key="line-10" style="Line_Style" x="27" y="622" width="546" height="1" uuid="a2c609fe-3388-4d23-926a-e83734c4744a"/>
+			</line>
+			<line>
+				<reportElement style="Line_Style" stretchType="RelativeToBandHeight" x="518" y="254" width="1" height="368" uuid="8610ae0f-914f-4207-947c-d4edc8cf8fe0"/>
+			</line>
+			<line>
+				<reportElement style="Line_Style" stretchType="RelativeToBandHeight" x="462" y="254" width="1" height="368" uuid="1413c9db-e448-4063-be44-9a93121323cf"/>
+			</line>
+			<line>
+				<reportElement style="Line_Style" stretchType="RelativeToBandHeight" x="347" y="254" width="1" height="368" uuid="e00430b7-066f-45a3-b500-acf58b705d44"/>
+			</line>
+			<line>
+				<reportElement style="Line_Style" stretchType="RelativeToBandHeight" x="132" y="254" width="1" height="368" uuid="fe604519-7a22-4fb4-b8b7-2f2d9e763ef5"/>
+			</line>
+			<line>
+				<reportElement style="Line_Style" stretchType="RelativeToBandHeight" x="92" y="254" width="1" height="368" uuid="da9dae9b-61c0-4ed7-b2ab-98ab994e503c"/>
+			</line>
+			<line>
+				<reportElement style="Line_Style" stretchType="RelativeToBandHeight" x="404" y="254" width="1" height="410" uuid="3747ce7d-325c-467c-a0c4-9684c4d24468"/>
+			</line>
+			<line>
+				<reportElement key="line-10" style="Line_Style" x="27" y="664" width="546" height="1" uuid="76e4909b-96ca-4862-a971-dc329de933ab"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-9" x="133" y="254" width="215" height="23" uuid="4e4cc7d4-f84e-44d9-ae52-6d4a9027dd28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-31" style="Line_Style" x="29" y="254" width="65" height="23" uuid="f98fb232-70d3-462f-b0fd-bcc8be09b3ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Item Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-7" x="348" y="254" width="57" height="23" uuid="74848d0f-6fcd-440a-b7a0-2e3d81b9d6a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Unit Price
+(ex-GST)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-6" x="519" y="254" width="54" height="23" uuid="afb929cd-5e6f-4d4c-a8ea-a4353502e6a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total 
+Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-8" x="93" y="254" width="40" height="23" uuid="a166e8dd-932d-49a7-9206-3d75f191003e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-7" x="405" y="254" width="56" height="23" uuid="4571bfd6-b43a-4307-91b9-14214297fec4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Net Total
+(ex-GST)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-7" x="463" y="254" width="56" height="23" uuid="8dd28d9f-0ae7-4545-b19d-54cbd5c39180"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total
+GST]]></text>
+			</staticText>
+			<line>
+				<reportElement style="Line_Style" positionType="Float" stretchType="RelativeToBandHeight" x="27" y="275" width="546" height="1" uuid="630af12b-15fd-4863-8bd5-1beae3600d9e"/>
+			</line>
+		</band>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="276">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="127" uuid="a3003b3b-a5c3-4bc8-831a-994bc4d3498d"/>
+				<image scaleImage="FillFrame" isUsingCache="false">
+					<reportElement key="image-1" stretchType="RelativeToBandHeight" x="30" y="38" width="171" height="88" uuid="6d7bf7ce-0863-4535-bb4c-9dc625a75e08"/>
+					<imageExpression><![CDATA[$P{IMAGE_DIR}+"logo-design1.jpg"]]></imageExpression>
+					<anchorNameExpression><![CDATA[$P{LOGO_PATH}]]></anchorNameExpression>
+				</image>
+				<staticText>
+					<reportElement key="staticText-35" x="209" y="38" width="188" height="29" uuid="d45188bc-5602-460b-acc2-8fc690c1da3d"/>
+					<textElement>
+						<font size="16" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[MAX SPICES PTY. LTD.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-36" x="318" y="56" width="79" height="11" uuid="318745d0-3e26-450e-927a-407d509d9f3f"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ABN 50 143 861 287]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-7" mode="Transparent" x="209" y="67" width="188" height="60" backcolor="#FFFFFF" uuid="f4670a01-6a84-47f7-800b-47783bcf7fa1"/>
+					<textElement>
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[//(($P{CUST_ACC} != null && $P{CUST_ACC}.length() > 0) ? $P{CUST_ACC} + "\n" : "") +
+//(($F{entity_name} != null && $F{entity_name}.length() > 0) ? $F{entity_name} + "\n" : "") +
+(($F{addr1} != null && $F{addr1}.length() > 0) ? $F{addr1} + " " : "") +
+(($F{addr2} != null && $F{addr2}.length() > 0) ? $F{addr2} + ", " : "") +
+(($F{addr3} != null && $F{addr3}.length() > 0) ? $F{addr3} + ", " : "") +
+(($F{state} != null && $F{state}.length() > 0) ? $F{state} + " " : "") +
+//(($F{billing_city} != null && $F{billing_city}.length() > 0) ? $F{billing_city} + "," : "") +
+(($F{zip} != null && $F{zip}.length() > 0) ? $F{zip} + " " : "") +
+(($F{branch_state} != null && $F{branch_state}.length() > 0) ? $F{branch_state} + " " : "") +
+(($F{zip} != null && $F{zip}.length() > 0 && $F{branch_state} != null && $F{branch_state}.length() > 0) ? "\n" : "") +
+("\n")+
+(($F{phone_no} != null && $F{phone_no}.length() > 0) ? "Tel: " + $F{phone_no}+ "    " : "") +
+(($F{fax_no} != null && $F{fax_no}.length() > 0) ? "Fax: " + $F{fax_no} : "") + 
+("\n") +
+(($F{web_url} != null && $F{web_url}.length() > 0) ? "Web: " + $F{web_url} + "\n" : "")]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement style="Line_Style" x="0" y="126" width="595" height="1" uuid="0999f853-24db-4994-a953-1513c00d2125"/>
+				</line>
+				<frame>
+					<reportElement x="420" y="11" width="150" height="115" uuid="231bf98b-b456-45ef-bb87-657053605a9f"/>
+					<rectangle>
+						<reportElement x="0" y="0" width="150" height="110" uuid="1aa2bb86-8ea3-4819-ba46-c8228e7d8a0e"/>
+						<graphicElement>
+							<pen lineWidth="0.25"/>
+						</graphicElement>
+					</rectangle>
+					<staticText>
+						<reportElement key="staticText-1" x="2" y="12" width="82" height="13" uuid="2f124247-d47a-41a3-ae31-c0c5595d0e02"/>
+						<textElement textAlignment="Right">
+							<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Customer  Inv#:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="84" y="12" width="60" height="13" uuid="893c4ab7-8f92-47b5-bfaa-2a48fa0b82fa"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{customerReference}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="false">
+						<reportElement key="textField" mode="Transparent" x="82" y="28" width="60" height="13" backcolor="#FFFFFF" uuid="7bc73244-7138-4bad-b1e4-ec260892c4b0"/>
+						<textElement textAlignment="Left">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{invoiceDate})]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText-1" x="2" y="28" width="82" height="13" uuid="5b06d13a-5937-4145-bcdc-5c1d62b280b1"/>
+						<textElement textAlignment="Right">
+							<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Date:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText-1" x="2" y="42" width="82" height="13" uuid="943bc21f-e4ed-4e89-8888-86677a6d531e"/>
+						<textElement textAlignment="Right">
+							<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Page:]]></text>
+					</staticText>
+					<textField evaluationTime="Report" isBlankWhenNull="false">
+						<reportElement key="textField-3" x="112" y="42" width="30" height="13" uuid="b887aa8a-cd3a-4d87-b490-4290703bc45e"/>
+						<textElement textAlignment="Left">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText-1" x="2" y="56" width="82" height="13" uuid="910bd7c1-2002-488f-8093-484d14323b0d"/>
+						<textElement textAlignment="Right">
+							<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Customer Code:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="false">
+						<reportElement key="textField" x="82" y="57" width="60" height="13" uuid="826392b2-7c0f-44d0-b982-d52a4d6c5efe"/>
+						<textElement textAlignment="Left">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{codeSupplier}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="false">
+						<reportElement key="textField" x="82" y="70" width="60" height="13" uuid="f4873b12-ab3b-45c6-b975-d3ac2d5250f4"/>
+						<textElement textAlignment="Left">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{supplierABN}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText-1" x="2" y="70" width="80" height="13" uuid="a9116d3b-d257-4cc5-8777-3200d97bc558"/>
+						<textElement textAlignment="Right">
+							<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ABN:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="false">
+						<reportElement key="textField" x="82" y="84" width="60" height="13" uuid="4a1dbbaf-25ad-4eb8-875c-8356ae2b25fe"/>
+						<textElement textAlignment="Left">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{accountStatus}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText-1" x="2" y="84" width="82" height="13" uuid="ccfe7f5e-141b-45dc-9ea8-b298cf1fa0b5"/>
+						<textElement textAlignment="Right">
+							<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Account Status:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="false">
+						<reportElement key="textField" x="82" y="42" width="30" height="13" uuid="2b5a08d6-2649-4825-a3ea-2f4744281178"/>
+						<textElement textAlignment="Left">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString() + " of "]]></textFieldExpression>
+					</textField>
+				</frame>
+				<staticText>
+					<reportElement key="staticText-1" x="-131" y="38" width="82" height="15" uuid="6e6cc96c-9db5-40cc-8c16-af5a93285a64"/>
+					<textElement>
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Date:]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="0" y="129" width="595" height="147" uuid="a3003b3b-a5c3-4bc8-831a-994bc4d3498d"/>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" mode="Transparent" x="506" y="0" width="59" height="20" backcolor="#FFFFFF" uuid="1c798780-a282-41bc-8301-59b7d9202055"/>
+					<textElement textAlignment="Left">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{invoiceNumber}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" mode="Transparent" x="55" y="32" width="215" height="59" backcolor="#FFFFFF" uuid="12d97f42-9b2f-444e-b736-16601ee57dde"/>
+					<textElement>
+						<font fontName="SansSerif" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(($P{CUST_ACC} != null && $P{CUST_ACC}.length() > 0) ? $P{CUST_ACC} + "\n" : "") +
+(($F{entity_name} != null && $F{entity_name}.length() > 0) ? $F{entity_name} + "\n" : "") +
+(($F{billing_add1} != null && $F{billing_add1}.length() > 0) ? $F{billing_add1} + ", " : "")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-6" mode="Transparent" x="333" y="33" width="221" height="59" backcolor="#FFFFFF" uuid="e4ceed27-3da7-4467-b7aa-5ea3b30356bf"/>
+					<textElement>
+						<font fontName="SansSerif" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(($P{CUST_ACC} != null && $P{CUST_ACC}.length() > 0) ? $P{CUST_ACC} + "\n" : "") +
+(($F{entity_name} != null && $F{entity_name}.length() > 0) ? $F{entity_name} + "\n" : "") +
+(($F{receiver_add1} != null && $F{receiver_add1}.length() > 0) ? $F{receiver_add1} + "\n" : "") +
+(($F{receiver_add2} != null && $F{receiver_add2}.length() > 0) ? $F{receiver_add2} + "\n" : "") +
+(($F{receiver_add3} != null && $F{receiver_add3}.length() > 0) ? $F{receiver_add3} + "\n" : "") +
+(($F{receiver_city} != null && $F{receiver_city}.length() > 0) ? $F{receiver_city} + "\n" : "") +
+(($F{receiver_zip} != null && $F{receiver_zip}.length() > 0) ? $F{receiver_zip} + " " : "") +
+(($F{receiver_state} != null && $F{receiver_state}.length() > 0) ? $F{receiver_state} + " " : "") +
+(($F{receiver_zip} != null && $F{receiver_zip}.length() > 0 && $F{receiver_state} != null && $F{receiver_state}.length() > 0) ? "\n" : "") +
+(($F{receiver_country} != null && $F{receiver_country}.length() > 0) ? $F{receiver_country} : "")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="394" y="0" width="111" height="20" uuid="1f41e872-8eb6-44b6-bda9-678376483a00"/>
+					<textElement textAlignment="Right">
+						<font size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Tax Invoice:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-1" x="55" y="19" width="64" height="13" uuid="5891fda4-89b9-4624-aace-b2ba6ba203cd"/>
+					<textElement>
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Invoice to:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-1" x="333" y="20" width="64" height="13" uuid="eebf90e9-b2aa-47d1-b477-7a484befdad8"/>
+					<textElement>
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Delivery to:]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<subreport>
+				<reportElement x="26" y="0" width="291" height="15" uuid="2a336315-8659-4d1a-b640-dca1b25f10b0"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{subReportBeanList})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["PurchaseInvoiceItemReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="221">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="150" uuid="740723dc-2598-4ca5-a062-ae826a6cb4b6"/>
+				<staticText>
+					<reportElement key="staticText-39" x="29" y="65" width="49" height="13" uuid="acb7c406-6e2d-4120-a99e-554c090f035b"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Remarks:]]></text>
+				</staticText>
+				<line>
+					<reportElement key="line-6" x="459" y="111" width="125" height="1" uuid="029061f4-f70d-45f7-9b74-fa9f05dcb28a"/>
+				</line>
+				<staticText>
+					<reportElement key="staticText-11" x="462" y="0" width="56" height="14" uuid="353b2375-ac37-4471-9b41-f6c8f90bcceb"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Total Ex GST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-30" x="482" y="113" width="80" height="11" uuid="f8668db9-e280-4e22-bf1a-1d7c3d26bfe7"/>
+					<textElement textAlignment="Center">
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Customer's Signature]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-1" x="299" y="4" width="95" height="23" uuid="ee23c0e5-ed6d-4a84-9504-5ee4f1951a3b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Account Balance]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="299" y="27" width="95" height="12" uuid="be6d7830-cf90-4870-9535-3649ab05ec90"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{totalOutstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="234" y="4" width="47" height="23" uuid="f7dd2bff-a216-48e8-be48-294338ffb7a8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[90 Days +]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="234" y="27" width="47" height="12" uuid="3d4ee44d-aef3-4856-904e-e521e3eeae7c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{days90OrMoreOutstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="180" y="4" width="47" height="23" uuid="f8c55e6a-8fa4-48c8-a6b9-7a606fa9ef4f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[60 Days]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="180" y="27" width="47" height="12" uuid="ca04dae0-0594-4521-9222-622e2f1d5f15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{days60Outstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="120" y="4" width="47" height="23" uuid="68cc3f76-c757-4d0a-a165-3edf70141013"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[30 Days]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="120" y="27" width="47" height="12" uuid="ce4c8d23-89f0-4a7c-8c33-bcad4abf01fc"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{days30Outstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="55" y="27" width="47" height="12" uuid="fa24fd31-c383-49dc-89d6-9d93aa255540"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{currentOutstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="55" y="4" width="47" height="23" uuid="f3cdcf19-d682-4574-a190-3dd8cf7c383a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Current]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="518" y="26" width="54" height="14" uuid="a7d9cb3a-1a90-4dfc-a8a1-168a60b8c73a"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_amt}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-11" x="427" y="26" width="91" height="14" uuid="a94acf9c-9db2-4a55-828b-93bdfff7187c"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL Inc GST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-11" x="462" y="13" width="56" height="14" uuid="187e2794-7f5f-4b05-a946-1ebe588b3964"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[GST]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="518" y="13" width="54" height="14" uuid="462e10ee-be21-410c-b767-785680996a18"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{totalGstAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="518" y="0" width="54" height="14" uuid="2ef61c27-39e3-438a-a8d4-2a3951904a15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{totalAmountExcludingGst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-40" x="30" y="95" width="364" height="55" uuid="8e91c460-0aa1-4203-a863-8e5a28866a21"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[THE GOODS THE  SUBJECT OF THIS INVOICE SHALL REMAIN THE SOLE AND ABSOLUTE PROPERTY OF THE COMPANY AS A LEGAL AND BENIFICAL OWNER UNTIL SUCH TIME AS THE PURCHASER SHALL HAVE PAID TO THE COMPANY THE FULL PURCHASE PRICE OF ANY OTHER GOODS THE SUBJECT OF ANY OTHER CONTRACT BETWEEN THE INTENDING PURCHASER AND THE COMPANY.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField-11" x="78" y="65" width="302" height="13" uuid="fbef259f-5e74-4d92-8fc7-7c6daedc56b8"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{remarks} != null && $F{remarks}.length() > 0 ? $F{remarks} : "" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-38" x="55" y="44" width="350" height="13" uuid="91a20ccb-f5ed-433c-984c-226423190214"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Return/Exchange: No Claim will be recognised unless made within 14 days of invoice.]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="220">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="135" width="595" height="81" uuid="c58032ed-632d-4784-9c73-e6098ae15a2d"/>
+				<image>
+					<reportElement x="15" y="0" width="72" height="72" uuid="5ca02c1b-0870-48ae-9212-3d5e5160fa45"/>
+					<imageExpression><![CDATA[$P{IMAGE_DIR} + "visamaster_72_x_72.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="261" y="0" width="32" height="23" uuid="b508068d-6a93-4dd8-9fea-e1ef7df59862"/>
+					<imageExpression><![CDATA[$P{IMAGE_DIR} + "EFTPOS_32_22.png"]]></imageExpression>
+				</image>
+				<frame>
+					<reportElement x="293" y="0" width="168" height="76" uuid="5c102a7e-ea21-4dd6-8669-2612b7fbf98f"/>
+					<staticText>
+						<reportElement x="10" y="24" width="156" height="25" uuid="041f4469-73a5-492b-a432-1fd1dc1c99cd"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<text><![CDATA[ANZ BANK]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="10" y="49" width="52" height="12" uuid="dd0ce033-a9ed-4b82-bb49-1b6b5cdd6e69"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<text><![CDATA[Quote Ref:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="10" y="0" width="156" height="14" uuid="77f0cefb-7e09-41a6-bf98-fc9d3a2c456d"/>
+						<text><![CDATA[By EFT or Direct Branch Deposit]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="62" y="49" width="104" height="12" uuid="82a71bf4-fe0f-43d1-a49a-1613263a84a9"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{invoiceNumber}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="88" y="0" width="173" height="72" uuid="9758aa81-eb98-4be8-bf0c-53dbd5b71ecd"/>
+					<staticText>
+						<reportElement x="8" y="29" width="156" height="25" uuid="f04530bd-cfbf-468f-b8bb-029a5a208dab"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<text><![CDATA[To Pay via MasterCard or VISA
+Phone: (02) 9604 9600 (Office Hours Only)]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="8" y="54" width="52" height="12" uuid="be779af4-9444-464b-83f8-ca252e8742e1"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<text><![CDATA[Quote Ref:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="8" y="15" width="58" height="14" uuid="07dbe251-8f77-4d02-8e61-0e784fa3fb3d"/>
+						<text><![CDATA[by Credit Card]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="60" y="54" width="104" height="12" uuid="d459ccc3-fefd-43c7-b81c-9d61d4ec193c"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{invoiceNumber}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="6" y="0" width="75" height="14" uuid="b5fac932-51a9-4dbf-ab54-29736403c482"/>
+						<text><![CDATA[How To Pay:]]></text>
+					</staticText>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="0" y="0" width="595" height="136" uuid="c20c791a-df52-43f5-8788-5b28269e0f36"/>
+				<staticText>
+					<reportElement key="staticText-39" x="29" y="65" width="49" height="13" uuid="a9c60e86-522f-409c-812c-fb72ed336871"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Remarks:]]></text>
+				</staticText>
+				<line>
+					<reportElement key="line-6" x="448" y="111" width="125" height="1" uuid="9d26c005-d02d-47cc-b12e-b3f901f80463"/>
+				</line>
+				<staticText>
+					<reportElement key="staticText-11" x="462" y="0" width="56" height="14" uuid="430b7e35-e287-4fbc-a70a-4f1e35f838a3"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Total Ex GST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-30" x="471" y="113" width="80" height="11" uuid="bf8014e9-d445-4a3a-bc0a-7ca0e0f0d43b"/>
+					<textElement textAlignment="Center">
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Customer's Signature]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-1" x="299" y="4" width="95" height="23" uuid="1dcbf30a-ff3b-42f9-8557-1bb009da2fbe"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Account Balance]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="299" y="27" width="95" height="12" uuid="9d935a8f-2d4d-44d8-8d34-cf95c4476c9a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{totalOutstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="234" y="4" width="47" height="23" uuid="a64b90a1-9d6c-4846-8fdb-117829db7e25"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[90 Days +]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="234" y="27" width="47" height="12" uuid="85838013-2bdc-46b3-86bb-dd1f5c6719d7"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{days90OrMoreOutstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="180" y="4" width="47" height="23" uuid="8cb6c1ae-7cbe-4e3d-af28-96cc59a17e02"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[60 Days]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="180" y="27" width="47" height="12" uuid="1cc5990a-9034-4654-aa7e-b17a5c418014"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{days60Outstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="120" y="4" width="47" height="23" uuid="573588bd-8d07-4758-b43d-ab9e23a13f96"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[30 Days]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="120" y="27" width="47" height="12" uuid="00a74959-89af-4b57-a6fe-35878495dd4c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{days30Outstanding}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="55" y="27" width="47" height="12" uuid="3e3bbb01-7d6b-4720-8ef8-ad7f784c0a02"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{currentOutstanding}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-1" x="55" y="4" width="47" height="23" uuid="2edba740-b2ba-408a-b50e-464ca009c614"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Current]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="518" y="26" width="54" height="14" uuid="508dad30-2f9e-48f7-bc9e-befa0c78028e"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_amt}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-11" x="427" y="26" width="91" height="14" uuid="a55932a6-c334-4721-b4b8-a1956a1b49a8"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL Inc GST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-11" x="462" y="13" width="56" height="14" uuid="ad4d458b-cea9-457b-a7ab-c3aec3cb6ad1"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[GST]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="518" y="13" width="54" height="14" uuid="448f09cf-77e4-403a-bc06-fc2e0c1af8e9"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{totalGstAmount}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="518" y="0" width="54" height="14" uuid="5838fd33-e9c8-4e7e-9927-27e00de6d787"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{totalAmountExcludingGst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-40" x="310" y="65" width="62" height="13" uuid="abdf13a7-adac-41e7-9d78-7d0cf285ec1d"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Payment by]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-41" x="310" y="85" width="38" height="11" uuid="8938f135-7b63-424e-916a-47e911313531"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Cash]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-42" x="310" y="100" width="38" height="11" uuid="b1af202c-154f-4f73-8e6b-0cb3ff4bb2dc"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Cheque]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="348" y="85" width="52" height="11" uuid="b1f04467-fb08-492f-b374-2c574564ecc3"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[":"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-12" x="348" y="100" width="52" height="11" uuid="bb2612bf-718b-4306-b76f-a818cea4e055"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[":"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField-11" x="78" y="65" width="215" height="25" uuid="52643cbf-47df-4ff5-95ae-2060549cc815"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{remarks} != null && $F{remarks}.length() > 0 ? $F{remarks} : "" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-38" x="29" y="45" width="351" height="13" uuid="f945628e-2d8c-4788-9987-b012cf4ec68c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Return/Exchange: No claim will be recognised unless made within 14 days of invoice.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-40" x="26" y="90" width="267" height="46" uuid="4efe3abb-dbb0-4b21-bfa1-dc84699f669c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[THE GOODS THE  SUBJECT OF THIS INVOICE SHALL REMAIN THE SOLE AND ABSOLUTE PROPERTY OF THE COMPANY AS A LEGAL AND BENIFICAL OWNER UNTIL SUCH TIME AS THE PURCHASER SHALL HAVE PAID TO THE COMPANY THE FULL PURCHASE PRICE OF ANY OTHER GOODS THE SUBJECT OF ANY OTHER CONTRACT BETWEEN THE INTENDING PURCHASER AND THE COMPANY.]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

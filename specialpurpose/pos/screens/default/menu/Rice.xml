@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<XPage>
+	<Components>
+		<Button w="100" name="menuSku" x="0" h="58" y="0" style="menuSystem" alignment="Center" content="SKU"></Button>
+		<Button w="100" name="menuMgr" x="101" h="58" y="0" style="menuSystem" alignment="Center" content="MGR"></Button>
+		<Button w="100" name="menuPay" x="202" h="58" y="0" style="menuSystem" alignment="Center" content="PAY"></Button>
+		<Button w="100" name="mgrProductKeyFilter" x="303" h="58" y="0" style="skuButtonGiftCard" alignment="Center" content="SEARCH PRODUCT"></Button>
+		<Button w="100" name="mgrProductLookUp" x="404" h="58" y="0" style="skuButtonGiftCard" alignment="Center" content="PRODUCT LOOKUP"></Button>
+		<Button w="100" name="menuMain" x="505" h="58" y="0" style="skuButtonConfigurableItem" alignment="Center" content="HOME"></Button>
+		<Button w="100" name="mgrPriceChg" x="0" h="58" y="59" style="skuButtonGiftCard" alignment="Center" content="CHANGE PRICE"></Button>
+		<Button w="100" name="ACTION.panelBeverage" x="505" h="58" y="59" style="journalHeader" alignment="Center" content="Beverage"></Button>
+		<Button w="100" name="SKU.GROCERY" x="0" h="58" y="118" style="skuButtonWidget" alignment="Center" content="GROCERY"></Button>
+		<Button w="100" name="ACTION.panelBread" x="505" h="58" y="118" style="journalHeader" alignment="Center" content="Bread"></Button>
+		<Button w="100" name="SKU.K1028" x="101" h="58" y="177" style="skuButtonLightBlue" alignment="Center" content="Lion Rice 5kg"></Button>
+		<Button w="100" name="SKU.K1029" x="202" h="58" y="177" style="posButtonLightBlue" alignment="Center" content="Lion Rice 10g"></Button>
+		<Button w="100" name="SKU.K1030" x="303" h="58" y="177" style="posButtonLightBlue" alignment="Center" content="Lion Rice 25kg"></Button>
+		<Button w="100" name="ACTION.panelCosmetic" x="505" h="58" y="177" style="journalHeader" alignment="Center" content="Cosmetic"></Button>
+		<Button w="100" name="ACTION.panelFoodandGrocery" x="505" h="58" y="236" style="journalHeader" alignment="Center" content="Food Grocery"></Button>
+		<Button w="100" name="SKU.K1031" x="101" h="58" y="295" style="posButtonGreen" alignment="Center" content="BD Rice 5kg"></Button>
+		<Button w="100" name="SKU.K1032" x="202" h="58" y="295" style="posButtonGreen" alignment="Center" content="BD Rice 10kg"></Button>
+		<Button w="100" name="SKU.K1033" x="303" h="58" y="295" style="posButtonGreen" alignment="Center" content="BD Rice 25kg"></Button>
+		<Button w="100" name="ACTION.panelFrozen" x="505" h="58" y="295" style="journalHeader" alignment="Center" content="Frozen"></Button>
+		<Button w="100" name="ACTION.panelRice" x="505" h="58" y="354" style="journalHeader" alignment="Center" content="Rice"></Button>
+	</Components>
+</XPage>

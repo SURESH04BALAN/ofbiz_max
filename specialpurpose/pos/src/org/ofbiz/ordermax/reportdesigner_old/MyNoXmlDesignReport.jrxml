@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MyNoXmlDesignReport" pageWidth="842" pageHeight="545" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="50" bottomMargin="50" uuid="84f70bcf-0b02-4d24-ab86-6d221ae0e47a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="51"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Sans_Normal" isDefault="true" fontName="DejaVu Sans" fontSize="10" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#C0C0C0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Sans_Bold" isDefault="true" fontName="DejaVu Sans" fontSize="10" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<style name="Sans_Italic" isDefault="true" fontName="DejaVu Sans" fontSize="10" pdfFontName="Helvetica-Oblique" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<parameter name="ReportTitle" class="java.lang.String"/>
+	<parameter name="OrderByClause" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="orderName" class="java.lang.String"/>
+	<field name="street" class="java.lang.String"/>
+	<field name="city" class="java.lang.String"/>
+	<field name="author" class="java.lang.String"/>
+	<variable name="CityNumber" class="java.lang.Integer" resetType="Group" resetGroup="CityGroup" calculation="System">
+		<initialValueExpression><![CDATA[($V{CityNumber} != null)?(new Integer($V{CityNumber}.intValue() + 1)):(new Integer(1))]]></initialValueExpression>
+	</variable>
+	<variable name="AllCities" class="java.lang.String" calculation="System"/>
+	<group name="CityGroup" minHeightToStartNewPage="60">
+		<groupExpression><![CDATA[$F{city}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement style="Sans_Bold" mode="Opaque" x="0" y="4" width="762" height="15" backcolor="#C0C0C0" uuid="79cc9002-23c3-40da-b4d7-230c1a89f2f2"/>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA["  " + String.valueOf($V{CityNumber}) + ". " + String.valueOf($F{city})]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="-1" width="762" height="1" uuid="443bcfba-2e28-4b51-ab0d-3507afcbf964"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<line>
+					<reportElement x="0" y="-1" width="762" height="1" uuid="3ead9e47-1b0f-41a6-9f3a-02666acf8296"/>
+				</line>
+				<staticText>
+					<reportElement style="Sans_Bold" x="400" y="0" width="60" height="15" uuid="9b73611f-2bc9-4dd9-b340-1d213707e043"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[Count : ]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Sans_Bold" x="460" y="0" width="30" height="15" uuid="b9a6f53e-5679-4866-a668-d3e705a185cf"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{CityGroup_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="50">
+			<line>
+				<reportElement x="0" y="-1" width="762" height="1" uuid="0343cbd4-9df3-437e-a8ed-b8dfebe044ff"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Sans_Normal" x="0" y="10" width="842" height="30" uuid="862782f3-c6f4-4fee-a350-5bf19cca49e8"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ReportTitle}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="5" width="762" height="15" forecolor="#333333" backcolor="#333333" uuid="668bf3ea-9eb6-485e-a095-2fecb5ee86ff"/>
+				<staticText>
+					<reportElement style="Sans_Bold" mode="Opaque" x="0" y="0" width="55" height="15" forecolor="#FFFFFF" backcolor="#333333" uuid="da1ba54b-c4fb-4bd4-8fb0-685b0d29aa9b"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Sans_Bold" mode="Opaque" x="55" y="0" width="205" height="15" forecolor="#FFFFFF" backcolor="#333333" uuid="b2d06e71-7783-476b-972a-3e94a6398c0f"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Sans_Bold" mode="Opaque" x="55" y="0" width="205" height="15" forecolor="#FFFFFF" backcolor="#333333" uuid="22beb3b0-9c59-4964-b124-d12c4da0bc56"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Sans_Bold" mode="Opaque" x="260" y="0" width="155" height="15" forecolor="#FFFFFF" backcolor="#333333" uuid="dafc365d-aee1-48fd-a872-6801b5ed0d46"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Street]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Sans_Bold" mode="Opaque" x="370" y="0" width="155" height="15" forecolor="#FFFFFF" backcolor="#333333" uuid="a63d0f02-3913-4b79-a1bb-030e62104724"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Author]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Sans_Bold" mode="Opaque" x="370" y="0" width="155" height="15" forecolor="#FFFFFF" backcolor="#333333" uuid="a63d0f02-3913-4b79-a1bb-030e62104724"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Author]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<frame>
+				<reportElement style="Sans_Normal" mode="Opaque" x="0" y="0" width="762" height="21" uuid="6d838cff-dd3a-4ae2-8e45-c682ce8730fd"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Sans_Normal" x="0" y="0" width="50" height="15" uuid="776bc55a-4952-4118-a0ad-eed6da79c0f9"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Sans_Normal" positionType="Float" x="55" y="0" width="200" height="15" uuid="3d3b77e9-c30f-422a-89ca-8352894442b2"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{name} + " " + $F{orderName}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Sans_Normal" positionType="Float" x="260" y="0" width="155" height="15" uuid="e3e1d39a-9608-44b4-a944-177f9533b007"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{street}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Sans_Normal" positionType="Float" x="370" y="0" width="100" height="15" uuid="7c6c32b6-52b2-4351-b93b-f97f7a744b2e"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{author}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="Float" x="0" y="-1" width="762" height="1" forecolor="#808080" uuid="c5f7af7f-89bc-44fc-a25d-f42d8c2a15aa"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

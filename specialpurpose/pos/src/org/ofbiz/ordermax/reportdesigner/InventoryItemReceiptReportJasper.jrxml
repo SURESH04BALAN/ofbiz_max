@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be3ba22f-1a3e-4671-a909-9fb717019302">
+	<property name="ireport.zoom" value="2.5937424601000023"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="417"/>
+	<field name="productId" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="expireDate" class="java.sql.Timestamp"/>
+	<field name="datetimeManufactured" class="java.sql.Timestamp"/>
+	<field name="accountingQuantityTotal" class="java.math.BigDecimal"/>
+	<field name="partyId" class="java.lang.String"/>
+	<field name="datetimeReceived" class="java.sql.Timestamp"/>
+	<field name="comments" class="java.lang.String"/>
+	<field name="lotId" class="java.lang.String"/>
+	<field name="containerId" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement x="9" y="0" width="793" height="90" uuid="a1f415f5-2463-4577-bb30-7724707f03c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="36" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="300" splitType="Stretch">
+			<textField>
+				<reportElement x="159" y="19" width="558" height="40" uuid="11636ceb-e812-4ce9-a035-ca682e66cede"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="19" width="142" height="40" uuid="dc8ab0d3-32ff-43ae-a8c9-ee503de6e2d4"/>
+				<textElement textAlignment="Right">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="159" y="99" width="150" height="40" uuid="37485ffd-fc70-4941-8e59-f938d39172f3"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{expireDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="99" width="142" height="40" uuid="b405b9e7-d112-461d-a0ea-4568a9840e66"/>
+				<textElement textAlignment="Right">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expire Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="149" width="56" height="30" uuid="71c6bdde-cb57-48dd-97fc-91300248aead"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lot Id:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="149" width="86" height="30" uuid="80917141-de89-4d3a-a531-69d9bd260314"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lotId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="466" y="149" width="89" height="30" uuid="71ed662b-5241-4e2c-aa74-d21cb755bd83"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Manu. Date:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="555" y="149" width="100" height="30" uuid="720c0079-96a4-4b53-bac7-0892e2538970"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datetimeManufactured}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="358" y="99" width="183" height="40" uuid="4f442c71-2966-45c0-8afe-a2aa29950266"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Received Date:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="541" y="99" width="176" height="40" uuid="75be8644-4bf5-46bd-bec7-e6d76a3efef7"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datetimeReceived}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="159" y="149" width="62" height="30" uuid="6f84d6b7-ea37-4411-89cc-fc0e80142e01"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantity:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="221" y="149" width="56" height="30" uuid="2541fe4d-86a3-4a5d-84b9-c7780a774a26"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accountingQuantityTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="59" width="142" height="40" uuid="af3a8f67-82fb-4c80-ab63-ea22dd7abaf6"/>
+				<textElement textAlignment="Right">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Supplier Id:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="59" width="558" height="40" uuid="86931083-eb8f-4eb7-a223-51778bdab78f"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partyId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="149" width="89" height="30" uuid="ee672a46-feeb-4669-8cd6-d361f12cf87d"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Container Id:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="149" width="79" height="30" uuid="e8c07109-257c-4b88-9f4c-b5c14d167e43"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{containerId}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
